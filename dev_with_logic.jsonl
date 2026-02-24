@@ -1,0 +1,573 @@
+{
+    "index": 0,
+    "id": "dev-0",
+    "logic_kb": {
+        "constants": [
+            {
+                "id": "me",
+                "type": "person",
+                "gloss": "the speaker"
+            },
+            {
+                "id": "b",
+                "type": "person",
+                "gloss": "the brother of the speaker"
+            },
+            {
+                "id": "bw",
+                "type": "person",
+                "gloss": "the wife of the speaker's brother"
+            },
+            {
+                "id": "c1",
+                "type": "person",
+                "gloss": "7 year old child of b and bw"
+            },
+            {
+                "id": "c2",
+                "type": "person",
+                "gloss": "8 year old child of b and bw"
+            },
+            {
+                "id": "prison",
+                "type": "location",
+                "gloss": "prison"
+            },
+            {
+                "id": "fraud_scheme",
+                "type": "object",
+                "gloss": "a large fraud scheme"
+            },
+            {
+                "id": "t4y",
+                "type": "time",
+                "gloss": "the last 4 years"
+            }
+        ],
+        "predicates": [
+            {
+                "name": "in_prison",
+                "arity": 2,
+                "gloss": "person is in prison for reason"
+            },
+            {
+                "name": "child_of",
+                "arity": 2,
+                "gloss": "first person is a child of second"
+            },
+            {
+                "name": "living_with",
+                "arity": 3,
+                "gloss": "person is living with another during given time"
+            },
+            {
+                "name": "wants_to_become_special_guardian",
+                "arity": 2,
+                "gloss": "person wants to become special guardian for someone"
+            },
+            {
+                "name": "looks_after",
+                "arity": 2,
+                "gloss": "person looks after another"
+            },
+            {
+                "name": "permanently",
+                "arity": 1,
+                "gloss": "adverb, modifies look after"
+            }
+        ],
+        "fol": {
+            "facts": [
+                "InPrison(b, fraud_scheme)",
+                "InPrison(bw, fraud_scheme)",
+                "ChildOf(c1, b)",
+                "ChildOf(c1, bw)",
+                "ChildOf(c2, b)",
+                "ChildOf(c2, bw)",
+                "LivingWith(c1, me, t4y)",
+                "LivingWith(c2, me, t4y)",
+                "WantsToBecomeSpecialGuardian(me, c1)",
+                "WantsToBecomeSpecialGuardian(me, c2)",
+                "Permanently(LooksAfter(me, c1))",
+                "Permanently(LooksAfter(me, c2))"
+            ],
+            "rules": [],
+            "optional_rules": [
+                "ChildOf(X, Y) & ChildOf(X, Z) & married(Y, Z) -> Sibling(X, other_child_of(Y, Z, X))"
+            ]
+        },
+        "prolog": {
+            "facts": [
+                "in_prison(b, fraud_scheme).",
+                "in_prison(bw, fraud_scheme).",
+                "child_of(c1, b).",
+                "child_of(c1, bw).",
+                "child_of(c2, b).",
+                "child_of(c2, bw).",
+                "living_with(c1, me, t4y).",
+                "living_with(c2, me, t4y).",
+                "wants_to_become_special_guardian(me, c1).",
+                "wants_to_become_special_guardian(me, c2).",
+                "permanently(looks_after(me, c1)).",
+                "permanently(looks_after(me, c2))."
+            ],
+            "rules": [],
+            "optional_rules": [
+                "child_of(X, Y), child_of(X, Z), married(Y, Z) -> sibling(X, YZ_other_child(X))."
+            ]
+        },
+        "hypothesis_fol": "Exists(t) CourtHearsBack(me, t)"
+    },
+    "data": {
+        "url": "https://www.gov.uk/apply-special-guardian",
+        "scenario": "My brother and his wife are in prison for carrying out a large fraud scheme. Their 7 and 8 year old children have been living with me for the last 4 years. I want to become their Special Guardian to look after them permanently",
+        "question": "How long will it be before I hear back from the court?",
+        "not_answerable": false,
+        "answers": [
+            [
+                "within 10 days",
+                []
+            ]
+        ],
+        "evidences": [
+            "<p>Within 10 days of receiving your application the court will send you a case number and a date for a meeting to set out:</p>"
+        ],
+        "id": "dev-0"
+    }
+}
+
+{
+    "index": 1,
+    "id": "dev-1",
+    "logic_kb": {
+        "constants": [
+            {
+                "id": "me",
+                "type": "person",
+                "gloss": "the speaker"
+            },
+            {
+                "id": "partner",
+                "type": "person",
+                "gloss": "speaker's partner"
+            },
+            {
+                "id": "child",
+                "type": "person",
+                "gloss": "a child to be adopted"
+            },
+            {
+                "id": "uk",
+                "type": "location",
+                "gloss": "United Kingdom"
+            }
+        ],
+        "predicates": [
+            {
+                "name": "trying_for_child",
+                "arity": 2,
+                "gloss": "person is trying for a child with another"
+            },
+            {
+                "name": "decided_to_adopt",
+                "arity": 2,
+                "gloss": "person and partner have decided to adopt a child"
+            },
+            {
+                "name": "adopter_age_requirement_exists",
+                "arity": 2,
+                "gloss": "there is an age requirement for adoption in a location"
+            }
+        ],
+        "fol": {
+            "facts": [
+                "TryingForChild(me, partner)",
+                "DecidedToAdopt(me, partner)",
+                "DecidedToAdopt(partner, me)"
+            ],
+            "rules": [],
+            "optional_rules": []
+        },
+        "prolog": {
+            "facts": [
+                "trying_for_child(me, partner).",
+                "decided_to_adopt(me, partner).",
+                "decided_to_adopt(partner, me)."
+            ],
+            "rules": [],
+            "optional_rules": []
+        },
+        "hypothesis_fol": "Exists(x) AdopterAgeRequirementExists(x, uk)"
+    },
+    "data": {
+        "url": "https://www.gov.uk/child-adoption",
+        "scenario": "Me and my partner have been trying for a child for the past few years however with no luck. We have now decided we would like to adopt a child.",
+        "question": "Are there any age requirements for the adopter when adopting a child in the UK?",
+        "not_answerable": false,
+        "answers": [
+            [
+                "aged 21 or over",
+                []
+            ]
+        ],
+        "evidences": [
+            "<p>You may be able to adopt a child if you’re aged 21 or over (there’s no upper age limit) and either:</p>"
+        ],
+        "id": "dev-1"
+    }
+}
+
+{
+    "index": 2,
+    "id": "dev-2",
+    "logic_kb": {
+        "constants": [
+            {
+                "id": "me",
+                "type": "person",
+                "gloss": "the speaker"
+            },
+            {
+                "id": "boy",
+                "type": "person",
+                "gloss": "16 year old teenage boy from Syria"
+            },
+            {
+                "id": "syria",
+                "type": "location",
+                "gloss": "Syria"
+            }
+        ],
+        "predicates": [
+            {
+                "name": "guardian_of",
+                "arity": 2,
+                "gloss": "first person is a guardian of the second"
+            },
+            {
+                "name": "age",
+                "arity": 2,
+                "gloss": "person has a specified age"
+            },
+            {
+                "name": "from_country",
+                "arity": 2,
+                "gloss": "person is from a country"
+            },
+            {
+                "name": "cared_for_when_young_and_homeless",
+                "arity": 2,
+                "gloss": "first person cared for second when second was young and homeless"
+            },
+            {
+                "name": "wants_to_change_surname_to",
+                "arity": 2,
+                "gloss": "wants to change surname of person to surname of another"
+            }
+        ],
+        "fol": {
+            "facts": [
+                "GuardianOf(me, boy)",
+                "Age(boy, 16)",
+                "FromCountry(boy, syria)",
+                "CaredForWhenYoungAndHomeless(me, boy)",
+                "WantsToChangeSurnameTo(me, boy)"
+            ],
+            "rules": [],
+            "optional_rules": []
+        },
+        "prolog": {
+            "facts": [
+                "guardian_of(me, boy).",
+                "age(boy, 16).",
+                "from_country(boy, syria).",
+                "cared_for_when_young_and_homeless(me, boy).",
+                "wants_to_change_surname_to(me, boy)."
+            ],
+            "rules": [],
+            "optional_rules": []
+        },
+        "hypothesis_fol": "CanApplyToChangeSurname(me, boy)"
+    },
+    "data": {
+        "url": "https://www.gov.uk/apply-special-guardian",
+        "scenario": "I am a guardian to a 16year old teenage boy from syria whom i cared for when he was young and homeless. I want to change his surname to to mine.",
+        "question": "Can I apply to change his surname to mine?",
+        "not_answerable": false,
+        "answers": [
+            [
+                "yes",
+                [
+                    "<p>You’ll need to get the consent of everyone who has parental responsibility for the child before you make some important decisions, for example:</p>",
+                    "<p>If you cannot get consent, you can ask the court to decide. Use the form ‘Make an application in existing court proceedings related to children’ (form C2).</p>"
+                ]
+            ]
+        ],
+        "evidences": [
+            "<p>You’ll need to get the consent of everyone who has parental responsibility for the child before you make some important decisions, for example:</p>",
+            "<li>changing the child’s surname</li>",
+            "<p>If you cannot get consent, you can ask the court to decide. Use the form ‘Make an application in existing court proceedings related to children’ (form C2).</p>"
+        ],
+        "id": "dev-2"
+    }
+}
+
+{
+    "index": 3,
+    "id": "dev-3",
+    "logic_kb": {
+        "constants": [
+            {
+                "id": "me",
+                "type": "person",
+                "gloss": "vulnerable adult, the speaker"
+            },
+            {
+                "id": "covid19_vaccine",
+                "type": "object",
+                "gloss": "the Covid-19 vaccine"
+            },
+            {
+                "id": "january2021",
+                "type": "time",
+                "gloss": "January 2021"
+            },
+            {
+                "id": "face",
+                "type": "object",
+                "gloss": "left side of face"
+            },
+            {
+                "id": "government",
+                "type": "organization",
+                "gloss": "the government"
+            }
+        ],
+        "predicates": [
+            {
+                "name": "received_vaccine",
+                "arity": 3,
+                "gloss": "person received vaccine at time"
+            },
+            {
+                "name": "felt_unwell",
+                "arity": 2,
+                "gloss": "person felt unwell after event"
+            },
+            {
+                "name": "face_became_paralysed",
+                "arity": 2,
+                "gloss": "the side of the face of person became paralysed"
+            },
+            {
+                "name": "cannot_talk_properly",
+                "arity": 1,
+                "gloss": "person cannot talk properly"
+            },
+            {
+                "name": "claim_for_damage",
+                "arity": 3,
+                "gloss": "person claims for damage against organization for cause"
+            }
+        ],
+        "fol": {
+            "facts": [
+                "ReceivedVaccine(me, covid19_vaccine, january2021)",
+                "FeltUnwell(me, covid19_vaccine)",
+                "FaceBecameParalysed(me, face)",
+                "CannotTalkProperly(me)"
+            ],
+            "rules": [],
+            "optional_rules": []
+        },
+        "prolog": {
+            "facts": [
+                "received_vaccine(me, covid19_vaccine, january2021).",
+                "felt_unwell(me, covid19_vaccine).",
+                "face_became_paralysed(me, face).",
+                "cannot_talk_properly(me)."
+            ],
+            "rules": [],
+            "optional_rules": []
+        },
+        "hypothesis_fol": "CanClaimForDamage(me, government, covid19_vaccine)"
+    },
+    "data": {
+        "url": "https://www.gov.uk/vaccine-damage-payment",
+        "scenario": "As a vulnerable adult I received the Covid-19 vaccination in January 2021. Almost immediately I started to feel very unwell, and over the next few weeks the left side of my face became paralysed, almost like I had had a stroke. I am now unable to talk properly.",
+        "question": "Can I claim off the government for damage caused by the vaccine?",
+        "not_answerable": false,
+        "answers": [
+            [
+                "yes",
+                [
+                    "<p>Disablement is worked out as a percentage, and ‘severe disablement’ means at least 60% disabled.</p>"
+                ]
+            ]
+        ],
+        "evidences": [
+            "<p>If you’re severely disabled as a result of a vaccination against certain diseases, you could get a one-off tax-free payment of £120,000. This is called a Vaccine Damage Payment.</p>",
+            "<p>You could get a payment if you’re severely disabled and your disability was caused by vaccination against any of the following diseases:</p>",
+            "<li>coronavirus (COVID-19)</li>",
+            "<p>Disablement is worked out as a percentage, and ‘severe disablement’ means at least 60% disabled.</p>"
+        ],
+        "id": "dev-3"
+    }
+}
+
+{
+    "index": 4,
+    "id": "dev-4",
+    "logic_kb": {
+        "constants": [
+            {
+                "id": "me",
+                "type": "person",
+                "gloss": "the speaker"
+            },
+            {
+                "id": "father",
+                "type": "person",
+                "gloss": "the father of the speaker"
+            },
+            {
+                "id": "childhood_home",
+                "type": "object",
+                "gloss": "the speaker's childhood home in Sussex"
+            },
+            {
+                "id": "sussex",
+                "type": "location",
+                "gloss": "the area Sussex"
+            },
+            {
+                "id": "current_home",
+                "type": "object",
+                "gloss": "the speaker's current home"
+            },
+            {
+                "id": "family",
+                "type": "object",
+                "gloss": "the speaker's family"
+            },
+            {
+                "id": "capital_gains_tax",
+                "type": "object",
+                "gloss": "capital gains tax"
+            },
+            {
+                "id": "main_home",
+                "type": "object",
+                "gloss": "classification as main home"
+            }
+        ],
+        "predicates": [
+            {
+                "name": "inherited",
+                "arity": 2,
+                "gloss": "person inherited property"
+            },
+            {
+                "name": "death_of",
+                "arity": 2,
+                "gloss": "person died, relative is ID'd"
+            },
+            {
+                "name": "location_of",
+                "arity": 2,
+                "gloss": "object is located at location"
+            },
+            {
+                "name": "would_like_to_move_into",
+                "arity": 2,
+                "gloss": "person would like to move into property"
+            },
+            {
+                "name": "with_family",
+                "arity": 2,
+                "gloss": "person is with family"
+            },
+            {
+                "name": "would_have_to",
+                "arity": 2,
+                "gloss": "person would have to do some act (sell/rent)"
+            },
+            {
+                "name": "know_not_pay_capital_gains_on_own_home",
+                "arity": 1,
+                "gloss": "person knows they do not have to pay CGT on sale of own home"
+            },
+            {
+                "name": "unclear_if_current_home_is_main",
+                "arity": 1,
+                "gloss": "person is unclear if current home would be classed as main home if moves"
+            },
+            {
+                "name": "sell",
+                "arity": 2,
+                "gloss": "person sells object"
+            },
+            {
+                "name": "move_into",
+                "arity": 2,
+                "gloss": "person moves into location"
+            },
+            {
+                "name": "pay_capital_gains_tax",
+                "arity": 2,
+                "gloss": "person pays capital gains tax on sale of property"
+            }
+        ],
+        "fol": {
+            "facts": [
+                "Inherited(me, childhood_home)",
+                "DeathOf(father, me)",
+                "LocationOf(childhood_home, sussex)",
+                "WouldLikeToMoveInto(me, childhood_home)",
+                "WithFamily(me, family)",
+                "WouldHaveTo(me, sell(current_home))",
+                "KnowNotPayCapitalGainsOnOwnHome(me)",
+                "UnclearIfCurrentHomeIsMain(me)",
+                "Sell(me, current_home)",
+                "MoveInto(me, childhood_home)"
+            ],
+            "rules": [],
+            "optional_rules": []
+        },
+        "prolog": {
+            "facts": [
+                "inherited(me, childhood_home).",
+                "death_of(father, me).",
+                "location_of(childhood_home, sussex).",
+                "would_like_to_move_into(me, childhood_home).",
+                "with_family(me, family).",
+                "would_have_to(me, sell(current_home)).",
+                "know_not_pay_capital_gains_on_own_home(me).",
+                "unclear_if_current_home_is_main(me).",
+                "sell(me, current_home).",
+                "move_into(me, childhood_home)."
+            ],
+            "rules": [],
+            "optional_rules": []
+        },
+        "hypothesis_fol": "PayCapitalGainsTax(me, current_home)"
+    },
+    "data": {
+        "url": "https://www.gov.uk/tax-property-money-shares-you-inherit",
+        "scenario": "I recently inherited my childhood home in Sussex following the death of my father. For sentimental reasons, and because it is bigger than my current home, I would like to move into it with my family. This would mean either selling or renting out my current home. I know that you don't have to pay capital gains tax when you sell your own home, but I'm not clear whether my current home would be classed as my main home if I move into the other property.",
+        "question": "Will I pay capital gains tax if I sell my current home in order to move into an inherited property?",
+        "not_answerable": false,
+        "answers": [
+            [
+                "no",
+                []
+            ]
+        ],
+        "evidences": [
+            "<p>You don’t pay Capital Gains Tax when you sell your home. You do pay it if you make a profit when you sell a property that isn’t your main home.</p>",
+            "<p>If inheriting a property means you own 2 homes, you’ll have to nominate one of them as your main home. You must tell HMRC which property is your main home within 2 years of inheriting the property.</p>"
+        ],
+        "id": "dev-4"
+    }
+}
+
