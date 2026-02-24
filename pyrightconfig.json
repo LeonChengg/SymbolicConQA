@@ -1,0 +1,11 @@
+{
+  "venvPath": ".",
+  "venv": ".venv",
+  "extraPaths": ["src"],
+  "reportCallInDefaultInitializer": false,
+  "reportUnusedCallResult": false,
+  "reportExplicitAny": false,
+  "reportAny": false,
+  "reportUnknownArgumentType": false,
+  "reportUnknownVariableType": false
+}
