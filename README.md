@@ -6,16 +6,32 @@ Extract formal logic from text using LLMs - converts English narratives into Fir
 
 ```
 SymbolicConQA/
-├── src/symbolic_conqa/      # Shared library code
-│   ├── models.py            # Pydantic model definitions
-│   ├── prompts.py           # Prompt templates
-│   ├── extraction.py        # Core extraction logic + text extractors
-│   └── io_utils.py          # IO utility functions
+├── src/symbolic_conqa/          # Shared library code
+│   ├── __init__.py
+│   ├── models.py                # Pydantic model definitions
+│   ├── prompts.py               # Prompt templates
+│   ├── extraction.py            # Core extraction logic + text extractors
+│   ├── io_utils.py              # IO utility functions (load/write JSONL)
+│   └── prolog_checker.py        # SWI-Prolog entailment checker
 ├── scripts/
-│   └── extract.py           # Unified CLI entry point
-├── results/                 # Output directory
-├── data/                    # Input data
-└── pyproject.toml           # Project configuration
+│   ├── extract.py               # CLI: extract FOL/Prolog from context & SQ
+│   ├── check_entailment.py      # CLI: run Prolog entailment over all SQ records
+│   └── test_entailment.py       # Smoke-tests for the entailment checker
+├── data/
+│   └── ConditionalQA/
+│       ├── evaluate.py
+│       └── v1_0/
+│           ├── dev.json
+│           ├── train.json
+│           ├── documents.json
+│           └── documents_sq_subset.json
+├── results/                     # Output JSONL files (git-ignored large files)
+│   ├── context_with_logic.jsonl
+│   ├── SQ_with_logic.jsonl
+│   └── entailment_results.jsonl
+├── pyproject.toml               # Project configuration & dependencies
+├── pyrightconfig.json           # Type-checker configuration
+└── uv.lock                      # Locked dependency versions
 ```
 
 ## Quick Start
