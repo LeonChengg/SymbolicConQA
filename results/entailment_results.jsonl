@@ -1,0 +1,90 @@
+{
+    "id": "dev-0",
+    "url": "https://www.gov.uk/apply-special-guardian",
+    "context_found": false,
+    "hypothesis_fol": "Exists(t) CourtHearsBack(me, t)",
+    "prolog_goal": "court_hears_back(me, T)",
+    "entails": false,
+    "not_answerable": false,
+    "gold_answers": [
+        [
+            "within 10 days",
+            []
+        ]
+    ],
+    "error": null
+}
+
+{
+    "id": "dev-1",
+    "url": "https://www.gov.uk/child-adoption",
+    "context_found": false,
+    "hypothesis_fol": "Exists(x) AdopterAgeRequirementExists(x, uk)",
+    "prolog_goal": "adopter_age_requirement_exists(X, uk)",
+    "entails": false,
+    "not_answerable": false,
+    "gold_answers": [
+        [
+            "aged 21 or over",
+            []
+        ]
+    ],
+    "error": null
+}
+
+{
+    "id": "dev-2",
+    "url": "https://www.gov.uk/apply-special-guardian",
+    "context_found": false,
+    "hypothesis_fol": "CanApplyToChangeSurname(me, boy)",
+    "prolog_goal": "can_apply_to_change_surname(me, boy)",
+    "entails": false,
+    "not_answerable": false,
+    "gold_answers": [
+        [
+            "yes",
+            [
+                "<p>You’ll need to get the consent of everyone who has parental responsibility for the child before you make some important decisions, for example:</p>",
+                "<p>If you cannot get consent, you can ask the court to decide. Use the form ‘Make an application in existing court proceedings related to children’ (form C2).</p>"
+            ]
+        ]
+    ],
+    "error": null
+}
+
+{
+    "id": "dev-3",
+    "url": "https://www.gov.uk/vaccine-damage-payment",
+    "context_found": false,
+    "hypothesis_fol": "CanClaimForDamage(me, government, covid19_vaccine)",
+    "prolog_goal": "can_claim_for_damage(me, government, covid19_vaccine)",
+    "entails": false,
+    "not_answerable": false,
+    "gold_answers": [
+        [
+            "yes",
+            [
+                "<p>Disablement is worked out as a percentage, and ‘severe disablement’ means at least 60% disabled.</p>"
+            ]
+        ]
+    ],
+    "error": null
+}
+
+{
+    "id": "dev-4",
+    "url": "https://www.gov.uk/tax-property-money-shares-you-inherit",
+    "context_found": false,
+    "hypothesis_fol": "PayCapitalGainsTax(me, current_home)",
+    "prolog_goal": "pay_capital_gains_tax(me, current_home)",
+    "entails": false,
+    "not_answerable": false,
+    "gold_answers": [
+        [
+            "no",
+            []
+        ]
+    ],
+    "error": null
+}
+
