@@ -201,6 +201,80 @@ def load_context_index(path: str) -> dict[str, dict[str, Any]]:
 
 
 # ---------------------------------------------------------------------------
+# Single-record checker (works directly on in-memory dicts)
+# ---------------------------------------------------------------------------
+
+
+def extract_prolog_kb(rec: dict[str, Any]) -> dict[str, Any]:
+    """Extract the ``logic_kb.prolog`` block from a record dict.
+
+    Returns an empty dict if the record, ``logic_kb``, or ``prolog`` key is
+    absent, so callers never need to guard against ``KeyError``.
+    """
+    return rec.get("logic_kb", {}).get("prolog", {}) if rec else {}
+
+
+def check_single_record(
+    sq_rec: dict[str, Any],
+    ctx_rec: dict[str, Any] | None = None,
+    timeout: int = 10,
+) -> dict[str, Any]:
+    """Run the Prolog entailment check for one SQ record.
+
+    Reads ``logic_kb.prolog`` directly from the record dicts — no file I/O
+    required.  Use this when records are already loaded into memory (e.g.
+    from ``SQ_with_logic.jsonl`` via :func:`~symbolic_conqa.io_utils.load_json_or_jsonl`).
+
+    Args:
+        sq_rec:  A single SQ record dict (as stored in ``SQ_with_logic.jsonl``).
+        ctx_rec: The matching context record dict, or ``None`` if unavailable.
+        timeout: SWI-Prolog timeout in seconds.
+
+    Returns:
+        A result dict with keys:
+        ``id``, ``url``, ``context_found``, ``hypothesis_fol``,
+        ``prolog_goal``, ``entails``, ``not_answerable``, ``gold_answers``,
+        ``error``.
+    """
+    sq_data = sq_rec.get("data", {})
+    url = sq_data.get("url", "")
+    rec_id = sq_rec.get("id") or sq_data.get("id") or sq_rec.get("index")
+
+    sq_prolog = extract_prolog_kb(sq_rec)
+    ctx_prolog = extract_prolog_kb(ctx_rec) if ctx_rec is not None else None
+
+    sq_kb = sq_rec.get("logic_kb", {})
+    prolog_hypothesis: str = sq_prolog.get("hypothesis") or ""
+    fol_hypothesis: str = (
+        sq_kb.get("hypothesis_fol")
+        or sq_kb.get("fol", {}).get("hypothesis")
+        or ""
+    )
+
+    if prolog_hypothesis:
+        goal = prolog_hypothesis.rstrip(".")
+    elif fol_hypothesis:
+        goal = fol_hypothesis_to_prolog(fol_hypothesis)
+    else:
+        goal = ""
+
+    program = build_prolog_program(ctx_prolog, sq_prolog)
+    entails, error = check_entailment_swipl(program, goal, timeout=timeout)
+
+    return {
+        "id": rec_id,
+        "url": url,
+        "context_found": ctx_rec is not None,
+        "hypothesis_fol": fol_hypothesis,
+        "prolog_goal": goal,
+        "entails": entails,
+        "not_answerable": sq_data.get("not_answerable"),
+        "gold_answers": sq_data.get("answers", []),
+        "error": error or None,
+    }
+
+
+# ---------------------------------------------------------------------------
 # Main pipeline
 # ---------------------------------------------------------------------------
 
@@ -241,51 +315,9 @@ def run_entailment_check(
         task = progress.add_task("Checking entailment", total=len(sq_records))
 
         for sq_rec in sq_records:
-            sq_data = sq_rec.get("data", {})
-            url = sq_data.get("url", "")
-            rec_id = sq_rec.get("id") or sq_data.get("id") or sq_rec.get("index")
-
-            sq_kb = sq_rec.get("logic_kb", {})
-            sq_prolog = sq_kb.get("prolog", {})
-
-            # Hypothesis: prefer an explicit Prolog hypothesis; fall back to
-            # auto-converting the stored hypothesis_fol string.
-            prolog_hypothesis: str = sq_kb.get("prolog", {}).get("hypothesis") or ""
-            fol_hypothesis: str = (
-                sq_kb.get("hypothesis_fol")
-                or sq_kb.get("fol", {}).get("hypothesis")
-                or ""
-            )
-
-            if prolog_hypothesis:
-                goal = prolog_hypothesis.rstrip(".")
-            elif fol_hypothesis:
-                goal = fol_hypothesis_to_prolog(fol_hypothesis)
-            else:
-                goal = ""
-
-            # Look up the context KB for this URL
+            url = sq_rec.get("data", {}).get("url", "")
             ctx_rec = context_index.get(url)
-            ctx_prolog: dict[str, Any] | None = (
-                ctx_rec["logic_kb"]["prolog"] if ctx_rec else None
-            )
-            context_found = ctx_rec is not None
-
-            # Build merged Prolog program and run the check
-            program = build_prolog_program(ctx_prolog, sq_prolog)
-            entails, error = check_entailment_swipl(program, goal, timeout=timeout)
-
-            result: dict[str, Any] = {
-                "id": rec_id,
-                "url": url,
-                "context_found": context_found,
-                "hypothesis_fol": fol_hypothesis,
-                "prolog_goal": goal,
-                "entails": entails,
-                "not_answerable": sq_data.get("not_answerable"),
-                "gold_answers": sq_data.get("answers", []),
-                "error": error or None,
-            }
+            result = check_single_record(sq_rec, ctx_rec, timeout=timeout)
             results.append(result)
             progress.advance(task)
 
