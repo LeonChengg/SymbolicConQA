@@ -628,9 +628,9 @@
     "question_type": "yesno",
     "prolog_goal": "can_apply_for_housing_benefit(me)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "yes",
@@ -767,9 +767,9 @@
     "question_type": "not_answerable",
     "prolog_goal": "time_to_get_documents_ready_for_marriage_and_renunciation(me, japan)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "not answerable",
+    "predicted": "yes",
     "gold_answers": [],
     "not_answerable": true,
     "error": null
@@ -783,9 +783,9 @@
     "question_type": "yesno",
     "prolog_goal": "can_get_passport_back(me, british_passport)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "no",
@@ -1200,9 +1200,9 @@
     "question_type": "yesno",
     "prolog_goal": "can_apply_online_if_not_in_uk(me, intend_to_renounce_british_citizenship)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "yes",
@@ -2233,9 +2233,9 @@
     "question_type": "value",
     "prolog_goal": "additional_payslip_information_required(me)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "pay after deductions",
@@ -2281,9 +2281,9 @@
     "question_type": "value",
     "prolog_goal": "how_to_record_leave_of_absence_on_fps(me, firm)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "‘yes’ in the ‘irregular payment pattern indicator’",
@@ -2968,9 +2968,9 @@
     "question_type": "yesno",
     "prolog_goal": "can_use_annual_investment_allowance(me, table_saw1)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "no",
@@ -2989,9 +2989,9 @@
     "question_type": "yesno",
     "prolog_goal": "requests_worked_example_covering_full_financial_year(me, transport_co)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "yes",
@@ -3182,9 +3182,9 @@
     "question_type": "value",
     "prolog_goal": "amount_bereavement_support_provides(me)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "£3,500",
@@ -4698,9 +4698,9 @@
     "question_type": "yesno",
     "prolog_goal": "can_opt_out_of_vat(me)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "yes",
@@ -4719,9 +4719,9 @@
     "question_type": "yesno",
     "prolog_goal": "exempt_from_vat(me)",
     "context_found": true,
-    "entails": null,
+    "entails": true,
     "predicted_values": [],
-    "predicted": null,
+    "predicted": "yes",
     "gold_answers": [
         [
             "yes",
@@ -4732,7 +4732,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": "timeout"
+    "error": null
 }
 
 {
@@ -4753,7 +4753,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": "timeout"
+    "error": "prolog exception during query"
 }
 
 {
