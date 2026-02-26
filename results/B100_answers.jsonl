@@ -1,0 +1,4829 @@
+{
+    "id": "dev-0",
+    "url": "https://www.gov.uk/apply-special-guardian",
+    "question": "How long will it be before I hear back from the court?",
+    "scenario": "My brother and his wife are in prison for carrying out a large fraud scheme. Their 7 and 8 year old children have been living with me for the last 4 years. I want to become their Special Guardian to look after them permanently",
+    "question_type": "value",
+    "prolog_goal": "time_to_hear_back_from_court(me, T)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "within 10 days",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-1",
+    "url": "https://www.gov.uk/child-adoption",
+    "question": "Are there any age requirements for the adopter when adopting a child in the UK?",
+    "scenario": "Me and my partner have been trying for a child for the past few years however with no luck. We have now decided we would like to adopt a child.",
+    "question_type": "value",
+    "prolog_goal": "age_requirement_for_adopter_in(uk, R)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "aged 21 or over",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-2",
+    "url": "https://www.gov.uk/apply-special-guardian",
+    "question": "Can I apply to change his surname to mine?",
+    "scenario": "I am a guardian to a 16year old teenage boy from syria whom i cared for when he was young and homeless. I want to change his surname to to mine.",
+    "question_type": "yesno",
+    "prolog_goal": "can_apply_to_change_surname(me, boy)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            [
+                "<p>You’ll need to get the consent of everyone who has parental responsibility for the child before you make some important decisions, for example:</p>",
+                "<p>If you cannot get consent, you can ask the court to decide. Use the form ‘Make an application in existing court proceedings related to children’ (form C2).</p>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-3",
+    "url": "https://www.gov.uk/vaccine-damage-payment",
+    "question": "Can I claim off the government for damage caused by the vaccine?",
+    "scenario": "As a vulnerable adult I received the Covid-19 vaccination in January 2021. Almost immediately I started to feel very unwell, and over the next few weeks the left side of my face became paralysed, almost like I had had a stroke. I am now unable to talk properly.",
+    "question_type": "yesno",
+    "prolog_goal": "can_claim_compensation_from_government_for_vaccine_damage(me, government, covid_vaccine)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            [
+                "<p>Disablement is worked out as a percentage, and ‘severe disablement’ means at least 60% disabled.</p>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-4",
+    "url": "https://www.gov.uk/tax-property-money-shares-you-inherit",
+    "question": "Will I pay capital gains tax if I sell my current home in order to move into an inherited property?",
+    "scenario": "I recently inherited my childhood home in Sussex following the death of my father. For sentimental reasons, and because it is bigger than my current home, I would like to move into it with my family. This would mean either selling or renting out my current home. I know that you don't have to pay capital gains tax when you sell your own home, but I'm not clear whether my current home would be classed as my main home if I move into the other property.",
+    "question_type": "yesno",
+    "prolog_goal": "will_pay_cgt_if_sell_current_home_to_move_into_inherited(me, current_home, childhood_home)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "no",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-5",
+    "url": "https://www.gov.uk/parental-bereavement-pay-leave",
+    "question": "Can my partner take leave from work due to my stillbirth even though he is not the biological parent of the child?",
+    "scenario": "I work for a large company as an employee and I have recently experienced a stillbirth at 30 weeks pregnant. I would like my live in partner to have some leave to support me.",
+    "question_type": "yesno",
+    "prolog_goal": "entitled_to_leave(partner, support_for_stillbirth(me))",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-6",
+    "url": "https://www.gov.uk/parental-bereavement-pay-leave",
+    "question": "Are adoptive parents entitled to bereavement leave?",
+    "scenario": "My husband and I were in the process of adopting our would-be daughter, who was placed with us pending the adoption order. Tragically, we lost her in a traffic accident. We are devastated by her loss and will find it incredibly difficult to carry on working at this time.",
+    "question_type": "yesno",
+    "prolog_goal": "entitled_to_bereavement_leave(adoptive_parents_pending(me, husband, child1), child1)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-7",
+    "url": "https://www.gov.uk/financial-help-disabled",
+    "question": "What is the maximum amount of Disability Living Allowance I can claim?",
+    "scenario": "I was injured in an accident at work 6 months ago and now I am unable to work for the rest of my working life due to my injuries.",
+    "question_type": "not_answerable",
+    "prolog_goal": "maximum_disability_living_allowance_amount(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "not answerable",
+    "gold_answers": [],
+    "not_answerable": true,
+    "error": null
+}
+
+{
+    "id": "dev-8",
+    "url": "https://www.gov.uk/vaccine-damage-payment",
+    "question": "Is there a way he can be compensated for the damages  after this unfortunate episode?",
+    "scenario": "My uncle has  developed a serious blood clot after getting his first dose of covid vaccine which has left him severed paralysed and disabled.",
+    "question_type": "yesno",
+    "prolog_goal": "can_be_compensated(u)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            [
+                "<p>Disablement is worked out as a percentage, and ‘severe disablement’ means at least 60% disabled.</p>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-9",
+    "url": "https://www.gov.uk/tax-property-money-shares-you-inherit",
+    "question": "Do I have to pay inheritance tax on my windfall?",
+    "scenario": "I inherited forty thousand pounds from my late father. I also have savings of around the same amount. I am currently out of work.",
+    "question_type": "yesno",
+    "prolog_goal": "has_to_pay_inheritance_tax(me, amount_40000)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            [
+                "<p>The estate of the person who died usually pays Inheritance Tax. You may need to pay Inheritance Tax if the estate can’t or doesn’t pay it.</p>",
+                "<p>You may have to pay Inheritance Tax on money and shares you inherit if the deceased person’s estate can’t or doesn’t pay.</p>"
+            ]
+        ],
+        [
+            "no",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-10",
+    "url": "https://www.gov.uk/attendance-allowance",
+    "question": "What level of Attendance Allowance can I claim for severe arthritis, when I have no carer?",
+    "scenario": "I suffer from severe arthritis which means that I am unable to walk more than a few steps at a time. It is particularly bad in my hands so I am not able to perform many household tasks",
+    "question_type": "value",
+    "prolog_goal": "can_claim(me, attendance_allowance, Level)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "lower rate - £60",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-11",
+    "url": "https://www.gov.uk/child-adoption",
+    "question": "To pay for the counselling or therapy for the child and parents. Are there any funds available ?",
+    "scenario": "Me and my partner recently adopted a child. It's almost three months now and still couldn't get along with the kid. I have started looking a counselling or a therapy for us and the kid",
+    "question_type": "value",
+    "prolog_goal": "funds_available_for_counselling(me, partner, child)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "adoption support fund",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-12",
+    "url": "https://www.gov.uk/support-for-foster-parents",
+    "question": "What are my tax liability of the money I receive from foster care allowance and are there any tax relaxation ?",
+    "scenario": "I have completed a training to be an approved foster. I am getting a foster care allowance to help the cost of caring for a child. I get approximatively £12000 per annum",
+    "question_type": "value",
+    "prolog_goal": "tax_liability(me, foster_allowance) , tax_relief_available(me, foster_allowance)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "in a tax year, households do not pay tax on the first £10,000 they earn from fostering.",
+            []
+        ],
+        [
+            "you also get tax relief for every week (or part week) that a child is in your care. this means you do not have to pay tax on some of your earnings over £10,000.",
+            [
+                "<tr>Under 11 | £200 per child</tr>",
+                "<tr>11 or over | £250 per child</tr>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-13",
+    "url": "https://www.gov.uk/housing-benefit",
+    "question": "Can I continue to claim Housing Benefit?",
+    "scenario": "I'm 71, and am currently living in rented accommodation with my 64-year-old Civil Partner. I have an existing Housing Benefit claim.",
+    "question_type": "yesno",
+    "prolog_goal": "can_continue_claim(me, housing_benefit)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-14",
+    "url": "https://www.gov.uk/enduring-power-attorney-duties",
+    "question": "Can my sister and I over-rule our other sister and fellow EPA attorney to do what we believe is in our brother's best interests?",
+    "scenario": "My two sisters and I all hold enduring power of attorney for our brother, who has disabilities which cause him to lack mental capacity to make his own decisions. The EPA was registered in 2006. As his illness has progressed, it's no longer practical for him to receive care in the home and two of us believe that it is in his best interests for him to move into a residential care home. This has financial implications for him as he would have to partly self-fund the care from the sale of his current home. The other sibling disagrees and wants him to remain at home.",
+    "question_type": "yesno",
+    "prolog_goal": "can_overrule_attorneys(me_and_s1, s2, brother, move_to_residential_care)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            [
+                "<p>You must still involve the person in making decisions whenever possible and only make decisions on their behalf which are in their best interests.</p>",
+                "<p>If there’s more than one attorney, check whether you must make decisions:</p>",
+                "<li>separately or together (sometimes called ‘jointly and severally’), which means you can make decisions on your own or with other attorneys</li>",
+                "<li>together (sometimes called ‘jointly’), which means you and all the other attorneys have to agree on a decision</li>",
+                "<p>Attorneys who are appointed jointly must all agree or they cannot make the decision.</p>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-15",
+    "url": "https://www.gov.uk/apply-special-guardian",
+    "question": "As his special guardian, can I take my nephew with us to live in Boston for a year?",
+    "scenario": "My 10 year old nephew has been living with us for the last two years, since his parents are unable to care for him due to addiction problems. We would like to look after him long-term and have been advised to apply to be a special guardian. However, I have been offered the chance to take a year's sabbatical from my career in order to join an academic program in the US, so we are considering letting our home and moving to Boston for a year.",
+    "question_type": "yesno",
+    "prolog_goal": "can_take_with_us_to_boston_for_year(me,nephew)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            [
+                "<p>You’ll need to get the consent of everyone who has parental responsibility for the child before you make some important decisions, for example:</p>",
+                "<li>taking the child abroad for more than 3 months</li>",
+                "<p>If you cannot get consent, you can ask the court to decide. Use the form ‘Make an application in existing court proceedings related to children’ (form C2).</p>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-16",
+    "url": "https://www.gov.uk/housing-benefit",
+    "question": "What is the reduction in Housing Benefit for having one spare bedroom?",
+    "scenario": "I have been living in a council house and claiming Housing Benefit for a number of years. As well as my partner, I did have two children living with me, one 16 and the other 17, but the oldest has now left home. My house has three bedrooms.",
+    "question_type": "value",
+    "prolog_goal": "reduction_for_one_spare_bedroom(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "14%",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-17",
+    "url": "https://www.gov.uk/support-for-foster-parents",
+    "question": "Will we be eligible for a paid leave  from work during foster care training?",
+    "scenario": "My partner and i are foster parents to our lovely 6 years  old girl who lost her parents during iraq war. We have taken a personal intiative to acqure more skills on how to give our girl the best foster care through training .",
+    "question_type": "yesno",
+    "prolog_goal": "eligible_for_paid_leave_for_training(me), eligible_for_paid_leave_for_training(partner)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "no",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-18",
+    "url": "https://www.gov.uk/enduring-power-attorney-duties",
+    "question": "Who do I need to tell that I intend to register the EPA?",
+    "scenario": "My uncle has a terminal illness. When he was 60 he completed an Enduring Power Of Attorney, appointing me as the attorney. He didn't appoint his immediate family as he regarded them as irresponsible financially. Now his mental capacity has deteriorated and it is time to use it.",
+    "question_type": "value",
+    "prolog_goal": "need_to_tell_to_register_epa(me,uncle,Whom)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "tell the donor, their family members and other attorneys",
+            [
+                "<li>Tell the donor, their family members and other attorneys you intend to register the EPA.</li>",
+                "<p>You must tell the first 3 eligible family members from the following list. If there’s no family member in a particular category, move on to the next one. You must try to tell the family members in this order:</p>",
+                "<li>donor’s husband, wife or civil partner</li>",
+                "<li>donor’s children (including adopted children but not including stepchildren)</li>",
+                "<li>donor’s parents</li>",
+                "<li>donor’s brothers and sisters (including half-brothers and half-sisters)</li>",
+                "<li>widow or widower or surviving civil partner of the donor’s child</li>",
+                "<li>donor’s grandchildren</li>",
+                "<li>donor’s nephews and nieces (children of the donor’s full brothers and sisters)</li>",
+                "<li>donor’s nephews and nieces (children of the donor’s half-brothers and half-sisters)</li>",
+                "<li>donor’s aunts and uncles (full brothers or sisters of a parent of the donor)</li>",
+                "<li>donor’s first cousins (children of the donor’s aunts and uncles who are full brothers and sisters of a parent of the donor)</li>",
+                "<p>You must tell all the people in a category if you tell one of them, eg if 1 of the 3 relatives you’re telling is a grandchild and the donor has 15 other grandchildren, you must tell all 16 of them.</p>",
+                "<p>If you’re a family member as well as an attorney, you count as one of the people to be told. You’ll still have to tell other people in your category.</p>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-19",
+    "url": "https://www.gov.uk/housing-benefit",
+    "question": "Would I be entitled to claim Housing Benefit?",
+    "scenario": "I am 24, single and currently working only part time. I am unable to meet my private housing rent on the money that I am earning.",
+    "question_type": "yesno",
+    "prolog_goal": "entitled_to_claim_housing_benefit(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "no",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-20",
+    "url": "https://www.gov.uk/apply-special-guardian",
+    "question": "Can I apply to become my brothers legal guardian considering my age?",
+    "scenario": "I am a 17 year old from Kent and my mother is no longer fit to care for my younger brother as she is mentally unstable.",
+    "question_type": "yesno",
+    "prolog_goal": "can_apply_to_become_legal_guardian(me, brother)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "no",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-21",
+    "url": "https://www.gov.uk/housing-benefit",
+    "question": "By how much will our housing benefit be reduced?",
+    "scenario": "My wife and I are both in receipt of the state pension, living in rented council accommodation and struggling with our rent. Both of our adult sons are away at university, so in theory we have two spare bedrooms, which I understand will reduce the amount of housing benefit we can receive.",
+    "question_type": "value",
+    "prolog_goal": "housing_benefit_reduction_amount(me, Amount)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "25%",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-22",
+    "url": "https://www.gov.uk/court-funds-office-processes",
+    "question": "How do I claim his estate?",
+    "scenario": "My disabled 38 year old son recently passed away, I was his deputy since he was unable to manage his finances himself. He did not leave a will.",
+    "question_type": "value",
+    "prolog_goal": "how_to_claim_estate(me, son)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "ask for a certificate of funds when you write to the court funds office about the death.",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-23",
+    "url": "https://www.gov.uk/court-funds-office-processes",
+    "question": "What interest rate is paid on a Court Funds Office special account?",
+    "scenario": "My friend was sadly involved in an accident at work that has left him paralysed. He was awarded £500,000 in compensation through the courts. He has appointed me his Property and Affairs Deputy to look after the account.",
+    "question_type": "value",
+    "prolog_goal": "interest_rate_cfo_special_account(Rate)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "0.1%",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-24",
+    "url": "https://www.gov.uk/support-for-foster-parents",
+    "question": "What is the weekly allowance for my child?",
+    "scenario": "I live in the South East and I have just taken on a 5 year old child as a foster parent. I want to know what financial support I can get from the government to help.",
+    "question_type": "value",
+    "prolog_goal": "weekly_allowance_for_child(child, Amount)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "£169",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-25",
+    "url": "https://www.gov.uk/financial-help-disabled",
+    "question": "My wife died 2 years ago, what kind of support can I get from the government?",
+    "scenario": "I'm 63 and I had a car accident 1 year ago while a was driving a lorry for my company on the A1. I crashed really hard and I can't walk anymore; my GP made me a prescription for some painkillers that I'm taking twice a day. I feel lucky because my nephews live not too far from here and sometimes they come and help me at home.",
+    "question_type": "value",
+    "prolog_goal": "can_get_government_support(me,S)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "personal independence payment (pip)",
+            []
+        ],
+        [
+            "employment and support allowance (esa)",
+            [
+                "<p>You may be able to get ‘new style’ Employment and Support Allowance (ESA) if you cannot work because of illness or disability.</p>"
+            ]
+        ],
+        [
+            "industrial injuries benefit",
+            []
+        ],
+        [
+            "universal credit",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-26",
+    "url": "https://www.gov.uk/enduring-power-attorney-duties",
+    "question": "Can I overrule her decision and become her attorney?",
+    "scenario": "My 83 year old mother who I care for is unable to manage her own finances due to bad health but insists she is competent to do so.",
+    "question_type": "yesno",
+    "prolog_goal": "can_become_attorney_for(me,mother)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "no",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-27",
+    "url": "https://www.gov.uk/housing-benefit",
+    "question": "The council have now found me some temporary housing. Can I apply for Housing Benefit?",
+    "scenario": "The whole of 2020 and 2021 i went through a very hard period during the covid pandemic. I contracted the covid virus and had severe symptoms which made me lose my job. I got mentally depressed because i could not pay my rent and house bills. I was kicked out from my rented house.",
+    "question_type": "yesno",
+    "prolog_goal": "can_apply_for_housing_benefit(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-28",
+    "url": "https://www.gov.uk/court-funds-office-processes",
+    "question": "I am wanting to pass the responsibility of being property and affairs deputy to my brother. Is this allowed?",
+    "scenario": "My grandfather was injured in a serious road traffic accident 2 years ago. Following this he has lost some of his mental capacity and therefore I am now his property and affairs deputy. He has just received a large lump sum of money via court order due to the accident.",
+    "question_type": "yesno",
+    "prolog_goal": "can_transfer_deputy(me,brother,grandfather)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-29",
+    "url": "https://www.gov.uk/maternity-pay-leave",
+    "question": "If I have a baby will I keep my visa even if I'm not working and I don't have British citizenship?",
+    "scenario": "I'm a 35 years old woman with Chinese passport and I have a working visa sponsored by my company (I'm a IT software developer). I'm worried that I'm going to lose my job and my right to live in UK if I get pregnant and have to stop working.",
+    "question_type": "not_answerable",
+    "prolog_goal": "will_keep_visa_if_unemployed_and_not_british(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "not answerable",
+    "gold_answers": [],
+    "not_answerable": true,
+    "error": null
+}
+
+{
+    "id": "dev-30",
+    "url": "https://www.gov.uk/support-for-foster-parents",
+    "question": "Am I able to sign the consent form for my foster child's general anaesthetic procedure?",
+    "scenario": "I have been fostering a 10-year old girl for six months. During a routine dental checkup, we were advised that she would benefit from orthodontic treatment due to an overcrowded jaw; part of this would involve a general anaesthetic for removal of several teeth.",
+    "question_type": "value",
+    "prolog_goal": "can_sign_consent(me, general_anaesthetic, foster_child)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "check your child placement plan to find out if you have the authority",
+            [
+                "<p>If your child’s placement plan does not tell you what level of delegated authority you have you should contact your fostering service to find out.</p>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-31",
+    "url": "https://www.gov.uk/child-adoption",
+    "question": "Can I apply to adopt Ariana now that we are married or do I have to wait a certain period of time?",
+    "scenario": "I am a 25 year old who has recently married. My wife has a five year old daughter, Ariana, and is estranged from the child's father. I have known Ariana since she was born and have a close relationship with her, so I would like to adopt her. My partner is keen for this to happen as we understand it would mean that Ariana's birth father would no longer have visiting rights and we believe he is a very disruptive influence in her life.",
+    "question_type": "not_answerable",
+    "prolog_goal": "can_apply_to_adopt_now(me, ariana).  % or must_wait_period_to_apply(me, ariana)",
+    "context_found": true,
+    "entails": true,
+    "predicted_values": [],
+    "predicted": "yes",
+    "gold_answers": [],
+    "not_answerable": true,
+    "error": null
+}
+
+{
+    "id": "dev-32",
+    "url": "https://www.gov.uk/register-land-rural-land-register",
+    "question": "Do I need to register the land with the same organisation in England as i do in Scotland?",
+    "scenario": "I am a Farmer who has recently moved to the UK and I am planning on relocating to Scotland and buying farm land but I don't understand the different rules for Scotland compared to England.",
+    "question_type": "yesno",
+    "prolog_goal": "need_same_registration_organisation(england, scotland)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "no",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-33",
+    "url": "https://www.gov.uk/register-land-rural-land-register",
+    "question": "Do I need to make changes to the existing registration of the land to reflect that I have bought it?",
+    "scenario": "I have recently bought a farm from another and plan to rent this out. Im in England and an older adult who has struggled with understanding all the rules so far.",
+    "question_type": "yesno",
+    "prolog_goal": "need_change_registration_to_reflect_purchase(me, farm1)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-34",
+    "url": "https://www.gov.uk/renounce-british-nationality",
+    "question": "Japan doesn't allow dual citizenship and I want to get married with my Japanese girlfriend, how long does it take to have the documents ready?",
+    "scenario": "I was born in 1999 in London, I grow up there but now I live in Japan and I'm thinking about giving up my British citizenship. I'm worried that it will be complicate to get married and build my new life here.",
+    "question_type": "not_answerable",
+    "prolog_goal": "time_to_get_documents_ready_for_marriage_and_renunciation(me, japan)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "not answerable",
+    "gold_answers": [],
+    "not_answerable": true,
+    "error": null
+}
+
+{
+    "id": "dev-35",
+    "url": "https://www.gov.uk/renounce-british-nationality",
+    "question": "Can I have my British passport back? I know that Italy allows double citizenship.",
+    "scenario": "My parents moved to Italy before getting married. I was born in Rome and lived there all my life. I gave up my British citizenship when I was 18; it was a bad choice. Now, because of Brexit, I'm worried that is going to be complicated to visit my grandparents in London.",
+    "question_type": "yesno",
+    "prolog_goal": "can_get_passport_back(me, british_passport)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "no",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-36",
+    "url": "https://www.gov.uk/children-with-special-educational-needs",
+    "question": "Is there any funding or support available for children with dyslexia? what are they?",
+    "scenario": "My child has recently diagnosed with dyslexia and I've been told that there are different tools that can help in daily life, these all seem quite expensive online so i am unsure if we can afford them.",
+    "question_type": "value",
+    "prolog_goal": "funding_available_for_children_with_dyslexia(children_with_dyslexia)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "sen support",
+            []
+        ],
+        [
+            "an education, health and care (ehc) plan",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-37",
+    "url": "https://www.gov.uk/children-with-special-educational-needs",
+    "question": "Is my child able to be assessed for extra learning support in school?",
+    "scenario": "My child is 5 years old and starting school this year, he is physically well however I feel as though my child is developing slower than other children are at the same age which i am concerned about.",
+    "question_type": "yesno",
+    "prolog_goal": "can_be_assessed_for_extra_learning_support_in_school(child)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-38",
+    "url": "https://www.gov.uk/claim-gift-aid",
+    "question": "Am I eligible for Gift Aid?",
+    "scenario": "I run a small, independent charity which attempts to help people struggling with their vet costs. I have several people who pay monthly by direct debit and also receive some one off donations.",
+    "question_type": "yesno",
+    "prolog_goal": "eligible_for_gift_aid(charity)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            [
+                "<p>You must be recognised as a charity or CASC for tax purposes.</p>",
+                "<li>have paid at least as much in Income Tax or Capital Gains Tax in that tax year as you want to claim in Gift Aid</li>",
+                "<li>make a Gift Aid declaration that gives you permission to claim it</li>"
+            ]
+        ],
+        [
+            "no",
+            [
+                "<li>that are a payment for goods or services or made because your charity or CASC bought goods and services</li>",
+                "<li>where the donor gets a ‘benefit’ over a certain limit</li>",
+                "<li>made through Payroll Giving</li>",
+                "<li>of shares</li>",
+                "<li>from charity cards or of vouchers, for example Charities Aid Foundation (CAF) vouchers</li>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-39",
+    "url": "https://www.gov.uk/claim-gift-aid",
+    "question": "Can we still claim gift aid on unpaid donations?",
+    "scenario": "My charity often receives donations of second hand clothes and other items which we pass on to people in need. These are given as gifts and we do not accept payment for them, nor do we offer payment to the donors.",
+    "question_type": "yesno",
+    "prolog_goal": "can_claim_gift_aid_on_unpaid_donations(charity)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "no",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-40",
+    "url": "https://www.gov.uk/claim-gift-aid",
+    "question": "If I give permission to the charity to claim tax back, are they eligible to claim?",
+    "scenario": "I am on full time role and I am on Pay as you earn(PAYE) to pay income tax. I was approached by a charity asking permission to claim back my tax",
+    "question_type": "yesno",
+    "prolog_goal": "eligible_to_claim_tax_back(charity, me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            [
+                "<li>have paid at least as much in Income Tax or Capital Gains Tax in that tax year as you want to claim in Gift Aid</li>",
+                "<li>make a Gift Aid declaration that gives you permission to claim it</li>",
+                "<p>You must be recognised as a charity or CASC for tax purposes.</p>",
+                "<li>has paid the same amount or more in Income Tax or Capital Gains Tax in that tax year</li>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-41",
+    "url": "https://www.gov.uk/claim-gift-aid",
+    "question": "Can a charity claim gift aid on my limited company ?",
+    "scenario": "I have a limited company trading as a IT software consultancy. I have paid the Corporation tax for the previous tax year of my company. I want to give permission for a charity to claim gift aid on the corporation tax I paid",
+    "question_type": "yesno",
+    "prolog_goal": "charity_can_claim_gift_aid_on_corporation_tax(charity, company)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "no",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-42",
+    "url": "https://www.gov.uk/honours",
+    "question": "What steps do I have to take to get it honored?",
+    "scenario": "The father of a friend is a prominent doctor in the region. During the pandemic, he was characterized by prioritizing the people most in need of medical care and mobilizing civil society to help.",
+    "question_type": "value",
+    "prolog_goal": "steps_to_get_honored(me, father_friend)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "download and fill in the honours nomination form and email it to the honours and appointments secretariat.",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-43",
+    "url": "https://www.gov.uk/honours",
+    "question": "What are the requirements to be honored as Officer of the Order of the British Empire?",
+    "scenario": "I recently met a widow who told me that her husband was an Officer of the Order of the British Empire but was not sure what he did to receive it.",
+    "question_type": "value",
+    "prolog_goal": "requirements_for_officer_of_obe(obe)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "made achievements in public life",
+            []
+        ],
+        [
+            "committed themselves to serving and helping britain",
+            []
+        ],
+        [
+            "made life better for other people or be outstanding at what they do",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-44",
+    "url": "https://www.gov.uk/honours",
+    "question": "What is the time limit for nominating someone for a gallantry award?",
+    "scenario": "When I was 14, I was stupidly playing on the quayside during a storm in South West England. I was washed into the sea in a heavy wave and nearly drowned, as I couldn't swim and went into a panic. A local passerby saw what had happened and risked his own life to jump in and pull me to safety. I'm now 25 but have never forgotten his bravery and have stayed in touch with him. It will be his 50th birthday next year and I would love to nominate him for a gallantry award to mark his birthday.",
+    "question_type": "value",
+    "prolog_goal": "time_limit_for_nominating_gallantry_award(rescuer)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "5 years",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-45",
+    "url": "https://www.gov.uk/honours",
+    "question": "Can a non-British national recieve an honour for their achievements outside the UK?",
+    "scenario": "We are a family of Jamaican heritage, living in the UK; I was born here. My cousins still live in Jamaica. One of them has done a huge amount of work with street children in Jamaica, setting up her own charity and working all hours alongside her own job. I'd like to nominate her for an honour but as she is not British and her work was not in Britain, I don't know if I can.",
+    "question_type": "yesno",
+    "prolog_goal": "exists(X) :- not_british(X), achievements_outside_uk(X), can_receive_honour(X, outside_uk)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-46",
+    "url": "https://www.gov.uk/volunteer-as-a-coastguard",
+    "question": "Am I the sort of person that the Coast Guard want to recruit?",
+    "scenario": "When I was thirteen  I was rescued by the Coast Guard and ever since I have had a desire to volunteer for them. I am now 25 and have free time. I am a normal weight and have no physical disabilities.",
+    "question_type": "yesno",
+    "prolog_goal": "suitable_for_recruitment_by(me, coast_guard)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            [
+                "<li>you have a full driving licence</li>",
+                "<li>you live or work within 30 minutes of the rescue station - check the map to find your nearest station</li>",
+                "<p>Your local station may have further requirements, for example you may need to live closer to the station.</p>",
+                "<p>You must take a health and fitness test, and meet eyesight and hearing requirements.</p>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-47",
+    "url": "https://www.gov.uk/volunteer-as-a-coastguard",
+    "question": "Are there any costs to be incurred in volunteering for the Coast Guard?",
+    "scenario": "I would really like to give something back to society by volunteering for the Coast Guard but I am unemployed right now and have very little disposable income to call my own. I do have a lot of free time, however.",
+    "question_type": "yesno",
+    "prolog_goal": "volunteering_incur_costs(me, coast_guard)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "no",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-48",
+    "url": "https://www.gov.uk/children-with-special-educational-needs",
+    "question": "Who do we contact in school about my child's special needs ?",
+    "scenario": "My daughter is 6 years old and suffering from dyslexia. We just been informed by the GP just now. We want to inform about the dyslexia to the school.",
+    "question_type": "value",
+    "prolog_goal": "contact_in_school(X), handles_special_needs(X), can_be_contacted_about(daughter, X)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "the sen co-ordinator, or ‘senco’",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-49",
+    "url": "https://www.gov.uk/children-with-special-educational-needs",
+    "question": "Is additional assessment required whether he needs more support than SEND ?",
+    "scenario": "We have a son who is 14 years old and he is still having difficulty to understand things. He is currently receiving special educational needs support. We think he might need more support than what he receive from SEND",
+    "question_type": "yesno",
+    "prolog_goal": "additional_assessment_required(son)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-50",
+    "url": "https://www.gov.uk/register-land-rural-land-register",
+    "question": "Should i change and put  my names on the rural land register?",
+    "scenario": "I live in England and i have bought a big chunk of land from my neighbour in the countryside. I would like to use it for wheat farming and other developments.",
+    "question_type": "yesno",
+    "prolog_goal": "change_name_on_rural_land_register(me, land)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            [
+                "<li>qualifies for land-based payment schemes, for example because it has environmental value</li>",
+                "<li>you farm</li>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-51",
+    "url": "https://www.gov.uk/register-land-rural-land-register",
+    "question": "Whom can she contact to get advise?",
+    "scenario": "My Aunt lives in scotland and has inherited through a will from our late grandfather two pieces of land in scotland and in England simultaneously. She has a plan to register and sell the one in England. .",
+    "question_type": "value",
+    "prolog_goal": "whom_can_she_contact_for_advice(aunt)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "the rural payments agency",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-52",
+    "url": "https://www.gov.uk/renounce-british-nationality",
+    "question": "How much fee will he pay to get biometric information taken in order to resume his British Citizenship?",
+    "scenario": "My brother relocated abroad to live with his wife in Indonesia after several years of trying to secure a settlement visa for his Indonesian wife failed. He decided to renounce his British Citizenship and spend more time with his family. Now his marriage has failed and he would like to resume his British Citizenship and return to Uk.",
+    "question_type": "value",
+    "prolog_goal": "biometric_fee_for_resuming_citizenship(brother, Fee)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "£19.20",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-53",
+    "url": "https://www.gov.uk/renounce-british-nationality",
+    "question": "Can I apply online if I am not in UK?",
+    "scenario": "I am a British Citizen living abroad in Japan. I have a permanent Job, family and acquired alot of properties Japan.My life is good and comfortable and by the fact that i don't have any family or relatives in UK. I would like to renounce my British Citizenship.",
+    "question_type": "yesno",
+    "prolog_goal": "can_apply_online_if_not_in_uk(me, intend_to_renounce_british_citizenship)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-54",
+    "url": "https://www.gov.uk/volunteer-as-a-coastguard",
+    "question": "What training is required to be a coastguard volunteer?",
+    "scenario": "My husband is very interested in sailing in deep seas as a hobby.He is a full time employee at a pest control company in England.During weekends he has been attending a coastguard  training course as an additional skill to his sailing interest. He has informed his employer and encouraged him to pursue it and count on his support.",
+    "question_type": "value",
+    "prolog_goal": "training_required_to_be_coastguard_volunteer(Training)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "initial training by hm coastguard",
+            []
+        ],
+        [
+            "regular training to keep your skills up to date",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-55",
+    "url": "https://www.gov.uk/volunteer-as-a-coastguard",
+    "question": "Will he qualify to be a coastguard volunteer ?",
+    "scenario": "My brother is 28 years and he is currently unemployed. He lives in kent and is a fully trained coastguard with a driving license.During covid lockdown he has had alot of stress and embarked on binge eating. He has since added weight and is now 145kg and his waistline is 130cm. A company near dover has accepted him to be a volunteer but first he must undergo health and fitness test.",
+    "question_type": "yesno",
+    "prolog_goal": "qualifies_for_coastguard_volunteer(b)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "no",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-56",
+    "url": "https://www.gov.uk/children-with-special-educational-needs",
+    "question": "What help can I get about these special concerns worrying me?",
+    "scenario": "I am a mother to an adopted 14 years old son. He has a known existing ADHD condition which has impacted his life and experiences alot of learning difficulties. As a concerned parents i always want him to be given a closer eye even when in school with other pupils and assisted in learning..",
+    "question_type": "value",
+    "prolog_goal": "help_available_for_child_with_adhd(s)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "a special learning programme",
+            []
+        ],
+        [
+            "extra help from a teacher or assistant",
+            []
+        ],
+        [
+            "to work in a smaller group",
+            []
+        ],
+        [
+            "observation in class or at break",
+            []
+        ],
+        [
+            "help taking part in class activities",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-57",
+    "url": "https://www.gov.uk/children-with-special-educational-needs",
+    "question": "What can she do before taking her daughter there?",
+    "scenario": "My neighbour has a 19 year old physically disabled daughter who has performed very well in the former school. She is now joining college for further studies. My neighbour is concerned about her daughter's special education needs..",
+    "question_type": "value",
+    "prolog_goal": "actions_to_prepare_for_college_for_disabled_student(n,d)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "contact the college",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-58",
+    "url": "https://www.gov.uk/claim-gift-aid",
+    "question": "Can i claim this as a gift Aid?",
+    "scenario": "During our parents school meeting ,the headteacher requested us to make a voluntary contributions towards Year 7 educational trip .My daughter is in Year 7 and i made a payment of £5000 to sponser the trip.",
+    "question_type": "yesno",
+    "prolog_goal": "can_claim_gift_aid(me,amount5000_gbp)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            [
+                "<p>You must be recognised as a charity or CASC for tax purposes.</p>",
+                "<li>have paid at least as much in Income Tax or Capital Gains Tax in that tax year as you want to claim in Gift Aid</li>",
+                "<li>make a Gift Aid declaration that gives you permission to claim it</li>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-59",
+    "url": "https://www.gov.uk/claim-gift-aid",
+    "question": "Can i claim online?",
+    "scenario": "I have recieved alot of donations and i have kept all the records for over 5 years and i would like to claim Gift Aids.",
+    "question_type": "yesno",
+    "prolog_goal": "can_claim_gift_aid_online(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "no",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-60",
+    "url": "https://www.gov.uk/honours",
+    "question": "Can i get my friend to nominate me?",
+    "scenario": "I am 23 years old and live in England. I have been very compassionate in my entire life and i have taken a key role in helping my locality. During covid pandemic i took up a personal intiative of helping my vulnerable old neighbours by doing shopping, walking their pets, giving them hope when they were sick and scared. Made sure sure they have my contacts which they can dial for prompt support. I became a key pillar to their lives during the covid pandemic.",
+    "question_type": "yesno",
+    "prolog_goal": "can_nominate_for_award(friend, me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-61",
+    "url": "https://www.gov.uk/honours",
+    "question": "Can i nominate her for honorary award even if she does not live in UK?",
+    "scenario": "My Grandmother lives in South Africa. She is now 105 years and during her adult life, she took  a key community figure in ensuring all girls from poor families have acessed to education.She ran several campaigns to shun early marriages and female genital mutilations.",
+    "question_type": "yesno",
+    "prolog_goal": "can_nominate_for_honorary_award(me, g)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-62",
+    "url": "https://www.gov.uk/further-education-courses",
+    "question": "Can she qualify  for further education funding?",
+    "scenario": "My daughter has been offered an English grammar course . She is 17 years old and lives in UK. she wishes to pursue it. Unfortunately she needs some money to cater for day to day living cost.",
+    "question_type": "yesno",
+    "prolog_goal": "qualifies_for_further_education_funding(daughter)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-63",
+    "url": "https://www.gov.uk/further-education-courses",
+    "question": "Where can i search for further education courses?",
+    "scenario": "I have completed my secondary school level and I want to apply for a diploma in health and social care. I want to make a wise decision before I join because my future depends on it.",
+    "question_type": "value",
+    "prolog_goal": "where_can_i_search_for_further_education_courses(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "use the national careers service course search",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-64",
+    "url": "https://www.gov.uk/motorcycle-cbt",
+    "question": "what is the duration of CBT course ?",
+    "scenario": "I always want to ride a motorcycle and was told to take Compulsory basic training. I have scheduled a CBT course next week but the same day afternoon I have another appointment.",
+    "question_type": "value",
+    "prolog_goal": "duration_of_cbt_course(D)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "the cbt course usually lasts a full day",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-65",
+    "url": "https://www.gov.uk/motorcycle-cbt",
+    "question": "Do I need to take Compulsory basic training to ride my moped ?",
+    "scenario": "I have passed my car driving test in February 2000 in UK. Been driving the car for almost 20 years. I own a 50cc moped but did not use it and recently been thinking whether should I start riding moped",
+    "question_type": "yesno",
+    "prolog_goal": "needs_compulsory_basic_training(me, moped_50cc)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "no",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-66",
+    "url": "https://www.gov.uk/masters-loan",
+    "question": "Am I eligible for a master's loan after dropping out due to illness?",
+    "scenario": "I was a post-graduate student who took out a master's loan. I had to leave my course due to having cancer and requiring treatment. I have now recovered, and I am looking to do a Master's course.",
+    "question_type": "yesno",
+    "prolog_goal": "eligible_for_masters_loan_after_dropping_out_due_to_illness(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-67",
+    "url": "https://www.gov.uk/masters-loan",
+    "question": "How much funding is available for a postgraduate student?",
+    "scenario": "I am looking at doing master's course in the UK. It is an Msc course that is eligible for a postgraduate loan. I do not know how much the loan is.",
+    "question_type": "value",
+    "prolog_goal": "how_much_funding_available_for_postgraduate_student(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "£11,570",
+            [
+                "<li>£11,570 if your course starts on or after 1 August 2021</li>"
+            ]
+        ],
+        [
+            "£11,222",
+            [
+                "<li>£11,222 if your course started between 1 August 2020 and 31 July 2021</li>"
+            ]
+        ],
+        [
+            "£10,906",
+            [
+                "<li>£10,906 if your course started between 1 August 2019 and 31 July 2020</li>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-68",
+    "url": "https://www.gov.uk/further-education-courses",
+    "question": "Where can I get information on courses and funding?",
+    "scenario": "John here. i wasn't very good at reading at school but now I'm older I think I'm in a better place in my life and want to learn. I am working part time.",
+    "question_type": "value",
+    "prolog_goal": "needs_information_on_courses_and_funding(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "from the national careers service",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-69",
+    "url": "https://www.gov.uk/further-education-courses",
+    "question": "Will I have to pay for a basic maths and english course?",
+    "scenario": "I left school last year at 16 and unemployed. I know I need to get some skills and my maths and English are very bad. I don't like going out but have a computer and an internet connection.",
+    "question_type": "yesno",
+    "prolog_goal": "will_have_to_pay_for_basic_maths_and_english_course(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "no",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-70",
+    "url": "https://www.gov.uk/driving-instructor-suspension-your-rights",
+    "question": "Can he be struck out of the ADI register?",
+    "scenario": "My work colleague is an approved driving instructor and has been convicted of rape and physical assault . This case has destroyed his reputation.",
+    "question_type": "yesno",
+    "prolog_goal": "can_be_struck_off(c, adi_register)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-71",
+    "url": "https://www.gov.uk/driving-instructor-suspension-your-rights",
+    "question": "Can he be compensated?",
+    "scenario": "My father was unfairly suspended but was still in the  ADI register and won the case through an appeal . He suffered loss of income and depression during the trial.",
+    "question_type": "yesno",
+    "prolog_goal": "can_be_compensated(f)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-72",
+    "url": "https://www.gov.uk/motorcycle-cbt",
+    "question": "Is it true that a CBT is not needed with a driving licence?",
+    "scenario": "I passed my driving test on the 20th June 2008. I want to drive a 125cc Motorbike, and I have been told that you do not need to do a CBT course with a driving licence.",
+    "question_type": "yesno",
+    "prolog_goal": "cbt_not_needed_with_driving_licence",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "no",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-73",
+    "url": "https://www.gov.uk/motorcycle-cbt",
+    "question": "What should I bring for the CBT lessons?",
+    "scenario": "I have signed up for the CBT training course to drive a 50cc Moped. I have my first lesson in two weeks, and I do not know if there is anything I need to bring.",
+    "question_type": "value",
+    "prolog_goal": "what_to_bring_for_cbt_lessons(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "uk driving licence",
+            []
+        ],
+        [
+            "a motorcycle helmet that meets british safety standards",
+            []
+        ],
+        [
+            "motorcycle boots or other sturdy footwear",
+            []
+        ],
+        [
+            "motorcycle gloves",
+            []
+        ],
+        [
+            "textile or leather motorcycle trousers or heavy denim trousers",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-74",
+    "url": "https://www.gov.uk/masters-loan",
+    "question": "Will I receive as one-off payment or on instalments ?",
+    "scenario": "I live in England and studying a Postgraduate Master course. I applied for Postgraduate Master's loan and was approved. Thinking how I receive the payment.",
+    "question_type": "value",
+    "prolog_goal": "receive_payment_as_one_off_or_instalments(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "instalments",
+            [
+                "<p>If your course lasts for more than a year, the loan will be divided equally across each year of your course.</p>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-75",
+    "url": "https://www.gov.uk/masters-loan",
+    "question": "What are the documents required to prove my identity?",
+    "scenario": "I am currently doing my masters on computer science. I was told that I am eligible to apply for Postgraduate master's Loan",
+    "question_type": "value",
+    "prolog_goal": "documents_required_to_prove_identity(me, D)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "uk passport",
+            []
+        ],
+        [
+            "original birth or adoption certificate",
+            [
+                "<p>If you do not have a UK passport (or it has expired), send your original birth or adoption certificate to Student Finance England.</p>"
+            ]
+        ],
+        [
+            "passport or national identity card",
+            [
+                "<p>If you’re an EU national, send your passport or national identity card.</p>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-76",
+    "url": "https://www.gov.uk/driving-instructor-suspension-your-rights",
+    "question": "Can I make a claim for the losses on my income?",
+    "scenario": "I am a driving instructor who is ADI registered. I have recently won an appeal against removing me from the ADI register. I have experienced a loss of earnings due to this.",
+    "question_type": "yesno",
+    "prolog_goal": "can_make_claim_for_loss_of_earnings(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-77",
+    "url": "https://www.gov.uk/driving-instructor-suspension-your-rights",
+    "question": "What will happen if I am convicted?",
+    "scenario": "I have recently been arrested on suspicion of assault. I am an ADI-registered driving instructor, and I am concerned that this will affect my registration.",
+    "question_type": "value",
+    "prolog_goal": "consequences_of_conviction_on_registration(me, X)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "your approved driving instructor (adi) registration can be suspended",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-78",
+    "url": "https://www.gov.uk/staff-redundant",
+    "question": "Do I qualify for redundancy pay ?",
+    "scenario": "I am employee working under a contract of employment and have 3 years of continuous service. Recently decided for a early retirement",
+    "question_type": "yesno",
+    "prolog_goal": "qualifies_for_redundancy_pay(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "no",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-79",
+    "url": "https://www.gov.uk/staff-redundant",
+    "question": "Can I leave before the planned leaving date ?",
+    "scenario": "I am on a full time employment. Recently I was made redundant and was given 4 weeks of notice and given a planned leaving date. Now I got a better offer outside within 1 weeks of notice",
+    "question_type": "yesno",
+    "prolog_goal": "can_leave_before_planned_leaving_date(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-80",
+    "url": "https://www.gov.uk/health-and-safety-on-ships",
+    "question": "I want to assure myself that this trip will be perfectly safe, what measures will be in place to ensure this?",
+    "scenario": "I am planning to surprise my husband with a week long cruise around the Med, later this year. I have never been on a cruise before, however, and am a little worried about some aspects.",
+    "question_type": "value",
+    "prolog_goal": "?- measures_in_place(M), ensures(M, trip0, perfectly_safe)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "international convention for the safety of life at sea",
+            []
+        ],
+        [
+            "international convention on load lines",
+            []
+        ],
+        [
+            "international convention for the prevention of pollution from ships",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-81",
+    "url": "https://www.gov.uk/health-and-safety-on-ships",
+    "question": "What fire regulations apply to my ship?",
+    "scenario": "My family owns a small ship. One of its features is a gas grill which can be used to prepare hot food",
+    "question_type": "value",
+    "prolog_goal": "?- fire_regulation(R), applies_to(R, ship1)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "merchant shipping (fire protection: small ships) regulations 1998.",
+            []
+        ],
+        [
+            "merchant shipping (fire protection) regulations 2003",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-82",
+    "url": "https://www.gov.uk/health-and-safety-on-ships",
+    "question": "When can we repeat the  risk assessments?",
+    "scenario": "We have done a complete risk assessments to our cargo ships to reduce any chances of accidents , injuries or illnesses. This is according to the laid down procedures .",
+    "question_type": "value",
+    "prolog_goal": "?- repeat_risk_assessment_when(we, cargo_ships, T)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "every year and whenever there are significant changes to either the ship or working activities",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-83",
+    "url": "https://www.gov.uk/health-and-safety-on-ships",
+    "question": "Do we need to update our risk assessment?",
+    "scenario": "Our shipping company owns a small commercial vessel over 30 meters in length. We have recently had some major work done including the installation of a new propulsion system",
+    "question_type": "yesno",
+    "prolog_goal": "?- need_update_risk_assessment(company, vessel1)",
+    "context_found": true,
+    "entails": true,
+    "predicted_values": [],
+    "predicted": "yes",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-84",
+    "url": "https://www.gov.uk/time-off-for-dependants",
+    "question": "Am I able to take time off work today to help my cousin deal with this issue under the emergency dependent's provisions in this case?",
+    "scenario": "My cousin has difficulties learning things and I generally watch out for him even though he is 24 years old.  He has had problems with a neighbour, who has smashed his windows last night.",
+    "question_type": "yesno",
+    "prolog_goal": "?- able_take_time_off_under_emergency_dependent_provisions(me, today, cousin)",
+    "context_found": true,
+    "entails": true,
+    "predicted_values": [],
+    "predicted": "yes",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-85",
+    "url": "https://www.gov.uk/time-off-for-dependants",
+    "question": "I feel I have been treated unfairly.  Has my boss acted fairly according to the carers and dependents guidance?",
+    "scenario": "I work shifts in a job that covers 24 hours a day seven days a week.  It is difficult to replace someone when they are off unexpectedly. My 7 year old child has been involved in a fight at school and slightly injured.  My boss could not find someone to replace me at short notice.  I was told I would have to find someone else to go to the school.",
+    "question_type": "yesno",
+    "prolog_goal": "acted_fairly_according_to_carers_and_dependents_guidance(boss)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "no",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-86",
+    "url": "https://www.gov.uk/employment-contracts-and-conditions",
+    "question": "I was never allowed to take leave when I wanted it, paid too little even when I work overtime, and they terminated my employment two months early in February.  Can I use the email as evidence and obtain compensation?",
+    "scenario": "I took a job at a local coffee bar.  The owners sent me an email stating that I could work until April the following year, and also my working hours; pay; leave entitlement; and responsibilities.  They said that was sufficient for a contract.",
+    "question_type": "yesno",
+    "prolog_goal": "can_use_email_as_evidence_and_obtain_compensation(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-87",
+    "url": "https://www.gov.uk/pay-psa",
+    "question": "Where do I setup a direct debit?",
+    "scenario": "I am an employer who operates payroll. I have received a PAYE settlement agreement, which I am now looking to pay.  I want to pay by direct debit.",
+    "question_type": "value",
+    "prolog_goal": "where_to_setup_direct_debit(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "through your business’s hm revenue and customs (hmrc) online account",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-88",
+    "url": "https://www.gov.uk/pay-psa",
+    "question": "Will I receive any form of confirmation?",
+    "scenario": "I am an employer who has just paid their PAYE settlement agreement. I have paid by post and want confirmation when it has been received.",
+    "question_type": "yesno",
+    "prolog_goal": "will_receive_confirmation_for_posted_paye_settlement(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            [
+                "<p>If you want a receipt, include a note asking for one.</p>",
+                "<p>If you’re paying by post, you can include a letter with your payment to request a receipt from HM Revenue and Customs (HMRC).</p>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-89",
+    "url": "https://www.gov.uk/pay-psa",
+    "question": "How many years nationality do I need to get benefits from council?",
+    "scenario": "I got my nationality 2 years before and I try to apply for benefits for my daughter's free school meal but its reject.",
+    "question_type": "not_answerable",
+    "prolog_goal": "required_years_nationality_for_council_benefits(N)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "not answerable",
+    "gold_answers": [],
+    "not_answerable": true,
+    "error": null
+}
+
+{
+    "id": "dev-90",
+    "url": "https://www.gov.uk/pay-psa",
+    "question": "What is the deadline for paying PAYE settlement agreement tax on time?",
+    "scenario": "I'm here in the UK from 5 years and I usually pay my taxes on time but this year I got a penalty for late paying tax.",
+    "question_type": "value",
+    "prolog_goal": "deadline_for(paye_settlement_agreement_tax, D)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "22 october following the tax year it applies to",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-91",
+    "url": "https://www.gov.uk/employment-contracts-and-conditions",
+    "question": "What level of compensation would we be expected to pay?",
+    "scenario": "We are being taken to a employment tribunal by a former employee. This is due to a lack of authorisation for deductions on their wage slip. We have been told that we are likely to lose and errors with the employment contract have also been noted.",
+    "question_type": "value",
+    "prolog_goal": "expected_compensation_level(employer, Amount)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "4 weeks’ pay",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-92",
+    "url": "https://www.gov.uk/employment-contracts-and-conditions",
+    "question": "Do I have no rights because the job was only verbally agreed?",
+    "scenario": "My employer has told me that we have no contract after I injured myself at work. I received a job offer, which I accepted.  I never received any written contract, and they are saying they have no responsibility over my health and safety.",
+    "question_type": "yesno",
+    "prolog_goal": "have_no_rights_because_verbally_agreed(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "no",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-93",
+    "url": "https://www.gov.uk/time-off-for-dependants",
+    "question": "Where can I complain about this?",
+    "scenario": "I requested time off to look after my son, who has developed cancer. I have been dismissed by my employer for this reason, and believe this is unfair.",
+    "question_type": "value",
+    "prolog_goal": "where_to_complain_about_dismissal_for_caring(Authority)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "your staff or trade union representative or acas",
+            []
+        ],
+        [
+            "an employment tribunal",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-94",
+    "url": "https://www.gov.uk/time-off-for-dependants",
+    "question": "Do they have to pay for my time off?",
+    "scenario": "I need to take some time off to look after my daughter, who was involved in a car accident. My employer has granted me leave, but mentioned nothing about pay.",
+    "question_type": "yesno",
+    "prolog_goal": "employer_must_pay_for_time_off(employer, me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "no",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-95",
+    "url": "https://www.gov.uk/running-payroll",
+    "question": "Will our account be closed ?",
+    "scenario": "I started a limited company and employed 5 employees. I registered for PAYE scheme. We were very busy and could not pay HMRC",
+    "question_type": "yesno",
+    "prolog_goal": "account_closed(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            [
+                "<p>HMRC will close your PAYE scheme if you’re a new employer and you do not send a report to or pay HMRC in 120 days.</p>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-96",
+    "url": "https://www.gov.uk/staff-redundant",
+    "question": "What length of notice do I have to give?",
+    "scenario": "I am considering making an employee redundant due to the company facing financial issues. This employee has been working for the company for 2 years.",
+    "question_type": "value",
+    "prolog_goal": "required_notice_length(me, emp, N)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "a week’s notice for every year employed",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-97",
+    "url": "https://www.gov.uk/staff-redundant",
+    "question": "What amount will I need to pay the employee for redundancy?",
+    "scenario": "I am about to give an employee notice for their compulsory redundancy. They have worked for the company for 23 years, and earned £700 per week. The employee will be 43 years old when the notice is given.",
+    "question_type": "value",
+    "prolog_goal": "redundancy_payment_amount(me, emp, Amount)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "1.5 weeks’ pay for each full year of employment after their 41st birthday",
+            []
+        ],
+        [
+            "a week’s pay for each full year of employment after their 22nd birthday",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-98",
+    "url": "https://www.gov.uk/running-payroll",
+    "question": "Is there anything else that I need to include?",
+    "scenario": "I am about to give out the first payslips to my employees. The payslips generated shows the gross pay, tax and national insurance.",
+    "question_type": "value",
+    "prolog_goal": "additional_payslip_information_required(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "pay after deductions",
+            []
+        ],
+        [
+            "the number of hours worked",
+            [
+                "<li>the number of hours worked, if the pay varies depending on time worked</li>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-99",
+    "url": "https://www.gov.uk/running-payroll",
+    "question": "What is the threshold for a Plan 2 student loan?",
+    "scenario": "I have a new employee who has a student loan. They have told me that their student loan is considered to be Plan 2. They have an annual wage of £20,000. I am looking to calculate their student loan repayment.",
+    "question_type": "value",
+    "prolog_goal": "plan2_threshold(T)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "£27,295",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-100",
+    "url": "https://www.gov.uk/running-payroll",
+    "question": "How should I record employees who have taken a leave of absence when I submit my FPS?",
+    "scenario": "I am the managing director of an accounting firm based in Manchester. All of our current employees are salaried, with payroll being run monthly and the appropriate payments being sent to HMRC. After a particularly stressful year due to the pandemic, one of our most senior staff members has decided to take a six month leave of absence.",
+    "question_type": "value",
+    "prolog_goal": "how_to_record_leave_of_absence_on_fps(me, firm)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "‘yes’ in the ‘irregular payment pattern indicator’",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-101",
+    "url": "https://www.gov.uk/running-payroll",
+    "question": "How much should I deduct from this employee's monthly salary to cover his student loan repayments?",
+    "scenario": "I own and run a small electronics startup company, spun out from a UK university. Our latest employee is a recent postgraduate who has outstanding debts to the student loan company incurred when doing his doctoral research. He is currently earning £32,000 pa.",
+    "question_type": "value",
+    "prolog_goal": "how_much_to_deduct_monthly_for_student_loan(e1)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "6% of their income above £21,000 a year",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-102",
+    "url": "https://www.gov.uk/time-off-for-dependants",
+    "question": "Does the organisation of caring arrangements count as a emergency?",
+    "scenario": "I am 43, and work full-time as a product manager at a software & services company. I have just been notified that my son has been hospitalised after a road traffic accident, and is likely to need a part-time carer for a few weeks while he recuperates.",
+    "question_type": "yesno",
+    "prolog_goal": "does_organisation_of_caring_arrangements_count_as_emergency(organising_caring_arrangements)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-103",
+    "url": "https://www.gov.uk/time-off-for-dependants",
+    "question": "Is it possible for me to appeal this refusal, perhaps even to an industrial tribunal?",
+    "scenario": "I am 32 and work as a sales representative for an insurance company. I am married, and my partner suffers from severe epilepsy which occasionally requires me to care for him for periods of 1-2 days. Despite this my employer has refused to allow me to take time off to deal with such incidents, on the grounds that the condition is pre-existing.",
+    "question_type": "yesno",
+    "prolog_goal": "can_appeal_refusal_possibly_to_industrial_tribunal(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-104",
+    "url": "https://www.gov.uk/health-and-safety-on-ships",
+    "question": "Does my boat also qualify as a \"passenger ship\", with all the attendant safety requirements?",
+    "scenario": "I own and operate a 10-seat foot passenger ferry which crosses the mouth of a river estuary in Devon, England. I have been advised that, legally, this makes my boat a \"seagoing vessel\" under current maritime law.",
+    "question_type": "yesno",
+    "prolog_goal": "is_passenger_ship(boat)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "no",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-105",
+    "url": "https://www.gov.uk/health-and-safety-on-ships",
+    "question": "How frequently must the risk assessments be reviewed for the ships in my fleet?",
+    "scenario": "I own a cargo shipping company which currently has 7 boats in its fleet. These operate between ports in the East of England and various destinations in mainland Europe.",
+    "question_type": "value",
+    "prolog_goal": "required_risk_assessment_review_frequency(F, fleet1)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "every year and whenever there are significant changes to either the ship or working activities.",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-106",
+    "url": "https://www.gov.uk/pay-psa",
+    "question": "What is the deadline for settling our PSA for the Financial Year 2020-2021?",
+    "scenario": "I own and manage a small publishing company in Ross-on-Wye, England. We have a PAYE Settlement Agreement with HMRC which covers our Class 1B NI payments for minor expenses incurred by our agents.",
+    "question_type": "value",
+    "prolog_goal": "deadline_for_settling_psa(psa1, fy_2020_2021, Deadline)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "by 22 october",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-107",
+    "url": "https://www.gov.uk/pay-psa",
+    "question": "As the annual amount to be paid is small, can I use my personal credit card to pay it?",
+    "scenario": "I am the finance director for a highly specialised insurance company based in London. We have a PAYE Settlement Agreement with HMRC, although the annual value of the Class 1B NI payments it encompasses tends to be quite small",
+    "question_type": "yesno",
+    "prolog_goal": "can_pay_with_personal_credit_card(me, psa1)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "no",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-108",
+    "url": "https://www.gov.uk/employment-contracts-and-conditions",
+    "question": "If I make changes to their principal statements, how soon do I need to notify the affected workers?",
+    "scenario": "I own and operate an electronics company in Southern England, which currently has 140 employees. As part of our expansion into the EU, about 5 of our employees will need to be seconded to our office in France for a 6 month period. Their current principal statements make no mention of overseas employment.",
+    "question_type": "value",
+    "prolog_goal": "required_notification_period_after_principal_statement_change(group1, Period)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "within one month of making the change",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-109",
+    "url": "https://www.gov.uk/employment-contracts-and-conditions",
+    "question": "If we are unable to pay a bonus this year, could this constitute a breach of contract?",
+    "scenario": "I own and run a biscuit factory in Scotland, which has 72 employees at present. We have traditionally given Xmas bonuses to our workforce; however entitlement to this perk is not specifically stated in their standard contracts of employment.",
+    "question_type": "yesno",
+    "prolog_goal": "could_nonpayment_of_bonus_constitute_breach_of_contract(biscuit_factory1, this_year)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-110",
+    "url": "https://www.gov.uk/staff-redundant",
+    "question": "Who can we contact for help in meeting our statutory commitments if we become insolvent?",
+    "scenario": "I am the Human Resources Manager for a small employer in the construction industry, which is currently on the verge of insolvency and will likely have to make many of its staff redundant. There is a possibility that we will be unable to meet our statutory redundancy pay commitments for some of our more senior employees.",
+    "question_type": "value",
+    "prolog_goal": "can_contact_for_help(X, employer, statutory_redundancy_pay), become_insolvent(employer)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "the insolvency service’s redundancy payments service (rps)",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-111",
+    "url": "https://www.gov.uk/staff-redundant",
+    "question": "Is it ok for the company not holding a consultation?",
+    "scenario": "I am an employee and shop steward (USDAW) at a carpet retailer in the Midlands. Owing to the effect of COVID-19 on the retail trade my employer has announced 25 redundancies, without bothering to run a full consultation either with our union or with the employees as a whole.",
+    "question_type": "yesno",
+    "prolog_goal": "is_ok(not_holding_consultation(employer))",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-112",
+    "url": "https://www.gov.uk/permits-you-need-for-septic-tanks",
+    "question": "What are the rules regarding the capacity of such a cesspool?",
+    "scenario": "I have inherited a former barn as part of my father's farm in the Yorkshire Dales, England. I intend to convert this into a 2-bedroom holiday cottage for tourist use; however, it does not have a connection to the sewage network and the area is classed as a Groundwater Protection Zone, suggesting that a Cesspool may be required.",
+    "question_type": "value",
+    "prolog_goal": "rules_regarding_capacity(cesspool)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "minimum capacity of 18,000 litres per 2 users (plus another 6,800 litres per each extra user)",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-113",
+    "url": "https://www.gov.uk/permits-you-need-for-septic-tanks",
+    "question": "Do I need a permit to use this tank for the house's domestic sewage disposal?",
+    "scenario": "I have acquired and am currently renovating a very old residential property in Hertfordshire, England, which appears to have a septic tank which outflows directly into the ground in the back garden. The house does not appear to be in a Groundwater Protection Zone.",
+    "question_type": "yesno",
+    "prolog_goal": "needs_permit(me, septic_tank, domestic_sewage_disposal)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            [
+                "<li>to a well, borehole or other deep structure</li>",
+                "<li>more than 2 cubic metres (2,000 litres) per day</li>",
+                "<p>You’ll need a permit if you do not meet the general binding rules.</p>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-114",
+    "url": "https://www.gov.uk/private-renting",
+    "question": "Do I need to prove my \"right to rent\" when taking up this offer?",
+    "scenario": "I am a Spanish national currently in the UK on a Student Visa, and am about to start my studies at a university in the SW of England. I have been offered rented accommodation by the University in one of their halls of residence.",
+    "question_type": "yesno",
+    "prolog_goal": "need_prove_right_to_rent(me, hall_of_residence)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "no",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-115",
+    "url": "https://www.gov.uk/private-renting",
+    "question": "Can we appeal to a housing tribunal over this rent dispute?",
+    "scenario": "I rent a room in a house in multiple occupation in Sheffield, England, and have a periodic assured shorthold tenancy agreement with the landlord. Recently, however, he has announced a very large rent increase as part of a \"section 13\" procedure, to which I and several other tenants in the building strongly object.",
+    "question_type": "yesno",
+    "prolog_goal": "can_appeal_to_housing_tribunal(me, rent_increase1)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            [
+                "<li>you have an assured or assured shorthold tenancy</li>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-116",
+    "url": "https://www.gov.uk/debt-payments-from-your-wages",
+    "question": "Taking money from my wages will leave me unable to pay for necessities. Is this legal of my creditors?",
+    "scenario": "I defaulted on payments on a store card that I took out two years ago. Now they have tracked me down and are threatening to take the repayments from the wages for my part time job. I do not earn very much as it is.",
+    "question_type": "not_answerable",
+    "prolog_goal": "legal_to_take_from_wages(creditor1)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "not answerable",
+    "gold_answers": [],
+    "not_answerable": true,
+    "error": null
+}
+
+{
+    "id": "dev-117",
+    "url": "https://www.gov.uk/debt-payments-from-your-wages",
+    "question": "I want to check what I owe and reclaim anything I've overpaid. Who do I contact",
+    "scenario": "I got into some problems with debt two years ago and arranged for repayments to be taken directly from my wages. This was done, but I suspect now that they continued to take money from me - and are still doing so - even though I'd reached the limit of what I owed.",
+    "question_type": "value",
+    "prolog_goal": "who_to_contact_to_check_and_reclaim(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "the caps office",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-118",
+    "url": "https://www.gov.uk/tax-on-shopping",
+    "question": "Can I claim the VAT back at the airport on her behalf?",
+    "scenario": "I live in Northern Ireland. I met my cousin who is resident in Chile but has Spanish citizenship for a brief trip to Northern Ireland.  She bought a number of goods from shops and kept the receipts as she was told that she could claim the VAT at the airport.  She did not do so, however, and I have them in my possession.",
+    "question_type": "not_answerable",
+    "prolog_goal": "can_claim_vat_at_airport_on_behalf(me, cousin1)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "not answerable",
+    "gold_answers": [],
+    "not_answerable": true,
+    "error": null
+}
+
+{
+    "id": "dev-119",
+    "url": "https://www.gov.uk/tax-on-shopping",
+    "question": "Can my mother claim back the VAT paid on the mobility vehicle?",
+    "scenario": "I am the carer for my mother who is disabled and has mobility issues.  I shop on her behalf due to he disability.  I pay for the items with my debit card and she pays me back.  I have recently purchased on her behalf a mobility vehicle for which she paid me back the money.  I was charged VAT for it.",
+    "question_type": "yesno",
+    "prolog_goal": "can_claim_vat_back(mother, mobility_vehicle1)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "no",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-120",
+    "url": "https://www.gov.uk/debt-payments-from-your-wages",
+    "question": "Am I able to reduce my payments to my debt?",
+    "scenario": "I am an employee who earns £1,500 per month. I have been having £500 taken out every month to pay my debts, but I cannot afford this.",
+    "question_type": "yesno",
+    "prolog_goal": "can_reduce_debt_payments(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            [
+                "<p>You have to do this within 14 days of getting the order.</p>",
+                "<p>You can also apply if the order has been in place for some time and your circumstances change.</p>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-121",
+    "url": "https://www.gov.uk/debt-payments-from-your-wages",
+    "question": "Where can I check how much debt is left to pay?",
+    "scenario": "I am currently paying off my debt out of my wages. This amounts to £400 per month. I have lost track of how mow much I have paid.",
+    "question_type": "value",
+    "prolog_goal": "where_can_check_remaining_debt(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "the centralised attachment of earning payments (caps) office",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-122",
+    "url": "https://www.gov.uk/debt-payments-from-your-wages",
+    "question": "Is it possible to pay off this debt immediately?",
+    "scenario": "I owe my friend £5000 he gave me to boost my wedding ceremony. I didn't pay his money back and took a court action. I have been served with a court county judge. I am a full time employee and my employer has received attachments of earnings order.",
+    "question_type": "yesno",
+    "prolog_goal": "can_pay_off_debt_immediately(me, amt_5000)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-123",
+    "url": "https://www.gov.uk/tax-on-shopping",
+    "question": "Will I be eligible for the reduced VAT rate?",
+    "scenario": "I am 65 years old. I am looking to buy grab rails, which I will have the product installed at my home.",
+    "question_type": "yesno",
+    "prolog_goal": "eligible_reduced_vat(me, grab_rails)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-124",
+    "url": "https://www.gov.uk/tax-on-shopping",
+    "question": "Will I be able to buy these products as tax-free?",
+    "scenario": "I want to buy some electronic products from the UK without paying VAT. I will have the products delivered directly to my factory in Japan.",
+    "question_type": "yesno",
+    "prolog_goal": "eligible_tax_free_purchase(me, electronic_products, factory_japan)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-125",
+    "url": "https://www.gov.uk/tax-on-shopping",
+    "question": "Does she need to pay gambling tax?",
+    "scenario": "My friend Ann is from Canada . She is was visiting the UK temporarily and won a lottery during a gambling event. She won a lot of money. Would like to know if she should inform the HMRC .",
+    "question_type": "yesno",
+    "prolog_goal": "should_inform_hmrc(ann), needs_to_pay_gambling_tax(ann)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "no",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-126",
+    "url": "https://www.gov.uk/tax-on-shopping",
+    "question": "What does he need to do to be qualify for the reduced rate?",
+    "scenario": "My grandfather is 65 years old and physically disabled . He owns a flat and would like to install an easily accessible bath and new lighting system. For him to get a reduced VAT on the items he wishes to buy.",
+    "question_type": "value",
+    "prolog_goal": "qualify_for_reduced_vat(grandfather)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "confirm to your supplier in writing that you meet these conditions",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-127",
+    "url": "https://www.gov.uk/find-an-immigration-adviser",
+    "question": "Where can i get one?",
+    "scenario": "I am a British national. I applied for a spouse visa for my wife who lives in South Africa. I gave all the supporting documents and the required fee but it was refused.  They said that I don't meet the minimum income requirement so I need a good immigration solicitor to handle my case.",
+    "question_type": "value",
+    "prolog_goal": "need_immigration_solicitor(me)",
+    "context_found": true,
+    "entails": true,
+    "predicted_values": [],
+    "predicted": "yes",
+    "gold_answers": [
+        [
+            "the office of the immigration services commissioner (oisc) adviser finder",
+            []
+        ],
+        [
+            "the law society",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-128",
+    "url": "https://www.gov.uk/find-an-immigration-adviser",
+    "question": "Can i report him?",
+    "scenario": "My immigration case has been mishandled by a solicitor I had hired.At first he requested a deposit of £3000 which I felt was unreasonable but paid. Second,I gave him all my supporting documents but he misplaced them. My efforts to meet him in his office too has been futile. He never turned up for appointments.",
+    "question_type": "yesno",
+    "prolog_goal": "can_report(me, sol1)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-129",
+    "url": "https://www.gov.uk/bereavement-support-payment",
+    "question": "Do I qualify for Bereavement Support payment?",
+    "scenario": "My husband died after an accident at work. He was only 52. I am heartbroken and now strapped for money.",
+    "question_type": "yesno",
+    "prolog_goal": "qualify_for_bereavement_support(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            [
+                "<p>You may be able to get Bereavement Support Payment (BSP) if your husband, wife or civil partner died in the last 21 months.</p>",
+                "<li>under State Pension age</li>",
+                "<li>living in the UK or a country that pays bereavement benefits</li>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-130",
+    "url": "https://www.gov.uk/bereavement-support-payment",
+    "question": "What is the application process for BSP?",
+    "scenario": "My wife died after contracting a disease to do with asbestos from her workplace. She was only 58. I need tome support urgently.",
+    "question_type": "value",
+    "prolog_goal": "wants_application_process_for(me, bsp)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "the quickest way to apply is by phone. you can also apply using a paper form.",
+            []
+        ],
+        [
+            "download a bereavement support payment form (bsp1)",
+            []
+        ],
+        [
+            "contact your nearest jobcentre plus to get one through the post",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-131",
+    "url": "https://www.gov.uk/work-out-capital-allowances",
+    "question": "Can we claim the main pool rate of 18%?",
+    "scenario": "We bought a new lift for our office last year. We sell horticultural machinery and made £30,000 last year. We hope to make more this time.",
+    "question_type": "yesno",
+    "prolog_goal": "can_claim_main_pool_rate(org1, 18_percent)",
+    "context_found": true,
+    "entails": true,
+    "predicted_values": [],
+    "predicted": "yes",
+    "gold_answers": [
+        [
+            "no",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-132",
+    "url": "https://www.gov.uk/work-out-capital-allowances",
+    "question": "Can I still use annual investment allowance in this case?",
+    "scenario": "A few months ago I bought expensive table saw for my personal use but I want to use it in my business from now. I took a loan to buy it and there are still 10 monthly payments outstanding.",
+    "question_type": "yesno",
+    "prolog_goal": "can_use_annual_investment_allowance(me, table_saw1)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "no",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-133",
+    "url": "https://www.gov.uk/first-company-accounts-and-return",
+    "question": "Can i get a worked example on how i can file my returns to cover full financial year?",
+    "scenario": "I run a transport limited company and I started trading the same day the company was set up.I want to file my returns at the end of my tax year.",
+    "question_type": "yesno",
+    "prolog_goal": "requests_worked_example_covering_full_financial_year(me, transport_co)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-134",
+    "url": "https://www.gov.uk/first-company-accounts-and-return",
+    "question": "Do we have to file tax returns for the period we were dormant?",
+    "scenario": "We registered our company for corporation tax and started trading 5 months after our accounting reference date.We want to prepare our tax returns",
+    "question_type": "yesno",
+    "prolog_goal": "must_file_tax_returns_for_period(company, dormant_period)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-135",
+    "url": "https://www.gov.uk/first-company-accounts-and-return",
+    "question": "Is it ok for me to file only one Company Tax Return?",
+    "scenario": "I started my first company last year and its almost time for me to fil my first accounts and the Company's tax returns. I began trading on the first day that my company was established which makes it so I have to file a Company Tax Return covering a span of over 12 months.",
+    "question_type": "yesno",
+    "prolog_goal": "ok_to_file_only_one_company_tax_return(me, c0)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "no",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-136",
+    "url": "https://www.gov.uk/first-company-accounts-and-return",
+    "question": "Do I have to file two separate tax returns for the dormant period and for the period of trading?",
+    "scenario": "This is the first limited company I am operating and I have been doing so for less than a year. It is almost time for me to file for Company Tax Returns. I realized that we registered the company for Corporation Tax after our accounting reference date. When we were first established we remained dormant for about 2 months before we began trading.",
+    "question_type": "yesno",
+    "prolog_goal": "have_to_file_two_separate_tax_returns_for_dormant_and_trading(me, c1)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-137",
+    "url": "https://www.gov.uk/tax-when-your-company-sells-assets",
+    "question": "Do I need to report gains on this asset in any way?",
+    "scenario": "My software development company developed a proprietary that we are now interested in selling. The official date the algorithm was developed to what it is today is the 10th of October 2004.",
+    "question_type": "yesno",
+    "prolog_goal": "need_to_report_gains_on_asset(me, c2, a1)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-138",
+    "url": "https://www.gov.uk/tax-when-your-company-sells-assets",
+    "question": "Do we have to pay Corporate Tax on the shares sold?",
+    "scenario": "My business associates and I are interested in selling shares of our limited company to potential investors. Since we have been expanding rapidly this will help us maintain our level of growth.",
+    "question_type": "yesno",
+    "prolog_goal": "have_to_pay_corporate_tax_on_shares_sold(me, c3)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            [
+                "<p>Your limited company usually pays Corporation Tax on the profit (‘chargeable gain’) from selling or disposing of an asset.</p>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-139",
+    "url": "https://www.gov.uk/directors-loans",
+    "question": "Will the interest I will be payed count as personal income for me?",
+    "scenario": "Since my company is in a bit of a rough spot financially at the moment I am interested in lending it money. I will charge interest on this amount as it will be a big chunk of my personal savings.",
+    "question_type": "yesno",
+    "prolog_goal": "will_interest_count_as_personal_income_for_me(me, i1, c4)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-140",
+    "url": "https://www.gov.uk/directors-loans",
+    "question": "Do we note the payments below the official rate in a normal way?",
+    "scenario": "I am a director at the company I work at. Since I have fallen into some financial trouble after my divorce and my house catching on fire I requested a loan from my company. The board agreed and lent me £25000. I have been paying interest on this loan but at a lower rate then the official one since I am still struggling to get on my feet.",
+    "question_type": "yesno",
+    "prolog_goal": "normal_way_to_note_payments_below_official_rate(me, loan_25000)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "no",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-141",
+    "url": "https://www.gov.uk/bereavement-support-payment",
+    "question": "Am I eligible for Bereavement Support?",
+    "scenario": "My husband died during a workplace accident 2 months ago. He had payed national insurance for 15 years and I am 50 years old.",
+    "question_type": "yesno",
+    "prolog_goal": "eligible_for_bereavement_support(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            [
+                "<li>living in the UK or a country that pays bereavement benefits</li>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-142",
+    "url": "https://www.gov.uk/bereavement-support-payment",
+    "question": "How much money does bereavement support provide?",
+    "scenario": "My partner and I are planning our wills and finances in the event one of us passes away. We both are planning on purchasing life insurance, but need to determine other sources of income to decide how much to buy.",
+    "question_type": "value",
+    "prolog_goal": "amount_bereavement_support_provides(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "£3,500",
+            [
+                "<tr> | First payment | Monthly payment</tr>",
+                "<tr>Higher rate | £3,500 | £350</tr>",
+                "<p>If you get Child Benefit (or if you do not get it but are entitled to it), you’ll get the higher rate.</p>"
+            ]
+        ],
+        [
+            "£350",
+            [
+                "<tr> | First payment | Monthly payment</tr>",
+                "<tr>Higher rate | £3,500 | £350</tr>",
+                "<p>If you get Child Benefit (or if you do not get it but are entitled to it), you’ll get the higher rate.</p>"
+            ]
+        ],
+        [
+            "£2,500",
+            [
+                "<tr> | First payment | Monthly payment</tr>",
+                "<tr>Lower rate | £2,500 | £100</tr>",
+                "<p>If you do not get Child Benefit, you’ll get the lower rate unless you were pregnant when your husband, wife or civil partner died.</p>"
+            ]
+        ],
+        [
+            "£100",
+            [
+                "<tr> | First payment | Monthly payment</tr>",
+                "<tr>Lower rate | £2,500 | £100</tr>",
+                "<p>If you do not get Child Benefit, you’ll get the lower rate unless you were pregnant when your husband, wife or civil partner died.</p>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-143",
+    "url": "https://www.gov.uk/funeral-payments",
+    "question": "What sort of help is available to me for my husband's funeral?",
+    "scenario": "I am an eighty year old woman who was recently widowed. My husband and I were living off our state pensions and have very little in savings. I feel mortified asking for help with funeral costs but I cannot manage them myself.",
+    "question_type": "value",
+    "prolog_goal": "help_available_for_funeral(me, h)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "burial fees for a particular plot",
+            []
+        ],
+        [
+            "cremation fees, including the cost of the doctor’s certificate",
+            []
+        ],
+        [
+            "travel to arrange or go to the funeral",
+            []
+        ],
+        [
+            "the cost of moving the body within the uk",
+            [
+                "<li>the cost of moving the body within the UK, if it’s being moved more than 50 miles</li>"
+            ]
+        ],
+        [
+            "death certificates or other documents",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-144",
+    "url": "https://www.gov.uk/funeral-payments",
+    "question": "As my mother is an EU citizen, am I eligible to claim help with funeral expenses?",
+    "scenario": "My mother died two days ago. She was a French citizen as am I and indicated that she wished to be laid to rest in her home town in France. I am an only child and am not able to manage the expense all by myself. She does not have any insurance.",
+    "question_type": "yesno",
+    "prolog_goal": "eligible_to_claim_help_with_funeral_expenses(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            [
+                "<li>Income Support</li>",
+                "<li>income-based Jobseeker’s Allowance</li>",
+                "<li>income-related Employment and Support Allowance</li>",
+                "<li>Pension Credit</li>",
+                "<li>Housing Benefit</li>",
+                "<li>the disability or severe disability element of Working Tax Credit</li>",
+                "<li>Child Tax Credit</li>",
+                "<li>Universal Credit</li>",
+                "<p>You might also be eligible if you’re getting a Support for Mortgage Interest loan.</p>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-145",
+    "url": "https://www.gov.uk/funeral-payments",
+    "question": "Can she be eligible for funeral expenses payments?",
+    "scenario": "Ann lives in the UK and receives house benefits. Her husband has succumbed to cancer. She needs help to give her late husband a decent burial.",
+    "question_type": "yesno",
+    "prolog_goal": "eligible_for_funeral_expenses(ann)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "no",
+            [
+                "<p>If there’s a close relative of the deceased who is not getting one of these benefits, you might not be able to claim Funeral Expenses Payment.</p>",
+                "<p>You might not get a Funeral Expenses Payment if another close relative of the deceased (such as a sibling or parent) is in work.</p>"
+            ]
+        ],
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-146",
+    "url": "https://www.gov.uk/funeral-payments",
+    "question": "Is there a service helpline he can call?",
+    "scenario": "My neighbor lives in the UK and his wife has died. He is eligible for a funeral expenses payment and wants to make a claim.",
+    "question_type": "yesno",
+    "prolog_goal": "can_call_service_helpline(neighbor)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-147",
+    "url": "https://www.gov.uk/tax-when-your-company-sells-assets",
+    "question": "Are we supposed to pay corporation tax?",
+    "scenario": "We are a foreign company operating a branch office in the UK. We decided to sell all our assets including intangible assets and close the company.",
+    "question_type": "yesno",
+    "prolog_goal": "supposed_to_pay_corporation_tax(foreign_co)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            [
+                "<p>Your limited company usually pays Corporation Tax on the profit (‘chargeable gain’) from selling or disposing of an asset.</p>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-148",
+    "url": "https://www.gov.uk/directors-loans",
+    "question": "Can this be classified as a director’s loan?",
+    "scenario": "My family runs a chain of grocery stores and I borrowed some money to buy a new car for my wife.",
+    "question_type": "yesno",
+    "prolog_goal": "classified_as_directors_loan(loan1)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            [
+                "<p>A director’s loan is when you (or other close family members) get money from your company that is not:</p>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-149",
+    "url": "https://www.gov.uk/directors-loans",
+    "question": "What should the company do?",
+    "scenario": "I lend £30,000 cash to our family limited company last April as it was struggling during the covid pandemic. We agreed that the money will be paid back with interest.",
+    "question_type": "value",
+    "prolog_goal": "should_company_repay_loan_with_interest(family_ltd, me, gbp_30000)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "pay you the interest less income tax at the basic rate of 20%",
+            []
+        ],
+        [
+            "report and pay the income tax every quarter using form ct61",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-150",
+    "url": "https://www.gov.uk/taxi-vehicle-licence",
+    "question": "Who do I contact regarding licensing my taxi?",
+    "scenario": "I bought an old taxi on an auction a few weeks ago. I am interested in turning it into an operation vehicle and offering taxi services. I live in a small town near Liverpool and am not exactly sure what I need to do to begin this process.",
+    "question_type": "value",
+    "prolog_goal": "contact_for_licensing(X, me, taxi)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "your local council",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-151",
+    "url": "https://www.gov.uk/taxi-vehicle-licence",
+    "question": "Is the process of obtaining a license in London the same as in Manchester?",
+    "scenario": "I recently move to London. Before doing so I lived in Manchester where I was operating a private taxi service. After settling in I plan on picking up the same business and operating a taxi vehicle again. I am pretty sure I will need a new license.",
+    "question_type": "yesno",
+    "prolog_goal": "same_process_for_obtaining_license(london, manchester)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "no",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-152",
+    "url": "https://www.gov.uk/taking-vehicles-out-of-uk",
+    "question": "Is it easier for me to sell my car in the UK and buy a new one, or to take it to Germany?",
+    "scenario": "I am a German citizen who has been living in the UK for ten years. In this time I have bought a car here. Now I would like to return to Germany for the next eighteen months at least.",
+    "question_type": "not_answerable",
+    "prolog_goal": "easier_option_between(sell_in_uk_and_buy_new(me,car), take_car_to_germany(me,car))",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "not answerable",
+    "gold_answers": [],
+    "not_answerable": true,
+    "error": null
+}
+
+{
+    "id": "dev-153",
+    "url": "https://www.gov.uk/taking-vehicles-out-of-uk",
+    "question": "As we are not going to be away for very long, do we need to register that we are taking our vehicle abroad?",
+    "scenario": "My family and I are intending to go on a camping holiday in Europe and would like to take our SUV. We would be out of the UK for around five weeks in total.",
+    "question_type": "yesno",
+    "prolog_goal": "need_to_register_taking_vehicle_abroad(me_and_family, suv, europe, around_five_weeks)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "no",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-154",
+    "url": "https://www.gov.uk/appeal-qualification-result",
+    "question": "Can I challenge my A level results and if so how?",
+    "scenario": "I am eighteen and have just received my A level results. I feel that the results are not representative of the work that I put in and have been skewed by the pandemic.",
+    "question_type": "value",
+    "prolog_goal": "exists_procedure_for_challenging(me,a_level_results)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "ask your school or college to get an exam result looked at again",
+            [
+                "<p>You can ask your school or college to get an exam result looked at again (known as ‘requesting a review’). You cannot request a review yourself unless you’re a private candidate, for example you were home schooled.</p>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-155",
+    "url": "https://www.gov.uk/appeal-qualification-result",
+    "question": "Can I appeal against the results of the review?",
+    "scenario": "I asked for a review of my GCSE results after receiving them last year. I felt that my results were unfair and I asked for a review. The review agreed with the original decision.",
+    "question_type": "value",
+    "prolog_goal": "can_appeal_against_review(me, review1)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "ask the exams officer, headteacher or principal at your school or college to make an appeal",
+            []
+        ],
+        [
+            "make an appeal yourself",
+            [
+                "<p>Ask the exams officer, headteacher or principal at your school or college to make an appeal. You cannot make an appeal yourself unless you’re a private candidate, for example you were home schooled.</p>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-156",
+    "url": "https://www.gov.uk/electoral-register",
+    "question": "Will I have to stay with the open register?",
+    "scenario": "Yesterday a friend of mine showed me the \"open register\" which is apparently a public document containing information on voters. I personally do not remember signing up to this register and instantly asked here if it is possible to opt out. She was pretty confident that it is but was not sure what the process is.",
+    "question_type": "yesno",
+    "prolog_goal": "must_stay_with_open_register(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "no",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-157",
+    "url": "https://www.gov.uk/electoral-register",
+    "question": "Do we have to update the details on our electoral registration?",
+    "scenario": "Me and my family recently moved from Manchester to Liverpool. While our kids are not old enough to vote yet me and my husband are. He reminded me that we might have to change out address on our electoral registration. I am pretty sure that we do not have to do that but he insists.",
+    "question_type": "not_answerable",
+    "prolog_goal": "must_update_registration(hh)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "not answerable",
+    "gold_answers": [],
+    "not_answerable": true,
+    "error": null
+}
+
+{
+    "id": "dev-158",
+    "url": "https://www.gov.uk/challenge-solicitors-bill",
+    "question": "How can I challenge the cost of the bill?",
+    "scenario": "I have just finished going through a divorce. The situation was particularly nasty, which lead to extended paperwork and 5 meetings with the solicitor for 2 hours each. At the end of the process, the bill was £9500. I think this was more than it should have been.",
+    "question_type": "value",
+    "prolog_goal": "how_can_challenge_bill(me, bill1)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "ask the senior courts costs office to make a ‘detailed assessment’ of your bill",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-159",
+    "url": "https://www.gov.uk/challenge-solicitors-bill",
+    "question": "How much would it cost to challenge the bill through an independent body?",
+    "scenario": "I own a medium sized business. We recently negotiated a contract with an automotive parts supplier to supply injection moulded panels. We used a solicitor throughout the process and the final bill was £100950. This is more than we had agreed upon when I first met with the solicitor.",
+    "question_type": "value",
+    "prolog_goal": "cost_to_challenge_independent_body(biz, bill2)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "£45",
+            []
+        ],
+        [
+            "£1,345",
+            []
+        ],
+        [
+            "your own costs and the other party’s reasonable costs of the detailed assessment",
+            [
+                "<li>the judge reduces your solicitor’s bill by 20% or more</li>",
+                "<li>there are special circumstances, for example you originally offered to settle the bill for an amount more than the final amount fixed by the court</li>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-160",
+    "url": "https://www.gov.uk/taxi-vehicle-licence",
+    "question": "What are the things does the local council checks during inspections?",
+    "scenario": "My brother wants to start a taxi business outside London.  Before he makes the license application, he wants to make sure that his car meets all the specifications.",
+    "question_type": "value",
+    "prolog_goal": "checks_during_inspection(lc, X)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "it’s roadworthy",
+            []
+        ],
+        [
+            "it’s comfortable and clean",
+            []
+        ],
+        [
+            "the taximeter works properly",
+            []
+        ],
+        [
+            "the doors are safe and secure",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-161",
+    "url": "https://www.gov.uk/taxi-vehicle-licence",
+    "question": "What are the eligibility criteria for my vehicle to be licenced as a private vehicle hire inside london?",
+    "scenario": "I want to run a private vehicle hire business inside London. I have seen that it has a high business potential.",
+    "question_type": "value",
+    "prolog_goal": "eligibility_criteria_for_pvh_vehicle_in_london(C)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "have no more than 8 passenger seats",
+            []
+        ],
+        [
+            "not look like a licensed taxi",
+            []
+        ],
+        [
+            "only display advertising that complies with tfl guidelines",
+            []
+        ],
+        [
+            "display licence discs",
+            [
+                "<li>display licence discs - although exemptions are sometimes granted</li>"
+            ]
+        ],
+        [
+            "your vehicle will need to be inspected by tfl",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-162",
+    "url": "https://www.gov.uk/register-a-community-amateur-sports-club",
+    "question": "can we register as a community amateur sports club ?",
+    "scenario": "we have a community sports club that targets the youth in our community. we charge a small weekly fee for upkeep.",
+    "question_type": "yesno",
+    "prolog_goal": "can_register_as_community_amateur_sports_club(club)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            [
+                "<li>be set up with a formal constitution, known as a governing document</li>",
+                "<li>be organised on an amateur basis</li>",
+                "<li>be managed by ‘fit and proper persons’</li>",
+                "<p>CASCs must be open to people of all ethnicities, nationalities, sexual orientations, religions or beliefs, sexes, ages and ability - except when a certain level of physical ability is needed to take part in a sport.</p>",
+                "<li>not make a profit, unless this is reinvested in the club and spent only on promoting participation and providing facilities for eligible sports</li>",
+                "<li>not pay more than £10,000 in total to all players in a year (before 1 April 2015 CASCs couldn’t pay players at all)</li>",
+                "<li>provide only the benefits normally associated with an amateur sports club, eg use of equipment, coaching, post-match refreshments</li>",
+                "<li>only pay expenses for matches and tours where players take part in and promote the club’s sport (before 1 April 2015 clubs couldn’t pay any expenses)</li>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-163",
+    "url": "https://www.gov.uk/register-a-community-amateur-sports-club",
+    "question": "can we appeal our refused application ?",
+    "scenario": "we applied to have our sports club become a community amateur sports club but our application was refused by the HMRC.",
+    "question_type": "yesno",
+    "prolog_goal": "can_appeal_refused_application(club)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-164",
+    "url": "https://www.gov.uk/electoral-register",
+    "question": "Can i register to vote?",
+    "scenario": "My name is Chris Hemming. I am 15 years old and have always had an interest in the politics of my country the UK",
+    "question_type": "yesno",
+    "prolog_goal": "can_register_to_vote(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "no",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-165",
+    "url": "https://www.gov.uk/electoral-register",
+    "question": "Can banks carry out checks for loan applications from this register?",
+    "scenario": "I am 34 and have been registered of the full version of the electoral register. I have updated my address recently and will always want to vote in the UK elections.",
+    "question_type": "yesno",
+    "prolog_goal": "can_banks_carry_out_checks_from_register_for_loan_applications(electoral_register_full)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-166",
+    "url": "https://www.gov.uk/residential-support-scheme",
+    "question": "Can I get funding for my rental accomodation for five years?",
+    "scenario": "I am seventeen and intend to go to University to study medicine in the next two years. I have no personal income and my parents cannot afford to fund me. I will have to stay in the cheapest digs that I can find.",
+    "question_type": "yesno",
+    "prolog_goal": "can_get_funding_for_rental_accommodation_for_five_years(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "no",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-167",
+    "url": "https://www.gov.uk/residential-support-scheme",
+    "question": "Although I have savings, can I apply for any sort of financial help towards rent?",
+    "scenario": "I am 35 and wish to study as a mature student, starting from next year. I will have to move from my home in order to study, and quit my job. I have a small amount of savings but not enough for my full course.",
+    "question_type": "yesno",
+    "prolog_goal": "can_apply_for_financial_help_towards_rent(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "no",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-168",
+    "url": "https://www.gov.uk/appeal-qualification-result",
+    "question": "can i appeal my A levels mathematics result ?",
+    "scenario": "i have always been very good at mathematics and thought that i'd do very well in the subject on my A levels. i was shocked to learn that i'd scored an A instead of the A* i was expecting.",
+    "question_type": "yesno",
+    "prolog_goal": "can_appeal_a_levels_mathematics_result(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-169",
+    "url": "https://www.gov.uk/appeal-qualification-result",
+    "question": "can i appeal the result of a review ?",
+    "scenario": "our school generally does well in the A levels but in our year we had disastrous results. i and a few of my classmates appealed the results and while they succeeded in their appeals, my review was denied.",
+    "question_type": "yesno",
+    "prolog_goal": "can_appeal_result_of_review(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-170",
+    "url": "https://www.gov.uk/register-a-community-amateur-sports-club",
+    "question": "What are some of the benefits ?",
+    "scenario": "My work colleagues and I have decided to open a community amateur sports club.We would like to nurture golf playing talents as well support the society.",
+    "question_type": "value",
+    "prolog_goal": "benefits_of(club1, X)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "tax relief on income, gains and profits from some activities",
+            []
+        ],
+        [
+            "gift aid repayments on donations",
+            []
+        ],
+        [
+            "business rates relief",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-171",
+    "url": "https://www.gov.uk/register-a-community-amateur-sports-club",
+    "question": "What are the things which the document must contain?",
+    "scenario": "We are planning to come up with our own golf club governing document so that it can be used as a guide to all our members.",
+    "question_type": "value",
+    "prolog_goal": "must_contain(doc1, X)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "set out how you meet the eligibility criteria for registering as a casc",
+            []
+        ],
+        [
+            "state that any assets left after the club closes are only used by another registered casc, charity or related community sport",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-172",
+    "url": "https://www.gov.uk/residential-support-scheme",
+    "question": "can my son get residential support for his studies in London ?",
+    "scenario": "my son has been accepted at a college that is in London. we are too far away from London for him to commute daily and he needs housing there.",
+    "question_type": "yesno",
+    "prolog_goal": "can_get_residential_support(son, london)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            [
+                "<li>be at least 16 and under 19 on 31 August 2021</li>",
+                "<li>meet the residency requirements (your college will check this)</li>",
+                "<li>not be on housing benefit</li>",
+                "<li>have a household income of less than £30,993</li>",
+                "<li>be studying your first level 2 or level 3 qualification (for example 2 or more A levels, a diploma or a national vocational qualification)</li>",
+                "<li>continuing on a course you started aged 16 to 18</li>",
+                "<li>have an education, health and care plan (EHCP)</li>",
+                "<li>be full-time at a college in England</li>",
+                "<li>be ‘16 to 19 funded’ (your college can confirm this)</li>",
+                "<p>Your course must also be more than either 15 miles or a 2 hour round trip from your home, and not available any closer than that.</p>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-173",
+    "url": "https://www.gov.uk/residential-support-scheme",
+    "question": "how long do the college accomodation support payments last ?",
+    "scenario": "my daughter has received support for her accomodation at the school she is attending and her course is to last four years.",
+    "question_type": "value",
+    "prolog_goal": "accommodation_support_payment_duration(school1, D)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "a maximum of 3 years",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-174",
+    "url": "https://www.gov.uk/challenge-solicitors-bill",
+    "question": "How do i apply to challenge his bill?",
+    "scenario": "I recently had a legal battle and I used a solicitor to sort things out for me. I am pretty sure he has charge me excessively and i am not happy.",
+    "question_type": "value",
+    "prolog_goal": "apply_to_challenge_bill(me, solicitor1, Procedure)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "download and fill in 3 copies of part 8 claim form (n208)",
+            []
+        ],
+        [
+            "send a cheque made payable to ‘hmcts’ with all 3 copies of your completed form and a copy of your solicitor’s bill",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-175",
+    "url": "https://www.gov.uk/taking-vehicles-out-of-uk",
+    "question": "Can I export the car to Japan?",
+    "scenario": "I am moving to Japan and have an old car that is a family heirloom. It has was my grandfather's car and I have no other family in the UK. I want to keep the car to remember my grandfather. The car also has a personalized registration.",
+    "question_type": "yesno",
+    "prolog_goal": "can_export(me, car1, japan)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-176",
+    "url": "https://www.gov.uk/taking-vehicles-out-of-uk",
+    "question": "What taxes will I have to pay on this vehicle?",
+    "scenario": "I live in Germany and want to buy a new car that is only available in the UK. The car I want is located in Northern Ireland.",
+    "question_type": "value",
+    "prolog_goal": "will_pay_taxes(me, car1)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "vat",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-177",
+    "url": "https://www.gov.uk/compensation-road-property-value",
+    "question": "Where can i make part 1 claim?",
+    "scenario": "I live near a road which has been altered and have been experiencing a lot of noise pollution from the traffic . I had plans to sell the property but even the potential buyers have withdrawn and the property value has decreased.",
+    "question_type": "value",
+    "prolog_goal": "can_make_part1_claim_at(me, Loc)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "your local council",
+            [
+                "<li>your local council for local roads</li>"
+            ]
+        ],
+        [
+            "highways england",
+            [
+                "<li>Highways England for major roads, including motorways and some A roads</li>"
+            ]
+        ],
+        [
+            "connect plus",
+            [
+                "<p>You need to make your claim to Connect Plus if it’s for M25 widening at:</p>",
+                "<li>junctions 16 to 23</li>",
+                "<li>junctions 27 to 30</li>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-178",
+    "url": "https://www.gov.uk/compensation-road-property-value",
+    "question": "Can I make a part 1 claim for agricultural land?",
+    "scenario": "My agricultural land has become polluted due to the new road built next to it, where lots of heavy lorries drive past each day.",
+    "question_type": "yesno",
+    "prolog_goal": "can_make_part1_claim_for(me, land1)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            [
+                "<p>The value of your property must have gone down by more than £50 as the result of specific types of pollution or disturbance from the use of a new or altered road.</p>",
+                "<li>before the road opened to traffic</li>",
+                "<li>when you make your claim</li>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-179",
+    "url": "https://www.gov.uk/emergency-travel-document",
+    "question": "If i apply for an emergency travel document how long can it take?",
+    "scenario": "I am a British citizen and I had travelled abroad for a vacation. I have lost my passport and I want to travel back to the UK.",
+    "question_type": "value",
+    "prolog_goal": "emergency_travel_document_processing_time(me, Duration)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "2 working days",
+            []
+        ],
+        [
+            "take longer",
+            [
+                "<li>applied for a child under 16</li>",
+                "<li>not paid or given the right supporting documents</li>",
+                "<li>not given enough or correct information</li>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-180",
+    "url": "https://www.gov.uk/emergency-travel-document",
+    "question": "How many countries can i travel with using the emergency travel document?",
+    "scenario": "I am a British citizen overseas .My passport expired and I applied for an emergency travel document at the British embassy in india.",
+    "question_type": "value",
+    "prolog_goal": "number_of_countries_travelable_with(me, emergency_travel_document, N)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "a maximum of 5 countries",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-181",
+    "url": "https://www.gov.uk/change-circumstances-visa-brp",
+    "question": "Who should I contact?",
+    "scenario": "I had applied for a spouse visa outside the U.K through a visa application centre to join my husband in the UK but my plans have changed. I need to change some details on the application.",
+    "question_type": "value",
+    "prolog_goal": "should_contact(me, Who)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "the visa application centre where you applied",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-182",
+    "url": "https://www.gov.uk/change-circumstances-visa-brp",
+    "question": "Will I need a new BRP, or can I simply update the address online?",
+    "scenario": "I am a Latvian national and am currently in the UK on a T5 Seasonal Worker visa. I hold a valid biometric residence permit, but the nature of my work has recently required me to move to a new address, which I have not yet had time to update the authorities about.",
+    "question_type": "value",
+    "prolog_goal": "needs_new_brp(me); can_update_address_online(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "report a change of address online",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-183",
+    "url": "https://www.gov.uk/change-circumstances-visa-brp",
+    "question": "Can I update the details of my present application, or will I need to start over again?",
+    "scenario": "I am a Spanish national, and currently reside there whilst awaiting a decision on my application for a Visa to visit the UK to pursue my academic studies. I applied via a visa application centre, but have gotten married and changed my surname since the application was made.",
+    "question_type": "value",
+    "prolog_goal": "can_update_application_details(me); must_restart_application(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "you may need to make another visa application",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-184",
+    "url": "https://www.gov.uk/emergency-travel-document",
+    "question": "how can we replace our stolen travel documents when we are abroad ?",
+    "scenario": "we were out and about with my family on holiday abroad when our hotel room was looted. our travel documents were stolen in that incident.",
+    "question_type": "value",
+    "prolog_goal": "replace_stolen_travel_documents_abroad([me,family], travel_documents, Method)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "apply online",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-185",
+    "url": "https://www.gov.uk/emergency-travel-document",
+    "question": "how much does the emergency travel document application cost ?",
+    "scenario": "my daughter was on a backpacking trip across the world when her passport expired. she needs to apply for an emergency travel document but is short of money.",
+    "question_type": "value",
+    "prolog_goal": "application_cost(emergency_travel_document, C)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "£100",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-186",
+    "url": "https://www.gov.uk/compensation-road-property-value",
+    "question": "Who do I make a claim for compensation to?",
+    "scenario": "A new road has been built near my house. At first we didn't worry too much but now we realise it has made our house harder to sell.",
+    "question_type": "value",
+    "prolog_goal": "claim_compensation_to(me, Who)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "your local council",
+            [
+                "<li>your local council for local roads</li>"
+            ]
+        ],
+        [
+            "highways england",
+            [
+                "<li>Highways England for major roads, including motorways and some A roads</li>"
+            ]
+        ],
+        [
+            "connect plus",
+            [
+                "<p>You need to make your claim to Connect Plus if it’s for M25 widening at:</p>",
+                "<li>junctions 16 to 23</li>",
+                "<li>junctions 27 to 30</li>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-187",
+    "url": "https://www.gov.uk/compensation-road-property-value",
+    "question": "Do I have a right to compensation?",
+    "scenario": "A road next to my property has recently been expanded and many heavy trucks are now using the rout. I'm not happy as i have asthma and it's affecting my health.",
+    "question_type": "yesno",
+    "prolog_goal": "has_right_to_compensation(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            [
+                "<p>You can claim after a road’s been open to traffic for 1 year.</p>",
+                "<p>The value of your property must have gone down by more than £50 as the result of specific types of pollution or disturbance from the use of a new or altered road.</p>",
+                "<li>before the road opened to traffic</li>",
+                "<li>when you make your claim</li>",
+                "<li>the property’s freehold</li>",
+                "<li>the property’s leasehold, with at least 3 years left to run on your lease on the date you make your claim</li>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-188",
+    "url": "https://www.gov.uk/goods-sent-from-abroad",
+    "question": "Will I have to pay duty and VAT on goods that cost around £150?",
+    "scenario": "I have a small business importing wine from France to sell in the London area.",
+    "question_type": "yesno",
+    "prolog_goal": "will_have_to_pay_duty_and_vat(b, g)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-189",
+    "url": "https://www.gov.uk/goods-sent-from-abroad",
+    "question": "How long this will delay things if I fill in the form myself?",
+    "scenario": "I have a large business importing Easter decorations from China but one of the companies I buy from hasn't filled in the customs declaration form correctly. ",
+    "question_type": "value",
+    "prolog_goal": "delay_if_i_fill_form_myself(company1, D)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "4 weeks",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-190",
+    "url": "https://www.gov.uk/planning-permission-england-wales",
+    "question": "How do I contact my local planning authority to ask if I need planning permission?",
+    "scenario": "I own a house in Bristol. The house was built 100 years ago. I want to make a two-room extension to the existing property.",
+    "question_type": "value",
+    "prolog_goal": "?- local_planning_authority_for(LPA, bristol), contact_method(me, LPA), ask_if_need_planning_permission(me, house, LPA)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "through your local council",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-191",
+    "url": "https://www.gov.uk/planning-permission-england-wales",
+    "question": "How long will my appeal take to be decided?",
+    "scenario": "I own a small industrial set of buildings in Birmingham. I applied for planning permission to build a new commercial property, but the LPA refused my application. I want to appeal their decision.",
+    "question_type": "value",
+    "prolog_goal": "?- appeal_decision_time(application1, Duration)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "several months",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-192",
+    "url": "https://www.gov.uk/claiming-money-or-property-from-dissolved-company",
+    "question": "Can I use a grant to restore my dissolved company?",
+    "scenario": "During the pandemic I owned a small company based in Birmingham that dissolved due to bankruptcy. I have started up another company based in Scotland.",
+    "question_type": "yesno",
+    "prolog_goal": "?- can_use_grant_to_restore(me, company_bham, Grant)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-193",
+    "url": "https://www.gov.uk/claiming-money-or-property-from-dissolved-company",
+    "question": "Can I claim for my brothers business to be restored?",
+    "scenario": "My brothers business based in London has recently dissolved and he does not want to claim any assets previously owned by the business. I have just claimed my pension.",
+    "question_type": "yesno",
+    "prolog_goal": "?- can_claim_to_restore(me, business_b)",
+    "context_found": true,
+    "entails": true,
+    "predicted_values": [],
+    "predicted": "yes",
+    "gold_answers": [
+        [
+            "yes",
+            [
+                "<li>you did business with them</li>",
+                "<li>you worked for them</li>",
+                "<li>they owed you money when they were dissolved</li>",
+                "<li>you’re responsible for their employee pension fund</li>",
+                "<li>you have a shared or competing interest in land</li>",
+                "<li>you were a shareholder or director when it was dissolved</li>",
+                "<p>You may be able to restore the company without a court order if you were a director or shareholder of a dissolved company.</p>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-194",
+    "url": "https://www.gov.uk/goods-sent-from-abroad",
+    "question": "Will I still have to pay Excise Duty even though the cigarettes will be a gift?",
+    "scenario": "I live in England, and a friend wants to send me a ten-pack of cigarettes that we used to smoke together when we lived in Barcelona together. My friend still lives in Barcelona.",
+    "question_type": "yesno",
+    "prolog_goal": "?- pay_excise_duty(me, cig_pack_10)",
+    "context_found": true,
+    "entails": true,
+    "predicted_values": [],
+    "predicted": "yes",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-195",
+    "url": "https://www.gov.uk/goods-sent-from-abroad",
+    "question": "Do I need to pay Customs duty on both the price for the goods and the price of the postage and packaging?",
+    "scenario": "I live in Bristol. I recently bought a handmade rug online worth £300 from Turkey. It is being sent to me directly from Turkey.",
+    "question_type": "yesno",
+    "prolog_goal": "need_to_pay_customs_duty_on(me, rug), need_to_pay_customs_duty_on(me, postage_and_packaging)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-196",
+    "url": "https://www.gov.uk/pay-corporation-tax",
+    "question": "How long do I have to pay corporation tax after the end of each accounting period?",
+    "scenario": "I own an IT consultancy business. We have expanded a lot recently and our annual taxable profits are now in the region of £1 million. I am responsible for sorting out the tax bill.",
+    "question_type": "value",
+    "prolog_goal": "corporation_tax_payment_deadline_after_end_of_accounting_period(X)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "9 months and 1 day",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-197",
+    "url": "https://www.gov.uk/pay-corporation-tax",
+    "question": "What are the possible ways to pay the corporation tax bill to catch up with the deadline?",
+    "scenario": "I own a legal firm, specialising in conveyancing. We typically make a taxable profit of £500,000 each year. I have just realised that our corporation tax bill is due in the next 2 days.",
+    "question_type": "value",
+    "prolog_goal": "possible_ways_to_pay_corporation_tax(my_legal_firm, Methods)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "online or telephone banking (faster payments)",
+            []
+        ],
+        [
+            "chaps",
+            []
+        ],
+        [
+            "through your online bank account",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-198",
+    "url": "https://www.gov.uk/claiming-money-or-property-from-dissolved-company",
+    "question": "Is it possible for me to buy my sister's in law's equipment once her company is formally liquidised?",
+    "scenario": "My sister in law's cake decorating business has just gone into liquidation as she was no longer able to meet her overheads. She has a lot of professional baking equipment which is tied up in her business.",
+    "question_type": "yesno",
+    "prolog_goal": "can_buy_after_formal_liquidation(me, equipment, cake_decorating_business)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-199",
+    "url": "https://www.gov.uk/claiming-money-or-property-from-dissolved-company",
+    "question": "Is there any sort of grant that we can apply for to help us avoid liquidation?",
+    "scenario": "My small company has suffered badly as a result of Covid and we are financially struggling. We feel that this is not our fault and yet we have been left out on a limb. We are in a considerable amount of debt and do not know what to do.",
+    "question_type": "not_answerable",
+    "prolog_goal": "any_grant_available_to_avoid_liquidation(my_small_company)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "not answerable",
+    "gold_answers": [],
+    "not_answerable": true,
+    "error": null
+}
+
+{
+    "id": "dev-200",
+    "url": "https://www.gov.uk/planning-permission-england-wales",
+    "question": "Could I get in trouble if I were to operate without a planning permission?",
+    "scenario": "I own a computer hardware repair shop which has been doing really well recently. I am interested in expanding my business and opening a new location on the other side of town. I have found the perfect spot in terms of location but the building standing there right now is really old and not well maintained. My plan is to completely demolish it and rebuild it as a place where I can open my shop and also have a few apartments to rent out.",
+    "question_type": "yesno",
+    "prolog_goal": "could_get_in_trouble_if_operate_without_planning_permission(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-201",
+    "url": "https://www.gov.uk/planning-permission-england-wales",
+    "question": "What steps can I take to possibly have the decision changed?",
+    "scenario": "I recently purchased an old apartment building with the idea of renovating it and renting out the apartments. Since the building was quite old but had a really big back yard I planned an expansion to the building which would consist of a private cinema for the people renting the building. I applied for a planning permission but my application was declined 6 weeks after I sent it in.",
+    "question_type": "value",
+    "prolog_goal": "possibly(change_decision(application1))",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "adjusting your plans",
+            []
+        ],
+        [
+            "appeal",
+            [
+                "<p>If you cannot reach an agreement, you can appeal.</p>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-202",
+    "url": "https://www.gov.uk/pay-corporation-tax",
+    "question": "Do I still have to pay my tax bill to HMRC?",
+    "scenario": "I had a limited company and because of the recent IR35 changes I moved to a permanent role but have not liquidated the company and no profits from the company as well",
+    "question_type": "yesno",
+    "prolog_goal": "still_have_to_pay_tax_bill_to_hmrc(me, company1)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "no",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-203",
+    "url": "https://www.gov.uk/pay-corporation-tax",
+    "question": "I want to know whether HMRC has received my Corporation  tax payment ?",
+    "scenario": "I started a limited company 13 months back.  My accountant calculated my corporation tax dues and informed me to pay directly to HMRC. I have made the payment as intstructed",
+    "question_type": "value",
+    "prolog_goal": "hmrc_received(payment1)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "check your hm revenue and customs (hmrc) online account",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-204",
+    "url": "https://www.gov.uk/vat-registration",
+    "question": "Can I opt out of VAT?",
+    "scenario": "I am a 54 year old who owns a company in Newcastle, my taxable turnover is around £76,000 each year down from £120,000 5 years ago.",
+    "question_type": "yesno",
+    "prolog_goal": "can_opt_out_of_vat(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-205",
+    "url": "https://www.gov.uk/vat-registration",
+    "question": "Does this make me exempt?",
+    "scenario": "I am a 53 year old from Essex, I have recently liquidised a lot of my business which takes me above the VAT threshold for this tax year. I expect a VAT turnover of £50,000 per annum.",
+    "question_type": "yesno",
+    "prolog_goal": "exempt_from_vat(me)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "yes",
+            [
+                "<p>Write to HMRC with evidence showing why you believe your VAT taxable turnover will not go over the deregistration threshold of £83,000 in the next 12 months.</p>",
+                "<p>HMRC will consider your exception and write confirming if you get one. If not, they’ll register you for VAT.</p>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-206",
+    "url": "https://www.gov.uk/vat-registration",
+    "question": "What prefix do I need to put in front of my VAT number for EU sales?",
+    "scenario": "I have a small business manufacturing and selling high quality cured meats in Northern Ireland. We sell all around the world, including to the EU.",
+    "question_type": "value",
+    "prolog_goal": "needs_vat_prefix_for_eu_sales(me, Prefix)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "xi",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-207",
+    "url": "https://www.gov.uk/vat-registration",
+    "question": "How far can I backdate claims for VAT on tools I have purchased previously?",
+    "scenario": "I have a business renting out construction tools like cement mixers and whacker plates. I have just registered for VAT as my turnover has now gone over the £85,000 threshold.",
+    "question_type": "value",
+    "prolog_goal": "backdate_vat_claims_limit(me, Period)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "4 years",
+            [
+                "<li>4 years for goods you still have, or that were used to make other goods you still have</li>"
+            ]
+        ],
+        [
+            "6 months",
+            [
+                "<li>6 months for services</li>"
+            ]
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-208",
+    "url": "https://www.gov.uk/vat-registration",
+    "question": "Do sales of zero-rated items count towards the threshold when calculating my turnover for a given twelve month period?",
+    "scenario": "I live in Kent and run a small retail business selling bicycles and their parts and accessories to the general public. I am not currently VAT registered, but my turnover is approaching the threshold for registration. This figure, however, includes mail order sales to customers outside the UK, which I believe are currently zero-rated in VAT terms.",
+    "question_type": "yesno",
+    "prolog_goal": "counts_towards_threshold(zero_rated(mail_order_outside_uk_sales), twelve_month_period)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "no",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+
+{
+    "id": "dev-209",
+    "url": "https://www.gov.uk/goods-sent-from-abroad",
+    "question": "Is VAT payable on this purchase, either at point of sale or on delivery?",
+    "scenario": "I live in the UK and wish to purchase an item worth approximately £100 from an overseas (non-UK) supplier, with the purchase transaction taking place online. The item in question is for personal use, and is not intended as a gift.",
+    "question_type": "value",
+    "prolog_goal": "vat_payable_at_point_of_sale(p_item1); vat_payable_on_delivery(p_item1)",
+    "context_found": true,
+    "entails": false,
+    "predicted_values": [],
+    "predicted": "no",
+    "gold_answers": [
+        [
+            "the seller will have included vat in the total you paid",
+            []
+        ]
+    ],
+    "not_answerable": false,
+    "error": null
+}
+

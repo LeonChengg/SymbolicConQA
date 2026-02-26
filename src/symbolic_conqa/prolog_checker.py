@@ -185,6 +185,106 @@ def check_entailment_swipl(
 
 
 # ---------------------------------------------------------------------------
+# Variable-binding query (for value questions)
+# ---------------------------------------------------------------------------
+
+_VAR_RE = re.compile(r"\b([A-Z][A-Za-z0-9_]*)\b")
+
+
+def _prolog_vars(goal: str) -> list[str]:
+    """Return free Prolog variable names (uppercase-initial) found in *goal*."""
+    return list(dict.fromkeys(_VAR_RE.findall(goal)))
+
+
+def query_prolog_bindings(
+    program: str,
+    goal: str,
+    timeout: int = 10,
+) -> tuple[bool | None, list[str], str]:
+    """Run a Prolog goal and collect variable bindings via ``findall/3``.
+
+    For **ground goals** (no free variables) this behaves identically to
+    :func:`check_entailment_swipl`, returning an empty values list.
+
+    For **variable goals** (e.g. ``time_to_hear_back_from_court(me, T)``) the
+    free variables are collected into a ``findall`` template and all solutions
+    are written to stdout, one per line, as quoted Prolog atoms.
+
+    Args:
+        program: Prolog program string (context + scenario KB merged).
+        goal:    Prolog goal string, with or without a trailing dot.
+        timeout: SWI-Prolog timeout in seconds.
+
+    Returns:
+        ``(success, values, error)``
+
+        * ``success = True``  – goal is provable; *values* holds bound terms
+          (one string per solution) for variable goals, or ``[]`` for ground goals.
+        * ``success = False`` – goal not provable; *values* is ``[]``.
+        * ``success = None``  – timeout or Prolog error.
+    """
+    if not goal:
+        return None, [], "empty goal"
+
+    stripped = goal.rstrip(".")
+    free_vars = _prolog_vars(stripped)
+
+    if not free_vars:
+        # Ground goal — fall back to the exit-code approach.
+        result, error = check_entailment_swipl(program, stripped, timeout)
+        return result, [], error
+
+    # Variable goal — use findall to capture all solutions.
+    # If there is one free variable use it directly as the findall template;
+    # for multiple variables pack them as a Prolog list: [X, Y, ...].
+    if len(free_vars) == 1:
+        template = free_vars[0]
+    else:
+        template = "[" + ", ".join(free_vars) + "]"
+
+    full_program = (
+        program
+        + f"\n\n:- catch(\n"
+        + f"    (findall({template}, ({stripped}), __Sols__),\n"
+        + f"     (__Sols__ = [] -> halt(1) ;\n"
+        + f"      forall(member(__S__, __Sols__),\n"
+        + f"             (write_term(__S__, [quoted(true)]), nl)),\n"
+        + f"      halt(0))),\n"
+        + f"    _,\n"
+        + f"    halt(2)).\n"
+    )
+
+    tmp_fd, tmp_name = tempfile.mkstemp(suffix=".pl")
+    try:
+        with os.fdopen(tmp_fd, "w", encoding="utf-8") as f:
+            f.write(full_program)
+
+        result = subprocess.run(
+            ["swipl", "-q", tmp_name],
+            capture_output=True,
+            text=True,
+            timeout=timeout,
+        )
+        if result.returncode == 0:
+            values = [ln.strip() for ln in result.stdout.splitlines() if ln.strip()]
+            return True, values, ""
+        elif result.returncode == 1:
+            return False, [], ""
+        elif result.returncode == 2:
+            return None, [], "prolog exception during query"
+        else:
+            stderr = result.stderr.strip()
+            return None, [], f"swipl error (rc={result.returncode}): {stderr[:300]}"
+
+    except subprocess.TimeoutExpired:
+        return None, [], "timeout"
+    except FileNotFoundError:
+        return None, [], "swipl not found — install with: sudo apt install swi-prolog"
+    finally:
+        os.unlink(tmp_name)
+
+
+# ---------------------------------------------------------------------------
 # Context index
 # ---------------------------------------------------------------------------
 
