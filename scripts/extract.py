@@ -14,11 +14,22 @@ sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 import typer
 
+from typing import Any
+
 from symbolic_conqa.extraction import (
     extract_text_from_contents,
     extract_text_from_scenario_question,
     run_extraction,
 )
+
+
+def _is_yes_no(sample: dict[str, Any]) -> bool:
+    """Return True if the sample's first answer is 'yes' or 'no'."""
+    answers = sample.get("answers", [])
+    if not answers:
+        return False
+    first_answer = answers[0][0] if answers[0] else ""
+    return first_answer.lower() in ("yes", "no")
 
 app = typer.Typer(help="Extract logic from text using LLMs.")
 
@@ -55,11 +66,13 @@ def main(
     model: str = typer.Option("gpt-5-mini", "-m", "--model", help="OpenAI model"),
     batch_size: int = typer.Option(5, "-b", "--batch-size", help="Batch size"),
     num_batches: int | None = typer.Option(None, "-n", "--num-batches", help="Number of batches"),
+    yes_no_only: bool = typer.Option(False, "--yes-no-only", help="Only process yes/no questions (scenario_question only)"),
 ) -> None:
     """Run logic extraction for a given task."""
     load_dotenv(find_dotenv())
 
     cfg = _TASK_CONFIGS[task]
+    sample_filter = _is_yes_no if (yes_no_only and task == Task.scenario_question) else None
     run_extraction(
         text_extractor=_EXTRACTORS[task],
         in_path=input_path or str(cfg["default_input"]),
@@ -68,6 +81,7 @@ def main(
         batch_size=batch_size,
         num_test_batches=num_batches,
         include_hypothesis=bool(cfg["include_hypothesis"]),
+        sample_filter=sample_filter,
     )
 
 

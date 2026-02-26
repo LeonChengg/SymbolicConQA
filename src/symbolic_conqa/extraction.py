@@ -61,6 +61,7 @@ def run_extraction(
     num_test_batches: int | None = None,
     *,
     include_hypothesis: bool = True,
+    sample_filter: Callable[[dict[str, Any]], bool] | None = None,
 ) -> None:
     """
     Run logic extraction on a dataset with crash-resume support.
@@ -73,6 +74,7 @@ def run_extraction(
         batch_size: Number of items per batch.
         num_test_batches: Number of batches to process (None = all).
         include_hypothesis: Whether to ask the model to generate a FOL hypothesis.
+        sample_filter: Optional predicate to filter samples before extraction.
     """
     client = OpenAI()
     samples_any = load_json_or_jsonl(in_path)
@@ -81,6 +83,8 @@ def run_extraction(
     for i, s in enumerate(samples_any):
         if not isinstance(s, dict):
             raise ValueError(f"Each sample must be a dict/object. Found {type(s)} at index {i}.")
+        if sample_filter is not None and not sample_filter(s):
+            continue
         samples.append(s)
 
     if not samples:
