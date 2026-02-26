@@ -6,9 +6,9 @@
     "question_type": "value",
     "prolog_goal": "time_to_hear_back_from_court(me, T)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "within 10 days",
@@ -16,7 +16,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -27,9 +27,9 @@
     "question_type": "value",
     "prolog_goal": "age_requirement_for_adopter_in(uk, R)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "aged 21 or over",
@@ -37,7 +37,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -225,9 +225,9 @@
     "question_type": "value",
     "prolog_goal": "can_claim(me, attendance_allowance, Level)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "lower rate - £60",
@@ -235,7 +235,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -410,9 +410,9 @@
     "question_type": "value",
     "prolog_goal": "need_to_tell_to_register_epa(me,uncle,Whom)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "tell the donor, their family members and other attorneys",
@@ -435,7 +435,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -488,9 +488,9 @@
     "question_type": "value",
     "prolog_goal": "housing_benefit_reduction_amount(me, Amount)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "25%",
@@ -498,7 +498,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -530,9 +530,9 @@
     "question_type": "value",
     "prolog_goal": "interest_rate_cfo_special_account(Rate)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "0.1%",
@@ -540,7 +540,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -551,9 +551,9 @@
     "question_type": "value",
     "prolog_goal": "weekly_allowance_for_child(child, Amount)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "£169",
@@ -561,7 +561,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -572,9 +572,9 @@
     "question_type": "value",
     "prolog_goal": "can_get_government_support(me,S)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "personal independence payment (pip)",
@@ -596,7 +596,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -709,12 +709,12 @@
     "question_type": "not_answerable",
     "prolog_goal": "can_apply_to_adopt_now(me, ariana).  % or must_wait_period_to_apply(me, ariana)",
     "context_found": true,
-    "entails": true,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "yes",
+    "predicted": null,
     "gold_answers": [],
     "not_answerable": true,
-    "error": null
+    "error": "timeout"
 }
 
 {
@@ -1024,9 +1024,9 @@
     "question_type": "yesno",
     "prolog_goal": "exists(X) :- not_british(X), achievements_outside_uk(X), can_receive_honour(X, outside_uk)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "yes",
@@ -1034,7 +1034,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -1092,9 +1092,9 @@
     "question_type": "value",
     "prolog_goal": "contact_in_school(X), handles_special_needs(X), can_be_contacted_about(daughter, X)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "the sen co-ordinator, or ‘senco’",
@@ -1102,7 +1102,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -1179,9 +1179,9 @@
     "question_type": "value",
     "prolog_goal": "biometric_fee_for_resuming_citizenship(brother, Fee)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "£19.20",
@@ -1189,7 +1189,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -1221,9 +1221,9 @@
     "question_type": "value",
     "prolog_goal": "training_required_to_be_coastguard_volunteer(Training)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "initial training by hm coastguard",
@@ -1235,7 +1235,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -1455,9 +1455,9 @@
     "question_type": "value",
     "prolog_goal": "duration_of_cbt_course(D)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "the cbt course usually lasts a full day",
@@ -1465,7 +1465,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -1718,9 +1718,9 @@
     "question_type": "value",
     "prolog_goal": "documents_required_to_prove_identity(me, D)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "uk passport",
@@ -1740,7 +1740,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -1772,9 +1772,9 @@
     "question_type": "value",
     "prolog_goal": "consequences_of_conviction_on_registration(me, X)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "your approved driving instructor (adi) registration can be suspended",
@@ -1782,7 +1782,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -1835,9 +1835,9 @@
     "question_type": "value",
     "prolog_goal": "?- measures_in_place(M), ensures(M, trip0, perfectly_safe)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "international convention for the safety of life at sea",
@@ -1853,7 +1853,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -1864,9 +1864,9 @@
     "question_type": "value",
     "prolog_goal": "?- fire_regulation(R), applies_to(R, ship1)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "merchant shipping (fire protection: small ships) regulations 1998.",
@@ -1878,7 +1878,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -1889,9 +1889,9 @@
     "question_type": "value",
     "prolog_goal": "?- repeat_risk_assessment_when(we, cargo_ships, T)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "every year and whenever there are significant changes to either the ship or working activities",
@@ -1899,7 +1899,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -1910,9 +1910,9 @@
     "question_type": "yesno",
     "prolog_goal": "?- need_update_risk_assessment(company, vessel1)",
     "context_found": true,
-    "entails": true,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "yes",
+    "predicted": null,
     "gold_answers": [
         [
             "yes",
@@ -1920,7 +1920,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "timeout"
 }
 
 {
@@ -1931,9 +1931,9 @@
     "question_type": "yesno",
     "prolog_goal": "?- able_take_time_off_under_emergency_dependent_provisions(me, today, cousin)",
     "context_found": true,
-    "entails": true,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "yes",
+    "predicted": null,
     "gold_answers": [
         [
             "yes",
@@ -1941,7 +1941,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "timeout"
 }
 
 {
@@ -2039,12 +2039,12 @@
     "question_type": "not_answerable",
     "prolog_goal": "required_years_nationality_for_council_benefits(N)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "not answerable",
+    "predicted": null,
     "gold_answers": [],
     "not_answerable": true,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -2055,9 +2055,9 @@
     "question_type": "value",
     "prolog_goal": "deadline_for(paye_settlement_agreement_tax, D)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "22 october following the tax year it applies to",
@@ -2065,7 +2065,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -2076,9 +2076,9 @@
     "question_type": "value",
     "prolog_goal": "expected_compensation_level(employer, Amount)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "4 weeks’ pay",
@@ -2086,7 +2086,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -2118,9 +2118,9 @@
     "question_type": "value",
     "prolog_goal": "where_to_complain_about_dismissal_for_caring(Authority)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "your staff or trade union representative or acas",
@@ -2132,7 +2132,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -2187,9 +2187,9 @@
     "question_type": "value",
     "prolog_goal": "required_notice_length(me, emp, N)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "a week’s notice for every year employed",
@@ -2197,7 +2197,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -2208,9 +2208,9 @@
     "question_type": "value",
     "prolog_goal": "redundancy_payment_amount(me, emp, Amount)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "1.5 weeks’ pay for each full year of employment after their 41st birthday",
@@ -2222,7 +2222,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -2260,9 +2260,9 @@
     "question_type": "value",
     "prolog_goal": "plan2_threshold(T)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "£27,295",
@@ -2270,7 +2270,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -2386,9 +2386,9 @@
     "question_type": "value",
     "prolog_goal": "required_risk_assessment_review_frequency(F, fleet1)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "every year and whenever there are significant changes to either the ship or working activities.",
@@ -2396,7 +2396,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -2407,9 +2407,9 @@
     "question_type": "value",
     "prolog_goal": "deadline_for_settling_psa(psa1, fy_2020_2021, Deadline)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "by 22 october",
@@ -2417,7 +2417,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -2449,9 +2449,9 @@
     "question_type": "value",
     "prolog_goal": "required_notification_period_after_principal_statement_change(group1, Period)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "within one month of making the change",
@@ -2459,7 +2459,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -2491,9 +2491,9 @@
     "question_type": "value",
     "prolog_goal": "can_contact_for_help(X, employer, statutory_redundancy_pay), become_insolvent(employer)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "the insolvency service’s redundancy payments service (rps)",
@@ -2501,7 +2501,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -2947,9 +2947,9 @@
     "question_type": "yesno",
     "prolog_goal": "can_claim_main_pool_rate(org1, 18_percent)",
     "context_found": true,
-    "entails": true,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "yes",
+    "predicted": null,
     "gold_answers": [
         [
             "no",
@@ -2957,7 +2957,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "timeout"
 }
 
 {
@@ -3010,9 +3010,9 @@
     "question_type": "yesno",
     "prolog_goal": "must_file_tax_returns_for_period(company, dormant_period)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "yes",
@@ -3031,9 +3031,9 @@
     "question_type": "yesno",
     "prolog_goal": "ok_to_file_only_one_company_tax_return(me, c0)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "no",
@@ -3052,9 +3052,9 @@
     "question_type": "yesno",
     "prolog_goal": "have_to_file_two_separate_tax_returns_for_dormant_and_trading(me, c1)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "yes",
@@ -3421,9 +3421,9 @@
     "question_type": "value",
     "prolog_goal": "contact_for_licensing(X, me, taxi)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "your local council",
@@ -3431,7 +3431,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -3587,9 +3587,9 @@
     "question_type": "value",
     "prolog_goal": "how_can_challenge_bill(me, bill1)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "ask the senior courts costs office to make a ‘detailed assessment’ of your bill",
@@ -3640,9 +3640,9 @@
     "question_type": "value",
     "prolog_goal": "checks_during_inspection(lc, X)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "it’s roadworthy",
@@ -3662,7 +3662,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -3673,9 +3673,9 @@
     "question_type": "value",
     "prolog_goal": "eligibility_criteria_for_pvh_vehicle_in_london(C)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "have no more than 8 passenger seats",
@@ -3701,7 +3701,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -3889,9 +3889,9 @@
     "question_type": "value",
     "prolog_goal": "benefits_of(club1, X)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "tax relief on income, gains and profits from some activities",
@@ -3907,7 +3907,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -3918,9 +3918,9 @@
     "question_type": "value",
     "prolog_goal": "must_contain(doc1, X)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "set out how you meet the eligibility criteria for registering as a casc",
@@ -3932,7 +3932,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -3975,9 +3975,9 @@
     "question_type": "value",
     "prolog_goal": "accommodation_support_payment_duration(school1, D)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "a maximum of 3 years",
@@ -3985,7 +3985,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -3996,9 +3996,9 @@
     "question_type": "value",
     "prolog_goal": "apply_to_challenge_bill(me, solicitor1, Procedure)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "download and fill in 3 copies of part 8 claim form (n208)",
@@ -4010,7 +4010,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -4021,9 +4021,9 @@
     "question_type": "yesno",
     "prolog_goal": "can_export(me, car1, japan)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "yes",
@@ -4031,7 +4031,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "timeout"
 }
 
 {
@@ -4063,9 +4063,9 @@
     "question_type": "value",
     "prolog_goal": "can_make_part1_claim_at(me, Loc)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "your local council",
@@ -4089,7 +4089,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -4125,9 +4125,9 @@
     "question_type": "value",
     "prolog_goal": "emergency_travel_document_processing_time(me, Duration)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "2 working days",
@@ -4143,7 +4143,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -4154,9 +4154,9 @@
     "question_type": "value",
     "prolog_goal": "number_of_countries_travelable_with(me, emergency_travel_document, N)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "a maximum of 5 countries",
@@ -4164,7 +4164,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -4175,9 +4175,9 @@
     "question_type": "value",
     "prolog_goal": "should_contact(me, Who)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "the visa application centre where you applied",
@@ -4185,7 +4185,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -4238,9 +4238,9 @@
     "question_type": "value",
     "prolog_goal": "replace_stolen_travel_documents_abroad([me,family], travel_documents, Method)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "apply online",
@@ -4248,7 +4248,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -4259,9 +4259,9 @@
     "question_type": "value",
     "prolog_goal": "application_cost(emergency_travel_document, C)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "£100",
@@ -4269,7 +4269,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -4280,9 +4280,9 @@
     "question_type": "value",
     "prolog_goal": "claim_compensation_to(me, Who)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "your local council",
@@ -4306,7 +4306,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -4366,9 +4366,9 @@
     "question_type": "value",
     "prolog_goal": "delay_if_i_fill_form_myself(company1, D)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "4 weeks",
@@ -4376,7 +4376,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -4387,9 +4387,9 @@
     "question_type": "value",
     "prolog_goal": "?- local_planning_authority_for(LPA, bristol), contact_method(me, LPA), ask_if_need_planning_permission(me, house, LPA)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "through your local council",
@@ -4397,7 +4397,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -4408,9 +4408,9 @@
     "question_type": "value",
     "prolog_goal": "?- appeal_decision_time(application1, Duration)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "several months",
@@ -4418,7 +4418,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -4429,9 +4429,9 @@
     "question_type": "yesno",
     "prolog_goal": "?- can_use_grant_to_restore(me, company_bham, Grant)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "yes",
@@ -4439,7 +4439,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -4450,9 +4450,9 @@
     "question_type": "yesno",
     "prolog_goal": "?- can_claim_to_restore(me, business_b)",
     "context_found": true,
-    "entails": true,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "yes",
+    "predicted": null,
     "gold_answers": [
         [
             "yes",
@@ -4468,7 +4468,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "timeout"
 }
 
 {
@@ -4479,9 +4479,9 @@
     "question_type": "yesno",
     "prolog_goal": "?- pay_excise_duty(me, cig_pack_10)",
     "context_found": true,
-    "entails": true,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "yes",
+    "predicted": null,
     "gold_answers": [
         [
             "yes",
@@ -4489,7 +4489,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "timeout"
 }
 
 {
@@ -4521,9 +4521,9 @@
     "question_type": "value",
     "prolog_goal": "corporation_tax_payment_deadline_after_end_of_accounting_period(X)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "9 months and 1 day",
@@ -4531,7 +4531,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -4542,9 +4542,9 @@
     "question_type": "value",
     "prolog_goal": "possible_ways_to_pay_corporation_tax(my_legal_firm, Methods)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "online or telephone banking (faster payments)",
@@ -4560,7 +4560,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -4719,9 +4719,9 @@
     "question_type": "yesno",
     "prolog_goal": "exempt_from_vat(me)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "yes",
@@ -4732,7 +4732,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "timeout"
 }
 
 {
@@ -4743,9 +4743,9 @@
     "question_type": "value",
     "prolog_goal": "needs_vat_prefix_for_eu_sales(me, Prefix)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "xi",
@@ -4753,7 +4753,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "timeout"
 }
 
 {
@@ -4764,9 +4764,9 @@
     "question_type": "value",
     "prolog_goal": "backdate_vat_claims_limit(me, Period)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "4 years",
@@ -4782,7 +4782,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {

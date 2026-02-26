@@ -5,12 +5,13 @@ all_context_with_logic.jsonl via SWI-Prolog entailment.
 For each question record the script:
   1. Looks up the matching context KB by ``data.url``.
   2. Merges context facts/rules with the scenario facts/rules.
-  3. Uses the pre-extracted ``logic_kb.prolog.hypothesis`` as the Prolog goal.
-  4. Runs the goal against SWI-Prolog:
+  3. Optionally applies alignment strategies to bridge predicate name mismatches.
+  4. Uses the pre-extracted ``logic_kb.prolog.hypothesis`` as the Prolog goal.
+  5. Runs the goal against SWI-Prolog:
        - Ground goals  (no free variables): True → "yes", False → "no"
        - Variable goals (e.g. ``time_to_hear_back(me, T)``):
          all solutions for the free variable(s) are collected and returned.
-  5. Writes results to an output JSONL file and prints a summary.
+  6. Writes results to an output JSONL file and prints a summary.
 
 Requires SWI-Prolog:
     sudo apt install swi-prolog   # Debian/Ubuntu
@@ -22,6 +23,16 @@ Usage:
         -c results/all_context_with_logic.jsonl \\
         -s results/B100_question_with_logic.jsonl \\
         -o results/B100_answers.jsonl
+
+Alignment flags (optional):
+    --normalize                          Enable stop-word normalisation bridging
+    --auto-bridge                        Enable fuzzy token-overlap auto-bridging
+    --auto-bridge-threshold 0.25         Jaccard threshold for auto-bridge
+    --alias can_apply=can_become         Explicit predicate alias (repeatable)
+    --bridge-rule "h(X):-c(X)."         Verbatim Prolog bridge clause (repeatable)
+    --semantic-bridge                    Enable WordNet hyponym/hypernym bridging
+    --semantic-bridge-threshold 0.3      Minimum WordNet entailment score
+    --semantic-bridge-max-depth 4        Max hypernym path depth
 """
 
 # NOTE: Do NOT add `from __future__ import annotations` here.
@@ -36,6 +47,7 @@ import typer
 from rich.console import Console
 from rich.progress import BarColumn, MofNCompleteColumn, Progress, TextColumn
 
+from symbolic_conqa.alignment import AlignmentConfig, align
 from symbolic_conqa.io_utils import load_json_or_jsonl, write_jsonl
 from symbolic_conqa.prolog_checker import (
     build_prolog_program,
@@ -164,9 +176,103 @@ def main(
         "--timeout",
         help="Per-query SWI-Prolog timeout in seconds",
     ),
+    # ---- alignment flags ----
+    normalize: bool = typer.Option(
+        False,
+        "--normalize/--no-normalize",
+        help="Enable stop-word normalisation alignment strategy",
+    ),
+    auto_bridge: bool = typer.Option(
+        False,
+        "--auto-bridge/--no-auto-bridge",
+        help="Enable fuzzy token-overlap auto-bridge strategy",
+    ),
+    auto_bridge_threshold: float = typer.Option(
+        0.2,
+        "--auto-bridge-threshold",
+        help="Jaccard threshold for auto-bridge (default 0.2)",
+    ),
+    aliases: list[str] = typer.Option(
+        [],
+        "--alias",
+        help=(
+            "Explicit predicate alias as 'hyp_pred=ctx_pred'. "
+            "Repeat for multiple aliases."
+        ),
+    ),
+    bridge_rules: list[str] = typer.Option(
+        [],
+        "--bridge-rule",
+        help=(
+            "Verbatim Prolog bridge clause, e.g. 'h(X):-c(X).'. "
+            "Repeat for multiple rules."
+        ),
+    ),
+    semantic_bridge: bool = typer.Option(
+        False,
+        "--semantic-bridge/--no-semantic-bridge",
+        help=(
+            "Enable WordNet hyponym/hypernym semantic bridge strategy. "
+            "Requires NLTK with WordNet corpus "
+            "('python -m nltk.downloader wordnet')."
+        ),
+    ),
+    semantic_bridge_threshold: float = typer.Option(
+        0.3,
+        "--semantic-bridge-threshold",
+        help="Minimum WordNet entailment score to accept a candidate (default 0.3)",
+    ),
+    semantic_bridge_max_depth: int = typer.Option(
+        4,
+        "--semantic-bridge-max-depth",
+        help="Maximum hypernym path depth for semantic bridge (default 4)",
+    ),
 ) -> None:
     """Answer questions by running their extracted Prolog hypothesis against
-    the merged context + scenario KB."""
+    the merged context + scenario KB, with optional alignment strategies."""
+
+    # Parse alias strings "hyp=ctx" → dict
+    alias_dict: dict[str, str] = {}
+    for alias_str in aliases:
+        if "=" not in alias_str:
+            console.print(
+                f"[yellow]Warning:[/yellow] --alias '{alias_str}' ignored "
+                "(expected 'hyp_pred=ctx_pred' format)"
+            )
+            continue
+        hyp_pred, ctx_pred = alias_str.split("=", 1)
+        alias_dict[hyp_pred.strip()] = ctx_pred.strip()
+
+    alignment_cfg = AlignmentConfig(
+        normalize=normalize,
+        auto_bridge=auto_bridge,
+        auto_bridge_threshold=auto_bridge_threshold,
+        aliases=alias_dict,
+        bridge_rules=list(bridge_rules),
+        semantic_bridge=semantic_bridge,
+        semantic_bridge_threshold=semantic_bridge_threshold,
+        semantic_bridge_max_depth=semantic_bridge_max_depth,
+    )
+
+    use_alignment = (
+        normalize or auto_bridge or alias_dict or bridge_rules or semantic_bridge
+    )
+    if use_alignment:
+        strategies = []
+        if normalize:
+            strategies.append("normalize")
+        if alias_dict:
+            strategies.append(f"aliases({len(alias_dict)})")
+        if bridge_rules:
+            strategies.append(f"bridge_rules({len(bridge_rules)})")
+        if auto_bridge:
+            strategies.append(f"auto_bridge(threshold={auto_bridge_threshold})")
+        if semantic_bridge:
+            strategies.append(
+                f"semantic_bridge(threshold={semantic_bridge_threshold}, "
+                f"max_depth={semantic_bridge_max_depth})"
+            )
+        console.print(f"Alignment strategies: [cyan]{', '.join(strategies)}[/cyan]")
 
     ctx_index = load_context_index(context_path)
     sq_records = load_json_or_jsonl(sq_path)
@@ -197,6 +303,12 @@ def main(
             q_type = _question_type(sq_data)
 
             program = build_prolog_program(ctx_prolog, sq_prolog)
+
+            if use_alignment:
+                program, goal = align(
+                    program, goal, ctx_prolog, sq_prolog, alignment_cfg
+                )
+
             entails, values, error = query_prolog_bindings(program, goal, timeout=timeout)
 
             predicted = _predict(entails, values, q_type)
