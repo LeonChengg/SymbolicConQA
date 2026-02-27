@@ -2477,9 +2477,9 @@
     "question_type": "yesno",
     "prolog_goal": "zero_rated_items_count_towards_threshold(me)",
     "context_found": true,
-    "entails": true,
+    "entails": false,
     "predicted_values": [],
-    "predicted": "yes",
+    "predicted": "no",
     "gold_answers": [
         [
             "no",
