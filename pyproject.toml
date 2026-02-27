@@ -5,10 +5,12 @@ description = "Symbolic ConQA - Logic extraction from text using LLMs"
 readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
+    "accelerate>=1.10.1",
     "nltk>=3.9.2",
     "openai>=1.0.0",
     "pydantic>=2.0.0",
     "python-dotenv>=1.0.0",
+    "transformers>=4.57.6",
     "typer>=0.23.2",
 ]
 
