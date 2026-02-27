@@ -159,13 +159,13 @@ def main(
         help="Context KB file (all_context_with_logic.jsonl)",
     ),
     sq_path: str = typer.Option(
-        "results/B100_question_with_logic.jsonl",
+        "results/all_SQ_with_logic_yesno.jsonl",
         "-s",
         "--sq",
-        help="Question file (B100_question_with_logic.jsonl)",
+        help="Question file (all_SQ_with_logic_yesno.jsonl)",
     ),
     output_path: str = typer.Option(
-        "results/B100_answers.jsonl",
+        "results/all_answers.jsonl",
         "-o",
         "--output",
         help="Output path for answer results",
