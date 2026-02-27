@@ -229,7 +229,7 @@ def _print_summary(results: list[dict]) -> None:
 @app.command()
 def main(
     model_path: str = typer.Option(
-        "/mnt/raid0hdd1/liang/models/Llama-3.2-1B-Instruct",
+        "/mnt/raid0hdd1/liang/models/Llama-3.1-8B-Instruct",
         "-m",
         "--model",
         help="Path to local HuggingFace model directory",

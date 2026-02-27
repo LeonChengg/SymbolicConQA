@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
-"""Evaluate Prolog-based answers in B100_answers.jsonl against ConditionalQA gold.
+"""Evaluate answer files against ConditionalQA gold.
+
+Works with both Prolog-based results (answer_questions.py) and LLM-based
+results (llm_answer_questions.py).  The mode is auto-detected from the
+first record:
+  • Prolog mode  – record has ``entails`` and ``prolog_goal`` keys.
+  • LLM mode     – record has ``raw_output`` key (no ``entails``).
 
 Metrics (official ConditionalQA evaluation):
   EM                  – exact-match of answer text after normalisation
@@ -7,19 +13,21 @@ Metrics (official ConditionalQA evaluation):
   EM_with_conditions  – EM weighted by condition F1
   F1_with_conditions  – F1 weighted by condition F1
 
-Precision / Recall metrics (retrieval-style):
-  Entailment P/R/F1   – treats entails=True as the positive prediction;
-                        correct = EM==1.  Computed per question type.
-  Yes/No P/R/F1       – binary classification where "yes" is the positive
-                        class (yes/no subset only).
+Precision / Recall metrics:
+  Prolog mode  – positive prediction = ``entails is True``.
+  LLM mode     – positive prediction = predicted yes or no (gave a
+                 concrete answer rather than abstaining).
+  Both modes   – correct = EM == 1.0.
 
-Results are broken down by question type (yes/no, value/extractive,
-conditional) and by entailment outcome.
+  Yes/No P/R/F1 (both modes) – binary "yes" is positive class.
 
 Usage:
     python scripts/evaluate_answers.py
     python scripts/evaluate_answers.py \\
-        -p results/B100_answers.jsonl \\
+        -p results/all_answers.jsonl \\
+        -r data/ConditionalQA/v1_0/dev.json
+    python scripts/evaluate_answers.py \\
+        -p results/llm_answers.jsonl \\
         -r data/ConditionalQA/v1_0/dev.json
 """
 
@@ -41,7 +49,22 @@ from evaluate import compute_metrics, normalize_answer  # type: ignore[import]
 from symbolic_conqa.io_utils import load_json_or_jsonl
 
 console = Console()
-app = typer.Typer(help="Evaluate Prolog answers against ConditionalQA gold.")
+app = typer.Typer(help="Evaluate Prolog or LLM answers against ConditionalQA gold.")
+
+
+# ---------------------------------------------------------------------------
+# Mode detection
+# ---------------------------------------------------------------------------
+
+
+def _detect_mode(results: list[dict]) -> str:
+    """Return 'prolog' or 'llm' based on which keys the first record contains."""
+    if not results:
+        return "prolog"
+    first = results[0]
+    if "raw_output" in first:
+        return "llm"
+    return "prolog"
 
 
 # ---------------------------------------------------------------------------
@@ -146,23 +169,27 @@ def _prf(tp: int, fp: int, fn: int) -> tuple[float, float, float]:
 def compute_precision_recall(
     results: list[dict],
     ref_index: dict[str, list],
+    mode: str = "prolog",
 ) -> dict:
     """Compute two flavours of precision/recall.
 
-    **Entailment P/R** (all types):
-      Positive prediction = ``entails is True``.
-      Correct             = EM == 1.0.
-      TP = entailed AND correct
-      FP = entailed AND wrong
-      FN = not entailed AND correct (missed a provable answer)
+    **Prediction P/R** (all types):
 
-    **Yes/No binary P/R** (yes/no subset only):
+      *Prolog mode*  – Positive prediction = ``entails is True``.
+      *LLM mode*     – Positive prediction = ``predicted`` is "yes" or "no"
+                       (model gave a concrete answer rather than abstaining).
+      Correct = EM == 1.0.
+      TP = positive prediction AND correct
+      FP = positive prediction AND wrong
+      FN = negative prediction AND correct (missed answer)
+
+    **Yes/No binary P/R** (yes/no subset only, both modes):
       Positive class = gold answer is "yes".
       TP = predicted "yes" AND gold "yes"
       FP = predicted "yes" AND gold "no"
       FN = predicted "no"  AND gold "yes"
     """
-    # Entailment P/R buckets
+    # Prediction P/R buckets
     ent: dict[str, dict[str, int]] = {
         k: {"tp": 0, "fp": 0, "fn": 0, "tn": 0}
         for k in ["total", "yesno", "value", "not_answerable"]
@@ -176,8 +203,11 @@ def compute_precision_recall(
         pred = to_conqa_answers(res)
         em, *_ = compute_metrics(pred, ref)
 
-        correct      = em == 1.0
-        predicted_pos = res["entails"] is True
+        correct = em == 1.0
+        if mode == "llm":
+            predicted_pos = res.get("predicted") not in (None, "not answerable")
+        else:
+            predicted_pos = res.get("entails") is True
         qt = res["question_type"]
 
         for bucket in ["total", qt]:
@@ -259,11 +289,16 @@ def print_metrics_table(metrics: dict) -> None:
     console.print(table)
 
 
-def print_precision_table(pr: dict) -> None:
-    """Print entailment-based and yes/no binary precision/recall tables."""
-    # --- Entailment P/R ---
+def print_precision_table(pr: dict, mode: str = "prolog") -> None:
+    """Print prediction-based and yes/no binary precision/recall tables."""
+    pos_label = (
+        "entails=True as positive prediction"
+        if mode == "prolog"
+        else "predicted yes/no as positive (concrete answer)"
+    )
+    # --- Prediction P/R ---
     ent_table = Table(
-        title="Precision / Recall  (entails=True as positive prediction, EM as correct)",
+        title=f"Precision / Recall  ({pos_label}, EM as correct)",
         show_lines=True,
     )
     ent_table.add_column("Subset",    style="bold")
@@ -310,31 +345,60 @@ def print_precision_table(pr: dict) -> None:
     console.print(yn_table)
 
 
-def print_entailment_breakdown(results: list[dict]) -> None:
-    """Print a secondary table showing entailment outcome counts per question type."""
+def print_entailment_breakdown(results: list[dict], mode: str = "prolog") -> None:
+    """Print outcome breakdown per question type.
+
+    Prolog mode: shows entailed / not-entailed / error counts.
+    LLM mode:    shows predicted yes / no / not-answerable counts.
+    """
     rows: dict[str, dict[str, int]] = {}
-    for r in results:
-        qt = r["question_type"]
-        if qt not in rows:
-            rows[qt] = {"total": 0, "entailed": 0, "not_entailed": 0, "error": 0}
-        rows[qt]["total"] += 1
-        if r["entails"] is True:
-            rows[qt]["entailed"] += 1
-        elif r["entails"] is False:
-            rows[qt]["not_entailed"] += 1
-        else:
-            rows[qt]["error"] += 1
 
-    table = Table(title="Entailment Outcome Breakdown", show_lines=True)
-    table.add_column("Question type", style="bold")
-    table.add_column("Total",        justify="right")
-    table.add_column("Entailed",     justify="right")
-    table.add_column("Not entailed", justify="right")
-    table.add_column("Error/timeout",justify="right")
+    if mode == "prolog":
+        for r in results:
+            qt = r["question_type"]
+            if qt not in rows:
+                rows[qt] = {"total": 0, "entailed": 0, "not_entailed": 0, "error": 0}
+            rows[qt]["total"] += 1
+            if r.get("entails") is True:
+                rows[qt]["entailed"] += 1
+            elif r.get("entails") is False:
+                rows[qt]["not_entailed"] += 1
+            else:
+                rows[qt]["error"] += 1
 
-    for qt, d in rows.items():
-        table.add_row(qt, str(d["total"]), str(d["entailed"]),
-                      str(d["not_entailed"]), str(d["error"]))
+        table = Table(title="Entailment Outcome Breakdown", show_lines=True)
+        table.add_column("Question type", style="bold")
+        table.add_column("Total",         justify="right")
+        table.add_column("Entailed",      justify="right")
+        table.add_column("Not entailed",  justify="right")
+        table.add_column("Error/timeout", justify="right")
+        for qt, d in rows.items():
+            table.add_row(qt, str(d["total"]), str(d["entailed"]),
+                          str(d["not_entailed"]), str(d["error"]))
+
+    else:  # LLM mode — show prediction distribution
+        for r in results:
+            qt = r["question_type"]
+            if qt not in rows:
+                rows[qt] = {"total": 0, "yes": 0, "no": 0, "not_answerable": 0}
+            rows[qt]["total"] += 1
+            p = str(r.get("predicted", "")).lower()
+            if p == "yes":
+                rows[qt]["yes"] += 1
+            elif p == "no":
+                rows[qt]["no"] += 1
+            else:
+                rows[qt]["not_answerable"] += 1
+
+        table = Table(title="LLM Prediction Distribution", show_lines=True)
+        table.add_column("Question type",  style="bold")
+        table.add_column("Total",          justify="right")
+        table.add_column("Pred yes",       justify="right")
+        table.add_column("Pred no",        justify="right")
+        table.add_column("Pred n/a",       justify="right")
+        for qt, d in rows.items():
+            table.add_row(qt, str(d["total"]), str(d["yes"]),
+                          str(d["no"]), str(d["not_answerable"]))
 
     console.print(table)
 
@@ -376,10 +440,10 @@ def print_error_sample(results: list[dict], ref_index: dict, n: int = 10) -> Non
 @app.command()
 def main(
     pred_path: str = typer.Option(
-        "results/B100_answers.jsonl",
+        "results/all_answers.jsonl",
         "-p",
         "--pred",
-        help="Prolog answer results file",
+        help="Answer results file (Prolog or LLM)",
     ),
     ref_path: str = typer.Option(
         "data/ConditionalQA/v1_0/dev.json",
@@ -398,12 +462,22 @@ def main(
         "--errors",
         help="Number of wrong yes/no predictions to show (0 to suppress)",
     ),
+    mode: str = typer.Option(
+        "auto",
+        "--mode",
+        help="Evaluation mode: 'auto' (detect from file), 'prolog', or 'llm'",
+    ),
 ) -> None:
-    """Evaluate Prolog-based answers against the ConditionalQA gold standard."""
+    """Evaluate Prolog-based or LLM-based answers against the ConditionalQA gold."""
 
     # Load predictions
     results = load_json_or_jsonl(pred_path)
     console.print(f"Loaded {len(results)} predictions from [cyan]{pred_path}[/cyan]")
+
+    # Resolve mode
+    if mode == "auto":
+        mode = _detect_mode(results)
+    console.print(f"Mode: [cyan]{mode}[/cyan]")
 
     # Load reference and index by id
     ref_data = json.load(open(ref_path, encoding="utf-8"))
@@ -420,15 +494,15 @@ def main(
 
     # Compute metrics
     metrics = compute_all_metrics(results, ref_index)
-    pr      = compute_precision_recall(results, ref_index)
+    pr      = compute_precision_recall(results, ref_index, mode=mode)
 
     # Display
     console.print()
     print_metrics_table(metrics)
     console.print()
-    print_precision_table(pr)
+    print_precision_table(pr, mode=mode)
     console.print()
-    print_entailment_breakdown(results)
+    print_entailment_breakdown(results, mode=mode)
 
     if error_sample > 0:
         print_error_sample(results, ref_index, n=error_sample)
@@ -441,19 +515,28 @@ def main(
             ref = ref_index.get(qid, [])
             pred = to_conqa_answers(res)
             em, c_em, f1, c_f1 = compute_metrics(pred, ref)
-            per_question.append({
-                "id": res["id"],
+            entry: dict = {
+                "id":            res["id"],
                 "question_type": res["question_type"],
-                "question": res["question"],
-                "prolog_goal": res["prolog_goal"],
-                "predicted": res["predicted"],
-                "gold_answers": res["gold_answers"],
-                "entails": res["entails"],
-                "correct": em == 1.0,
-                "precision": 1.0 if (res["entails"] and em == 1.0) else
-                             0.0 if res["entails"] else None,
+                "question":      res["question"],
+                "predicted":     res["predicted"],
+                "gold_answers":  res["gold_answers"],
+                "correct":       em == 1.0,
                 "em": em, "em_cond": c_em, "f1": f1, "f1_cond": c_f1,
-            })
+            }
+            # Mode-specific fields
+            if mode == "prolog":
+                entails = res.get("entails")
+                entry["prolog_goal"] = res.get("prolog_goal", "")
+                entry["entails"]     = entails
+                entry["precision"]   = (
+                    1.0 if (entails and em == 1.0) else
+                    0.0 if entails else None
+                )
+            else:
+                entry["raw_output"] = res.get("raw_output", "")
+            per_question.append(entry)
+
         Path(output_path).parent.mkdir(parents=True, exist_ok=True)
         with open(output_path, "w", encoding="utf-8") as f:
             json.dump(per_question, f, ensure_ascii=False, indent=2)
