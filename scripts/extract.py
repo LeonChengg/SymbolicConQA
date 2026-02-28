@@ -34,6 +34,75 @@ def _is_yes_no(sample: dict[str, Any]) -> bool:
 app = typer.Typer(help="Extract logic from text using LLMs.")
 
 
+def _build_context_predicate_index(context_kb_path: str) -> dict[str, str]:
+    """Load a context KB file and build {url: formatted_predicates_str}."""
+    from symbolic_conqa.io_utils import load_json_or_jsonl
+
+    records = load_json_or_jsonl(context_kb_path)
+    index: dict[str, str] = {}
+    for record in records:
+        if not isinstance(record, dict):
+            continue
+        # The URL lives in the nested data dict
+        url = record.get("data", {}).get("url", "") or record.get("url", "")
+        if not url:
+            continue
+        predicates = record.get("logic_kb", {}).get("predicates", [])
+        if not predicates:
+            continue
+        formatted = "\n".join(
+            f"- {p['name']}/{p['arity']} — {p.get('gloss', '')}"
+            for p in predicates
+        )
+        index[url] = formatted
+    return index
+
+
+def _build_context_constant_index(context_kb_path: str) -> dict[str, str]:
+    """Load a context KB file and build {url: formatted_constants_str}.
+
+    Includes all constants for standardization.
+    """
+    from symbolic_conqa.io_utils import load_json_or_jsonl
+
+    records = load_json_or_jsonl(context_kb_path)
+    index: dict[str, str] = {}
+    for record in records:
+        if not isinstance(record, dict):
+            continue
+        url = record.get("data", {}).get("url", "") or record.get("url", "")
+        if not url:
+            continue
+        constants = record.get("logic_kb", {}).get("constants", [])
+        if not constants:
+            continue
+        formatted = "\n".join(
+            f"- {c['id']} — {c.get('gloss', '')} (type: {c.get('type', 'unknown')})"
+            for c in constants
+        )
+        index[url] = formatted
+    return index
+
+
+def _build_context_rules_index(context_kb_path: str) -> dict[str, str]:
+    """Load a context KB file and build {url: formatted Prolog rules}."""
+    from symbolic_conqa.io_utils import load_json_or_jsonl
+
+    records = load_json_or_jsonl(context_kb_path)
+    index: dict[str, str] = {}
+    for record in records:
+        if not isinstance(record, dict):
+            continue
+        url = record.get("data", {}).get("url", "") or record.get("url", "")
+        if not url:
+            continue
+        rules = record.get("logic_kb", {}).get("prolog", {}).get("rules", [])
+        if not rules:
+            continue
+        index[url] = "\n".join(rules)
+    return index
+
+
 class Task(str, Enum):
     context = "context"
     scenario_question = "scenario_question"
@@ -67,12 +136,28 @@ def main(
     batch_size: int = typer.Option(5, "-b", "--batch-size", help="Batch size"),
     num_batches: int | None = typer.Option(None, "-n", "--num-batches", help="Number of batches"),
     yes_no_only: bool = typer.Option(False, "--yes-no-only", help="Only process yes/no questions (scenario_question only)"),
+    context_kb: str | None = typer.Option(None, "--context-kb", help="Path to context KB JSONL for injecting predicates (scenario_question only)"),
 ) -> None:
     """Run logic extraction for a given task."""
     load_dotenv(find_dotenv())
 
     cfg = _TASK_CONFIGS[task]
     sample_filter = _is_yes_no if (yes_no_only and task == Task.scenario_question) else None
+
+    # Build context predicate, constant, and rules indices if provided
+    ctx_pred_index: dict[str, str] | None = None
+    ctx_const_index: dict[str, str] | None = None
+    ctx_rules_index: dict[str, str] | None = None
+    sample_key_fn = None
+    if context_kb and task == Task.scenario_question:
+        ctx_pred_index = _build_context_predicate_index(context_kb)
+        ctx_const_index = _build_context_constant_index(context_kb)
+        ctx_rules_index = _build_context_rules_index(context_kb)
+        sample_key_fn = lambda s: s.get("url", "")
+        typer.echo(f"Loaded context predicates for {len(ctx_pred_index)} URLs from {context_kb}")
+        typer.echo(f"Loaded context constants for {len(ctx_const_index)} URLs from {context_kb}")
+        typer.echo(f"Loaded context rules for {len(ctx_rules_index)} URLs from {context_kb}")
+
     run_extraction(
         text_extractor=_EXTRACTORS[task],
         in_path=input_path or str(cfg["default_input"]),
@@ -82,6 +167,10 @@ def main(
         num_test_batches=num_batches,
         include_hypothesis=bool(cfg["include_hypothesis"]),
         sample_filter=sample_filter,
+        context_predicates_by_key=ctx_pred_index,
+        context_constants_by_key=ctx_const_index,
+        context_rules_by_key=ctx_rules_index,
+        sample_key_fn=sample_key_fn,
     )
 
 

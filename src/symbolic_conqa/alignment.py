@@ -544,6 +544,68 @@ class AlignmentConfig:
     semantic_bridge_threshold: float = 0.3
     semantic_bridge_max_depth: int = 4
 
+    constant_align: bool = False
+    constant_align_types: tuple[str, ...] = ("person",)
+
+
+# ---------------------------------------------------------------------------
+# Strategy 6 — Typed constant alignment helpers
+# ---------------------------------------------------------------------------
+
+
+def _extract_typed_constants(
+    kb: dict[str, Any],
+    types: tuple[str, ...] = ("person",),
+) -> set[str]:
+    """Extract constant ids of specified types from a logic_kb dict."""
+    return {
+        c["id"]
+        for c in kb.get("constants", [])
+        if c.get("type") in types
+    }
+
+
+def _variabilize_constants_in_clause(
+    clause: str,
+    constants_to_replace: set[str],
+) -> str:
+    """Replace specified ground constants with _ in a ground fact's arguments.
+
+    Only operates on ground facts (no :-). Rules with variables are left
+    untouched since their variables already unify with anything.
+    """
+    if ":-" in clause:
+        return clause
+    m = re.match(r"(\s*[a-z][a-z0-9_]*\s*)\(([^)]+)\)(\s*\.?\s*)$", clause)
+    if not m:
+        return clause
+    pred_part, args_str, tail = m.group(1), m.group(2), m.group(3)
+    args = [a.strip() for a in args_str.split(",")]
+    new_args = ["_" if a in constants_to_replace else a for a in args]
+    return f"{pred_part}({', '.join(new_args)}){tail}"
+
+
+def _variabilize_constants_in_goal(
+    goal: str,
+    constants_to_replace: set[str],
+    restrict_to_preds: dict[str, int] | None = None,
+) -> str:
+    """Replace person constants in a (possibly compound) Prolog goal.
+
+    If *restrict_to_preds* is given, only replace in atoms whose predicate
+    name appears in that dict.  This prevents false positives for predicates
+    that only exist in the scenario KB.
+    """
+    def _replace_in_atom(m: re.Match) -> str:
+        pred = m.group(1)
+        args_str = m.group(2)
+        if restrict_to_preds is not None and pred not in restrict_to_preds:
+            return m.group(0)
+        args = [a.strip() for a in args_str.split(",")]
+        new_args = ["_" if a in constants_to_replace else a for a in args]
+        return f"{pred}({', '.join(new_args)})"
+    return re.sub(r"([a-z][a-z0-9_]*)\(([^)]*)\)", _replace_in_atom, goal)
+
 
 # ---------------------------------------------------------------------------
 # Main entry point
@@ -556,6 +618,8 @@ def align(
     ctx_prolog: dict[str, Any] | None,
     sq_prolog: dict[str, Any],
     config: AlignmentConfig,
+    ctx_kb: dict[str, Any] | None = None,
+    sq_kb: dict[str, Any] | None = None,
 ) -> tuple[str, str]:
     """Apply all enabled alignment strategies and return ``(program, goal)``.
 
@@ -582,6 +646,43 @@ def align(
     goal_preds: dict[str, int] = _extract_preds_from_goal(goal.rstrip("."))
 
     aligned = program
+
+    # ------------------------------------------------------------------
+    # Strategy 6 — Typed constant alignment (executed FIRST)
+    # ------------------------------------------------------------------
+    if config.constant_align:
+        ctx_persons = _extract_typed_constants(
+            ctx_kb or {}, config.constant_align_types
+        )
+        sq_persons = _extract_typed_constants(
+            sq_kb or {}, config.constant_align_types
+        )
+
+        if ctx_persons:
+            # Variabilize person args in context ground facts
+            lines = aligned.split("\n")
+            new_lines = []
+            in_context = False
+            for line in lines:
+                if "% --- context KB ---" in line:
+                    in_context = True
+                elif "% --- scenario KB ---" in line:
+                    in_context = False
+                if in_context and line.strip() and not line.strip().startswith("%"):
+                    line = _variabilize_constants_in_clause(line, ctx_persons)
+                new_lines.append(line)
+            aligned = "\n".join(new_lines)
+
+        if sq_persons:
+            # Variabilize person constants in the goal, but ONLY for
+            # predicates that also appear in the context KB.  This
+            # prevents false positives from scenario-only predicates
+            # where the person arg slot might match a non-person arg
+            # in an unrelated context fact (e.g. pred(me) matching
+            # pred(true)).
+            goal = _variabilize_constants_in_goal(
+                goal, sq_persons, restrict_to_preds=ctx_preds,
+            )
 
     # ------------------------------------------------------------------
     # Strategy 1 — Normalisation

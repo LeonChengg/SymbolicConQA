@@ -13,7 +13,13 @@ from rich.progress import BarColumn, MofNCompleteColumn, Progress, TextColumn, T
 
 from .io_utils import chunked, load_json_or_jsonl, load_valid_records
 from .models import LogicKB, LogicKBList
-from .prompts import BATCH_USER_TEMPLATE, SYSTEM_PROMPT, SYSTEM_PROMPT_NO_HYPOTHESIS, USER_TEMPLATE
+from .prompts import (
+    BATCH_USER_TEMPLATE,
+    SYSTEM_PROMPT,
+    SYSTEM_PROMPT_NO_HYPOTHESIS,
+    USER_TEMPLATE,
+    USER_TEMPLATE_WITH_CONTEXT_PREDICATES,
+)
 
 console = Console()
 
@@ -62,6 +68,10 @@ def run_extraction(
     *,
     include_hypothesis: bool = True,
     sample_filter: Callable[[dict[str, Any]], bool] | None = None,
+    context_predicates_by_key: dict[str, str] | None = None,
+    context_constants_by_key: dict[str, str] | None = None,
+    context_rules_by_key: dict[str, str] | None = None,
+    sample_key_fn: Callable[[dict[str, Any]], str] | None = None,
 ) -> None:
     """
     Run logic extraction on a dataset with crash-resume support.
@@ -75,6 +85,10 @@ def run_extraction(
         num_test_batches: Number of batches to process (None = all).
         include_hypothesis: Whether to ask the model to generate a FOL hypothesis.
         sample_filter: Optional predicate to filter samples before extraction.
+        context_predicates_by_key: Mapping from sample key to formatted predicates string.
+        context_constants_by_key: Mapping from sample key to formatted constants string.
+        context_rules_by_key: Mapping from sample key to formatted context rules string.
+        sample_key_fn: Function to extract the lookup key from a sample dict.
     """
     client = OpenAI()
     samples_any = load_json_or_jsonl(in_path)
@@ -94,14 +108,21 @@ def run_extraction(
     # Build all jobs
     jobs: list[dict[str, Any]] = []
     for idx, sample in enumerate(samples):
-        jobs.append(
-            {
-                "index": idx,
-                "id": sample.get("id"),
-                "input_text": text_extractor(sample),
-                "data": sample,
-            }
-        )
+        job: dict[str, Any] = {
+            "index": idx,
+            "id": sample.get("id"),
+            "input_text": text_extractor(sample),
+            "data": sample,
+        }
+        if sample_key_fn is not None:
+            key = sample_key_fn(sample)
+            if context_predicates_by_key is not None:
+                job["context_predicates"] = context_predicates_by_key.get(key, "")
+            if context_constants_by_key is not None:
+                job["context_constants"] = context_constants_by_key.get(key, "")
+            if context_rules_by_key is not None:
+                job["context_rules"] = context_rules_by_key.get(key, "")
+        jobs.append(job)
 
     # Determine total items to process
     total_items = len(jobs)
@@ -146,13 +167,50 @@ def run_extraction(
         for batch_jobs in batches:
             batch_texts = [j["input_text"] for j in batch_jobs]
 
-            kb_list = extract_logic_batch(
-                client, batch_texts, model=model, include_hypothesis=include_hypothesis
-            )
-            if len(kb_list) != len(batch_jobs):
-                raise RuntimeError(
-                    f"Model returned {len(kb_list)} items but expected {len(batch_jobs)}."
+            # Collect per-item context predicates and constants if available
+            ctx_preds: list[str] | None = None
+            if context_predicates_by_key is not None:
+                ctx_preds = [j.get("context_predicates", "") for j in batch_jobs]
+
+            ctx_consts: list[str] | None = None
+            if context_constants_by_key is not None:
+                ctx_consts = [j.get("context_constants", "") for j in batch_jobs]
+
+            ctx_rules: list[str] | None = None
+            if context_rules_by_key is not None:
+                ctx_rules = [j.get("context_rules", "") for j in batch_jobs]
+
+            try:
+                kb_list = extract_logic_batch(
+                    client,
+                    batch_texts,
+                    model=model,
+                    include_hypothesis=include_hypothesis,
+                    context_predicates_per_item=ctx_preds,
+                    context_constants_per_item=ctx_consts,
+                    context_rules_per_item=ctx_rules,
                 )
+                if len(kb_list) != len(batch_jobs):
+                    raise ValueError(
+                        f"Model returned {len(kb_list)} items but expected {len(batch_jobs)}."
+                    )
+            except (ValueError, Exception) as e:
+                console.print(f"[yellow]Batch failed ({e}), retrying items one-by-one...[/yellow]")
+                kb_list = []
+                for i, text in enumerate(batch_texts):
+                    single_preds = [ctx_preds[i]] if ctx_preds else None
+                    single_consts = [ctx_consts[i]] if ctx_consts else None
+                    single_rules = [ctx_rules[i]] if ctx_rules else None
+                    single_result = extract_logic_batch(
+                        client,
+                        [text],
+                        model=model,
+                        include_hypothesis=include_hypothesis,
+                        context_predicates_per_item=single_preds,
+                        context_constants_per_item=single_consts,
+                        context_rules_per_item=single_rules,
+                    )
+                    kb_list.extend(single_result)
 
             for job, kb in zip(batch_jobs, kb_list):
                 record = {
@@ -183,6 +241,9 @@ def extract_logic_batch(
     model: str = "gpt-5-mini",
     *,
     include_hypothesis: bool = True,
+    context_predicates_per_item: list[str] | None = None,
+    context_constants_per_item: list[str] | None = None,
+    context_rules_per_item: list[str] | None = None,
 ) -> list[LogicKB]:
     """
     Extract logic knowledge bases from a batch of texts.
@@ -192,16 +253,46 @@ def extract_logic_batch(
         texts: List of input texts to process
         model: Model name to use
         include_hypothesis: Whether to ask the model to generate a FOL hypothesis.
+        context_predicates_per_item: Optional per-item context predicates strings.
+        context_constants_per_item: Optional per-item context constants strings.
+        context_rules_per_item: Optional per-item context rules strings.
 
     Returns:
         List of LogicKB objects
     """
-    # Use clear delimiters so multi-line texts don't blur item boundaries
-    parts = [f"=== ITEM [{i}] ===\n{t}" for i, t in enumerate(texts)]
+    has_context = (
+        context_predicates_per_item is not None
+        or context_constants_per_item is not None
+        or context_rules_per_item is not None
+    )
+
+    # Build indexed text blocks
+    if has_context:
+        parts = []
+        for i, t in enumerate(texts):
+            ctx = (context_predicates_per_item[i] if context_predicates_per_item and i < len(context_predicates_per_item) else "")
+            const = (context_constants_per_item[i] if context_constants_per_item and i < len(context_constants_per_item) else "")
+            rules = (context_rules_per_item[i] if context_rules_per_item and i < len(context_rules_per_item) else "")
+            block = f"=== ITEM [{i}] ===\nTEXT:\n{t}"
+            if ctx:
+                block += f"\n\nCONTEXT PREDICATES:\n{ctx}"
+            if const:
+                block += f"\n\nCONTEXT CONSTANTS (from the context document's KB):\n{const}"
+            if rules:
+                block += f"\n\nCONTEXT RULES (Prolog rules from the context document):\n{rules}"
+            parts.append(block)
+    else:
+        parts = [f"=== ITEM [{i}] ===\n{t}" for i, t in enumerate(texts)]
     indexed_texts = "\n\n".join(parts)
 
-    # Escape braces in USER_TEMPLATE so {input_text} doesn't get consumed by Python .format
-    safe_user_template = USER_TEMPLATE.replace("{", "{{").replace("}", "}}").strip()
+    # Choose the appropriate user template
+    if has_context:
+        template = USER_TEMPLATE_WITH_CONTEXT_PREDICATES
+    else:
+        template = USER_TEMPLATE
+
+    # Escape braces so {input_text}/{context_predicates} don't get consumed by Python .format
+    safe_user_template = template.replace("{", "{{").replace("}", "}}").strip()
 
     user_msg = BATCH_USER_TEMPLATE.format(
         single_user_template=safe_user_template,

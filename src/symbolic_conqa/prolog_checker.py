@@ -147,6 +147,8 @@ def check_entailment_swipl(
     if not goal:
         return None, "empty goal"
 
+    goal = _sanitize_goal(goal)
+
     # Embed the query as an initialization directive.
     # We bind R to 0/1/2 first, then call halt(R) outside the catch so that
     # the halt/1 exception itself is never swallowed by catch/3.
@@ -196,6 +198,22 @@ def _prolog_vars(goal: str) -> list[str]:
     return list(dict.fromkeys(_VAR_RE.findall(goal)))
 
 
+def _sanitize_goal(goal: str) -> str:
+    """Clean up a Prolog goal string by removing common LLM artifacts.
+
+    Strips leading ``?-`` directive markers and trailing ``% ...`` comments
+    that LLMs sometimes produce.
+    """
+    s = goal.strip()
+    # Strip leading "?-" directive marker
+    s = re.sub(r"^\?-\s*", "", s)
+    # Strip trailing Prolog comments
+    s = re.sub(r"\s*%.*$", "", s)
+    # Strip trailing dot (goals are used without it)
+    s = s.strip().rstrip(".")
+    return s.strip()
+
+
 def query_prolog_bindings(
     program: str,
     goal: str,
@@ -226,7 +244,7 @@ def query_prolog_bindings(
     if not goal:
         return None, [], "empty goal"
 
-    stripped = goal.rstrip(".")
+    stripped = _sanitize_goal(goal)
     free_vars = _prolog_vars(stripped)
 
     if not free_vars:
@@ -352,7 +370,7 @@ def check_single_record(
     )
 
     if prolog_hypothesis:
-        goal = prolog_hypothesis.rstrip(".")
+        goal = _sanitize_goal(prolog_hypothesis)
     elif fol_hypothesis:
         goal = fol_hypothesis_to_prolog(fol_hypothesis)
     else:

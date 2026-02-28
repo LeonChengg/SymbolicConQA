@@ -17,7 +17,16 @@ REQUIREMENTS
 - Use short lowercase constants: me, f, u, wales, t_recent...
 - Predicates must be lowercase_with_underscores in Prolog; FOL can use CamelCase or keep consistent.
 - Output MUST conform exactly to the provided JSON schema; do not include any extra keys.
-- Include optional_rules only if you are explicitly labeling them as optional (e.g., kinship expansion)."""
+- Include optional_rules only if you are explicitly labeling them as optional (e.g., kinship expansion).
+- In Prolog facts and rules, when an argument represents a GENERIC role (any person,
+  any applicant, any worker, anyone) rather than a specific named individual, use an
+  UPPERCASE Prolog variable (e.g., Person, X, Applicant) instead of a lowercase ground
+  atom. This ensures the fact can unify with any specific entity at query time.
+  - CORRECT: must_be_aged_18_or_over(Person).     % applies to anyone
+  - CORRECT: can_write_request_to(Person, cac).    % any person can write to CAC
+  - WRONG:   must_be_aged_18_or_over(applicant).   % ground atom, won't match 'me'
+  - WRONG:   can_write_request_to(person, cac).    % 'person' is a ground atom in Prolog
+  - Keep specific named entities as lowercase constants: queen, hmrc, uk, etc."""
 
 SYSTEM_PROMPT = _SYSTEM_PROMPT_BASE.format(
     hypothesis_line=(
@@ -37,6 +46,45 @@ CONSTRAINTS:
 - Return only data conforming to the schema.
 - Do not infer anything not stated, except optional_rules (clearly separated).
 - Keep it minimal and consistent.
+"""
+
+USER_TEMPLATE_WITH_CONTEXT_PREDICATES = """Extract logic from the following text.
+
+TEXT:
+{input_text}
+
+CONTEXT PREDICATES (from the corresponding context document's KB):
+{context_predicates}
+
+CONTEXT CONSTANTS (from the context document's KB):
+{context_constants}
+
+CONTEXT RULES (Prolog rules from the context document):
+{context_rules}
+
+CONSTRAINTS:
+- Return only data conforming to the schema.
+- Do not infer anything not stated, except optional_rules (clearly separated).
+- Keep it minimal and consistent.
+- IMPORTANT: When the scenario/question refers to concepts that match the context predicates above,
+  you MUST reuse the EXACT predicate name and arity from the context. Do NOT invent new predicate
+  names for concepts already covered by the context predicates.
+- You may introduce NEW predicates only for concepts NOT covered by any context predicate.
+- The hypothesis MUST use context predicate names where applicable.
+- IMPORTANT: When the scenario/question refers to an entity that corresponds to one of the
+  CONTEXT CONSTANTS above, you MUST use the EXACT constant id from the context. For example:
+    - If the context uses "vaccine_damage_payment", use "vaccine_damage_payment" (not "vaccine_injury_payment").
+    - If the context uses "you" for the applicant, use "you" (not "me" or "applicant").
+    - If the context uses "hm_land_registry", use "hm_land_registry" (not "rural_land_register").
+- For entities NOT covered by any context constant (e.g. a specific family member or object
+  mentioned only in the scenario), you may introduce new constants.
+- IMPORTANT: When extracting facts from the scenario, check whether the scenario text
+  semantically implies any predicate used in the CONTEXT RULES' body. If so, use that
+  exact predicate. For example, if a context rule requires "severely_disabled(P)" and
+  the scenario describes someone with serious paralysis, extract "severely_disabled(me)".
+- Do NOT assert facts just because a rule needs them — only if the scenario text supports them.
+- The hypothesis should correspond to the HEAD of a relevant context rule where applicable.
+- Do NOT include "?-" prefix or trailing "%% comments" in the Prolog hypothesis — output a clean Prolog term only.
 """
 
 BATCH_USER_TEMPLATE = """You will process multiple items.

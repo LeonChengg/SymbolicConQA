@@ -227,6 +227,11 @@ def main(
         "--semantic-bridge-max-depth",
         help="Maximum hypernym path depth for semantic bridge (default 4)",
     ),
+    constant_align: bool = typer.Option(
+        False,
+        "--constant-align/--no-constant-align",
+        help="Variabilize person-typed constants for alignment",
+    ),
 ) -> None:
     """Answer questions by running their extracted Prolog hypothesis against
     the merged context + scenario KB, with optional alignment strategies."""
@@ -252,10 +257,12 @@ def main(
         semantic_bridge=semantic_bridge,
         semantic_bridge_threshold=semantic_bridge_threshold,
         semantic_bridge_max_depth=semantic_bridge_max_depth,
+        constant_align=constant_align,
     )
 
     use_alignment = (
-        normalize or auto_bridge or alias_dict or bridge_rules or semantic_bridge
+        normalize or auto_bridge or alias_dict or bridge_rules
+        or semantic_bridge or constant_align
     )
     if use_alignment:
         strategies = []
@@ -272,6 +279,8 @@ def main(
                 f"semantic_bridge(threshold={semantic_bridge_threshold}, "
                 f"max_depth={semantic_bridge_max_depth})"
             )
+        if constant_align:
+            strategies.append("constant_align")
         console.print(f"Alignment strategies: [cyan]{', '.join(strategies)}[/cyan]")
 
     ctx_index = load_context_index(context_path)
@@ -305,8 +314,11 @@ def main(
             program = build_prolog_program(ctx_prolog, sq_prolog)
 
             if use_alignment:
+                ctx_kb_full = ctx_rec.get("logic_kb", {}) if ctx_rec else None
+                sq_kb_full = sq_rec.get("logic_kb", {})
                 program, goal = align(
-                    program, goal, ctx_prolog, sq_prolog, alignment_cfg
+                    program, goal, ctx_prolog, sq_prolog, alignment_cfg,
+                    ctx_kb=ctx_kb_full, sq_kb=sq_kb_full,
                 )
 
             entails, values, error = query_prolog_bindings(program, goal, timeout=timeout)
