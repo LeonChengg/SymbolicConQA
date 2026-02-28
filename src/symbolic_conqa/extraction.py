@@ -42,6 +42,124 @@ def extract_text_from_contents(sample: dict[str, Any]) -> str:
     return text.strip()
 
 
+# ---------------------------------------------------------------------------
+# Semantic tree → plain text renderer
+# ---------------------------------------------------------------------------
+
+
+def _render_semantic_node(node: dict[str, Any], depth: int = 0) -> list[str]:
+    """Recursively render a single semantic tree node into a list of text lines.
+
+    Node types handled:
+
+    * ``root`` / ``section`` — heading (``#`` markers) + children
+    * ``text``               — plain paragraph
+    * ``rule``               — outcome label + intro + condition list
+    * ``list``               — optional intro, operator label, bullet items,
+                               and any ``exception`` entries
+    * ``condition`` / ``item`` / ``exception`` — bullet item
+    * ``table``              — pipe-separated header + rows
+    """
+    lines: list[str] = []
+    node_type = node.get("type", "")
+    indent = "  " * depth
+
+    if node_type in ("root", "section"):
+        title = node.get("title")
+        if title:
+            hashes = "#" * min(depth + 1, 4)
+            lines.append(f"{hashes} {title}")
+        child_depth = depth + 1 if title else depth
+        for child in node.get("children", []):
+            lines.extend(_render_semantic_node(child, child_depth))
+
+    elif node_type == "text":
+        text = node.get("text", "").strip()
+        if text:
+            lines.append(text)
+
+    elif node_type == "rule":
+        intro = node.get("intro", "").strip()
+        outcome = node.get("outcome", "")
+        if intro:
+            lines.append(intro)
+        if outcome:
+            lines.append(f"[Outcome: {outcome}]")
+        for child in node.get("children", []):
+            lines.extend(_render_semantic_node(child, depth))
+
+    elif node_type == "list":
+        intro = (node.get("intro") or "").strip()
+        operator = node.get("operator")
+        if intro:
+            lines.append(intro)
+        if operator:
+            lines.append(f"[{operator} of the following apply]")
+        for item in node.get("items", []):
+            item_text = item.get("text", "").strip()
+            if item_text:
+                lines.append(f"{indent}- {item_text}")
+        for exc in node.get("exceptions", []):
+            exc_text = exc.get("text", "").strip()
+            if exc_text:
+                lines.append(f"{indent}  Exception: {exc_text}")
+
+    elif node_type in ("condition", "item", "exception"):
+        text = node.get("text", "").strip()
+        if text:
+            lines.append(f"{indent}- {text}")
+
+    elif node_type == "table":
+        columns: list[str] = node.get("columns", [])
+        rows: list[dict[str, str]] = node.get("rows", [])
+        if columns:
+            header = " | ".join(columns)
+            lines.append(header)
+            lines.append("-" * len(header))
+        for row in rows:
+            row_vals = [str(row.get(c, "")).strip() for c in columns]
+            lines.append(" | ".join(row_vals))
+
+    return lines
+
+
+def extract_text_from_semantic_tree(sample: dict[str, Any]) -> str:
+    """Extract input text by rendering a sample's ``semantic_tree`` to plain text.
+
+    The semantic tree (produced by ``data_propocessing.py``) is a nested dict
+    of typed nodes (``section``, ``text``, ``list``, ``rule``, ``table``, …).
+    This function walks the tree recursively and produces a structured plain-text
+    representation suitable for LLM logic extraction.
+
+    Falls back to ``extract_text_from_contents`` when ``semantic_tree`` is
+    absent, so both ``documents.json`` and ``documents_with_semantic_tree.json``
+    can be used transparently.
+
+    Args:
+        sample: A document record dict (may contain ``semantic_tree``,
+                ``contents``, or both).
+
+    Returns:
+        Plain-text rendering of the document content.
+
+    Raises:
+        ValueError: If neither ``semantic_tree`` nor ``contents`` is present /
+                    non-empty.
+    """
+    tree = sample.get("semantic_tree")
+    if not isinstance(tree, dict):
+        # Graceful fallback: use raw HTML contents
+        return extract_text_from_contents(sample)
+
+    lines = _render_semantic_node(tree, depth=0)
+    text = "\n".join(line for line in lines if line.strip())
+    if not text.strip():
+        raise ValueError(
+            f"Empty 'semantic_tree' rendering in sample id={sample.get('id')}"
+        )
+    return text.strip()
+
+
 def extract_text_from_scenario_question(sample: dict[str, Any]) -> str:
     """Extract input text by combining ``scenario`` and ``question`` fields."""
     scenario = sample.get("scenario")

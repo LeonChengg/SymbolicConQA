@@ -19,6 +19,7 @@ from typing import Any
 from symbolic_conqa.extraction import (
     extract_text_from_contents,
     extract_text_from_scenario_question,
+    extract_text_from_semantic_tree,
     run_extraction,
 )
 
@@ -108,22 +109,31 @@ class Task(str, Enum):
     scenario_question = "scenario_question"
 
 
+class InputField(str, Enum):
+    contents = "contents"
+    semantic_tree = "semantic_tree"
+
+
 _TASK_CONFIGS: dict[Task, dict[str, str | bool]] = {
     Task.context: {
-        "default_input": "data/ConditionalQA/v1_0/documents.json",
+        "default_input_contents": "data/ConditionalQA/v1_0/documents.json",
+        "default_input_semantic_tree": "data/ConditionalQA/v1_0/documents_with_semantic_tree.json",
         "default_output": "results/context_with_logic.jsonl",
         "include_hypothesis": False,
     },
     Task.scenario_question: {
-        "default_input": "data/ConditionalQA/v1_0/dev.json",
+        "default_input_contents": "data/ConditionalQA/v1_0/dev.json",
+        "default_input_semantic_tree": "data/ConditionalQA/v1_0/dev.json",
         "default_output": "results/SQ_with_logic.jsonl",
         "include_hypothesis": True,
     },
 }
 
-_EXTRACTORS = {
-    Task.context: extract_text_from_contents,
-    Task.scenario_question: extract_text_from_scenario_question,
+_EXTRACTORS: dict[tuple[Task, InputField], Any] = {
+    (Task.context, InputField.contents): extract_text_from_contents,
+    (Task.context, InputField.semantic_tree): extract_text_from_semantic_tree,
+    (Task.scenario_question, InputField.contents): extract_text_from_scenario_question,
+    (Task.scenario_question, InputField.semantic_tree): extract_text_from_scenario_question,
 }
 
 
@@ -137,12 +147,34 @@ def main(
     num_batches: int | None = typer.Option(None, "-n", "--num-batches", help="Number of batches"),
     yes_no_only: bool = typer.Option(False, "--yes-no-only", help="Only process yes/no questions (scenario_question only)"),
     context_kb: str | None = typer.Option(None, "--context-kb", help="Path to context KB JSONL for injecting predicates (scenario_question only)"),
+    input_field: InputField = typer.Option(
+        InputField.contents,
+        "--input-field",
+        help=(
+            "Which document field to use as input text for the LLM.\n\n"
+            "'contents' (default): raw HTML strings from documents.json.\n\n"
+            "'semantic_tree': structured semantic tree from "
+            "documents_with_semantic_tree.json, rendered to clean plain text. "
+            "Only applies to the 'context' task; 'scenario_question' always "
+            "uses scenario+question text."
+        ),
+    ),
 ) -> None:
     """Run logic extraction for a given task."""
     load_dotenv(find_dotenv())
 
     cfg = _TASK_CONFIGS[task]
     sample_filter = _is_yes_no if (yes_no_only and task == Task.scenario_question) else None
+
+    # Choose extractor and default input path based on task + input_field
+    extractor = _EXTRACTORS[(task, input_field)]
+    default_input_key = f"default_input_{input_field.value}"
+    default_input = str(cfg[default_input_key])
+
+    if input_field == InputField.semantic_tree and task == Task.context:
+        typer.echo(
+            f"Using semantic_tree renderer — default input: {default_input}"
+        )
 
     # Build context predicate, constant, and rules indices if provided
     ctx_pred_index: dict[str, str] | None = None
@@ -159,8 +191,8 @@ def main(
         typer.echo(f"Loaded context rules for {len(ctx_rules_index)} URLs from {context_kb}")
 
     run_extraction(
-        text_extractor=_EXTRACTORS[task],
-        in_path=input_path or str(cfg["default_input"]),
+        text_extractor=extractor,
+        in_path=input_path or default_input,
         out_path=output_path or str(cfg["default_output"]),
         model=model,
         batch_size=batch_size,
