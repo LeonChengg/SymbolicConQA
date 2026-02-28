@@ -255,38 +255,81 @@ def _wn_available() -> bool:
         return False
 
 
-def _wn_synsets(word: str):
-    """Return WordNet synsets for *word*, preferring verbs then all POS."""
+def _wn_synsets(word: str, pos_mode: str = "verb_noun"):
+    """Return WordNet synsets for *word* filtered by *pos_mode*.
+
+    Args:
+        word:     The token to look up.
+        pos_mode: Which part-of-speech categories to include.
+                  ``"verb"``      — verb synsets only (action predicates,
+                                    ``causes()`` / ``entailments()`` relations).
+                  ``"noun"``      — noun synsets only (entity / concept tokens
+                                    such as ``son``, ``guardian``, ``applicant``).
+                  ``"verb_noun"`` — both verb and noun synsets (default); verb
+                                    synsets listed first.  Falls back to all-POS
+                                    if neither POS has entries.
+
+    Examples::
+
+        _wn_synsets("kill", "verb")     # → [kill.v.01, slay.v.01, …]
+        _wn_synsets("son",  "noun")     # → [son.n.01, son.n.02]
+        _wn_synsets("guard","verb_noun")# → [guard.v.01, …, guard.n.01, …]
+    """
     from nltk.corpus import wordnet as wn
 
-    syns = wn.synsets(word, pos=wn.VERB)
-    return syns if syns else wn.synsets(word)
+    if pos_mode == "verb":
+        result = wn.synsets(word, pos=wn.VERB)
+        return result if result else []
+    if pos_mode == "noun":
+        result = wn.synsets(word, pos=wn.NOUN)
+        return result if result else []
+    # "verb_noun" — default: both POS, verb first
+    verb_syns = wn.synsets(word, pos=wn.VERB)
+    noun_syns = wn.synsets(word, pos=wn.NOUN)
+    combined = verb_syns + noun_syns
+    # Fall back to all-POS (adjectives, adverbs, …) if neither POS has entries
+    return combined if combined else wn.synsets(word)
 
 
 def _wn_entailment_score(
     general_token: str,
     specific_token: str,
     max_depth: int = 4,
+    pos_mode: str = "verb_noun",
 ) -> float:
     """Score how strongly *specific_token* is a semantic hyponym / entailment
     of *general_token*, in [0, 1].
 
-    Two complementary checks are performed:
+    Three complementary checks are performed across synsets selected by
+    *pos_mode* (see :func:`_wn_synsets`):
 
     1. **Hypernym path** — does *specific_token*'s synset have *general_token*'s
-       synset on one of its hypernym paths?  Depth from specific → general is
-       mapped to a score that decays linearly to 0 at *max_depth*.
+       synset on one of its hypernym paths?  Applies to both verbs (troponym
+       hierarchy: ``drown → die``) and nouns (is-a hierarchy: ``son → child``).
+       Depth from specific → general decays linearly to 0 at *max_depth*.
 
     2. **Verb entailment** — does any synset of *specific_token* directly
        entail any synset of *general_token*?  WordNet encodes relations like
-       ``kill.v.01 → die.v.01`` explicitly.
+       ``snore.v.01 → sleep.v.01`` explicitly.
+
+    3. **Verb causation** — does any synset of *specific_token* (or its verb
+       ancestors) cause any synset of *general_token*?  E.g.
+       ``kill.v.01.causes() → die.v.01``;
+       ``murder → kill (hypernym) → die (causes)``.
+
+    Args:
+        general_token:  The more-general hypothesis token (e.g. ``"die"``).
+        specific_token: The more-specific context token (e.g. ``"kill"``).
+        max_depth:      Maximum hypernym-path depth to score (default 4).
+        pos_mode:       POS categories to include; ``"verb"``, ``"noun"``,
+                        or ``"verb_noun"`` (default).
 
     A high score means ``specific(X) → general(X)`` is semantically plausible,
     so the Prolog bridge ``general_pred :- specific_pred`` is logically sound.
 
     Returns 0.0 if WordNet is unavailable or the tokens are unrelated.
     """
-    cache_key = (general_token, specific_token, max_depth)
+    cache_key = (general_token, specific_token, max_depth, pos_mode)
     if cache_key in _WN_SCORE_CACHE:
         return _WN_SCORE_CACHE[cache_key]
 
@@ -298,8 +341,8 @@ def _wn_entailment_score(
         _WN_SCORE_CACHE[cache_key] = 1.0
         return 1.0
 
-    specific_syns = _wn_synsets(specific_token)
-    general_syns = _wn_synsets(general_token)
+    specific_syns = _wn_synsets(specific_token, pos_mode)
+    general_syns = _wn_synsets(general_token, pos_mode)
     if not specific_syns or not general_syns:
         _WN_SCORE_CACHE[cache_key] = 0.0
         return 0.0
@@ -359,6 +402,7 @@ def wordnet_predicate_score(
     ctx_pred: str,
     max_depth: int = 4,
     stop: frozenset[str] = _DEFAULT_STOP,
+    pos_mode: str = "verb_noun",
 ) -> float:
     """Score *ctx_pred* as a semantic hyponym of *hyp_pred*.
 
@@ -371,6 +415,14 @@ def wordnet_predicate_score(
 
     Stop-words are stripped before comparison so that common prepositions /
     auxiliaries do not pollute the signal.
+
+    Args:
+        hyp_pred:  Hypothesis predicate name (underscore-separated tokens).
+        ctx_pred:  Context predicate name to score against.
+        max_depth: Maximum hypernym-path depth (default 4).
+        stop:      Stop-word set to filter tokens (default: built-in set).
+        pos_mode:  POS categories passed to :func:`_wn_synsets`; one of
+                   ``"verb"``, ``"noun"``, or ``"verb_noun"`` (default).
     """
     hyp_tokens = [t for t in hyp_pred.split("_") if t and t not in stop]
     ctx_tokens = [t for t in ctx_pred.split("_") if t and t not in stop]
@@ -382,7 +434,7 @@ def wordnet_predicate_score(
     for ht in hyp_tokens:
         # Best score over all ctx tokens for this hyp token
         best = max(
-            (_wn_entailment_score(ht, ct, max_depth) for ct in ctx_tokens),
+            (_wn_entailment_score(ht, ct, max_depth, pos_mode) for ct in ctx_tokens),
             default=0.0,
         )
         total += best
@@ -396,6 +448,7 @@ def find_wordnet_matches(
     threshold: float = 0.3,
     max_depth: int = 4,
     stop: frozenset[str] = _DEFAULT_STOP,
+    pos_mode: str = "verb_noun",
 ) -> list[tuple[str, str, int, int, float]]:
     """Return ``(hyp_pred, ctx_pred, hyp_arity, ctx_arity, score)`` tuples
     where *ctx_pred* is a semantic hyponym of *hyp_pred* with score >=
@@ -403,6 +456,15 @@ def find_wordnet_matches(
 
     Bridge direction: ``hyp_pred :- ctx_pred``
     (the more-specific context fact entails the more-general hypothesis goal).
+
+    Args:
+        hyp_preds:  ``{predicate_name: arity}`` from the hypothesis goal.
+        ctx_preds:  ``{predicate_name: arity}`` from the context KB.
+        threshold:  Minimum score to accept a match (default 0.3).
+        max_depth:  Maximum hypernym-path depth (default 4).
+        stop:       Stop-word set for token filtering.
+        pos_mode:   POS categories to include; ``"verb"``, ``"noun"``,
+                    or ``"verb_noun"`` (default, verb + noun).
     """
     results: list[tuple[str, str, int, int, float]] = []
     for hyp_pred, hyp_arity in hyp_preds.items():
@@ -410,7 +472,7 @@ def find_wordnet_matches(
         for ctx_pred, ctx_arity in ctx_preds.items():
             if hyp_pred == ctx_pred:
                 continue
-            score = wordnet_predicate_score(hyp_pred, ctx_pred, max_depth, stop)
+            score = wordnet_predicate_score(hyp_pred, ctx_pred, max_depth, stop, pos_mode)
             if score >= threshold and score > best_score:
                 best_ctx, best_arity, best_score = ctx_pred, ctx_arity, score
         if best_ctx is not None:
@@ -527,6 +589,18 @@ class AlignmentConfig:
         semantic_bridge_max_depth:
             Maximum hypernym path depth to consider (default 4).  Deeper
             paths are treated as unrelated (score 0.0).
+        semantic_bridge_pos:
+            Which WordNet part-of-speech categories to use when looking up
+            synsets.  Accepted values:
+
+            * ``"verb_noun"`` *(default)* — both verb and noun synsets.
+              Best for mixed predicate names that blend action words
+              (``kill``, ``guard``) and entity words (``son``, ``guardian``).
+            * ``"verb"`` — verb synsets only.  Faster; suitable when
+              predicate names are purely action-based.
+            * ``"noun"`` — noun synsets only.  Useful when predicate names
+              represent entity categories (``child``, ``applicant``) and
+              verb senses would add noise.
     """
 
     normalize: bool = False
@@ -543,6 +617,7 @@ class AlignmentConfig:
     semantic_bridge: bool = False
     semantic_bridge_threshold: float = 0.3
     semantic_bridge_max_depth: int = 4
+    semantic_bridge_pos: str = "verb_noun"
 
     constant_align: bool = False
     constant_align_types: tuple[str, ...] = ("person",)
@@ -751,6 +826,7 @@ def align(
                 threshold=config.semantic_bridge_threshold,
                 max_depth=config.semantic_bridge_max_depth,
                 stop=config.stop_tokens,
+                pos_mode=config.semantic_bridge_pos,
             )
             rules = [
                 make_bridge_rule(hp, ha, cp, ca)

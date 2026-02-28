@@ -227,6 +227,16 @@ def main(
         "--semantic-bridge-max-depth",
         help="Maximum hypernym path depth for semantic bridge (default 4)",
     ),
+    semantic_bridge_pos: str = typer.Option(
+        "verb_noun",
+        "--semantic-bridge-pos",
+        help=(
+            "WordNet POS categories for semantic bridge: "
+            "'verb' (action predicates only), "
+            "'noun' (entity/concept predicates only), "
+            "or 'verb_noun' (both, default)."
+        ),
+    ),
     constant_align: bool = typer.Option(
         False,
         "--constant-align/--no-constant-align",
@@ -257,6 +267,7 @@ def main(
         semantic_bridge=semantic_bridge,
         semantic_bridge_threshold=semantic_bridge_threshold,
         semantic_bridge_max_depth=semantic_bridge_max_depth,
+        semantic_bridge_pos=semantic_bridge_pos,
         constant_align=constant_align,
     )
 
@@ -277,7 +288,8 @@ def main(
         if semantic_bridge:
             strategies.append(
                 f"semantic_bridge(threshold={semantic_bridge_threshold}, "
-                f"max_depth={semantic_bridge_max_depth})"
+                f"max_depth={semantic_bridge_max_depth}, "
+                f"pos={semantic_bridge_pos})"
             )
         if constant_align:
             strategies.append("constant_align")
