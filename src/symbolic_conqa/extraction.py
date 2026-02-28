@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import re
 from collections.abc import Callable
 from pathlib import Path
 from typing import Any
@@ -22,6 +23,50 @@ from .prompts import (
 )
 
 console = Console()
+
+# Common ground person atoms that should be Prolog variables in context rules
+_PERSON_GROUND_ATOMS = frozenset({
+    "me", "you", "person", "applicant", "user", "claimant",
+    "employee", "worker", "tenant", "customer", "client",
+})
+
+# Regex matching a Prolog term argument list: pred(arg1, arg2, ...)
+_TERM_RE = re.compile(r"([a-z][a-z0-9_]*)\(([^)]+)\)")
+
+
+def _variabilize_context_rules(kb: LogicKB) -> LogicKB:
+    """Post-process a context LogicKB to replace common person ground atoms
+    with Prolog variable ``Person`` in Prolog facts and rules.
+
+    This is a safety net for cases where the LLM ignores the few-shot
+    example and uses ground atoms like ``me`` or ``applicant`` instead
+    of uppercase variables.
+    """
+
+    def _replace_person_atoms(clause: str) -> str:
+        def _repl(m: re.Match) -> str:
+            pred = m.group(1)
+            args_str = m.group(2)
+            args = [a.strip() for a in args_str.split(",")]
+            new_args = [
+                "Person" if a in _PERSON_GROUND_ATOMS else a
+                for a in args
+            ]
+            return f"{pred}({', '.join(new_args)})"
+        return _TERM_RE.sub(_repl, clause)
+
+    new_facts = [_replace_person_atoms(f) for f in kb.prolog.facts]
+    new_rules = [_replace_person_atoms(r) for r in kb.prolog.rules]
+    new_optional = [_replace_person_atoms(r) for r in kb.prolog.optional_rules]
+
+    # Build updated KB (immutable pydantic model, so reconstruct)
+    new_prolog = kb.prolog.model_copy(update={
+        "facts": new_facts,
+        "rules": new_rules,
+        "optional_rules": new_optional,
+    })
+    return kb.model_copy(update={"prolog": new_prolog})
+
 
 # ---------------------------------------------------------------------------
 # Text extractors
@@ -213,6 +258,9 @@ def run_extraction(
                     kb_list.extend(single_result)
 
             for job, kb in zip(batch_jobs, kb_list):
+                # Post-process context KBs to variabilize person ground atoms
+                if not include_hypothesis:
+                    kb = _variabilize_context_rules(kb)
                 record = {
                     "index": job["index"],
                     "id": job["id"],

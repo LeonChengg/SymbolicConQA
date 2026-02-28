@@ -127,6 +127,20 @@ _EXTRACTORS = {
 }
 
 
+def _collect_urls_from_file(path: str) -> set[str]:
+    """Load a JSON/JSONL file and collect all unique ``url`` fields."""
+    from symbolic_conqa.io_utils import load_json_or_jsonl
+
+    records = load_json_or_jsonl(path)
+    urls: set[str] = set()
+    for rec in records:
+        if isinstance(rec, dict):
+            url = rec.get("url", "")
+            if url:
+                urls.add(url)
+    return urls
+
+
 @app.command()
 def main(
     task: Task = typer.Argument(..., help="Extraction task to run"),
@@ -137,12 +151,22 @@ def main(
     num_batches: int | None = typer.Option(None, "-n", "--num-batches", help="Number of batches"),
     yes_no_only: bool = typer.Option(False, "--yes-no-only", help="Only process yes/no questions (scenario_question only)"),
     context_kb: str | None = typer.Option(None, "--context-kb", help="Path to context KB JSONL for injecting predicates (scenario_question only)"),
+    filter_by: str | None = typer.Option(None, "--filter-by", help="Path to a JSON/JSONL file (e.g. dev.json) to filter context documents by URL (context task only)"),
 ) -> None:
     """Run logic extraction for a given task."""
     load_dotenv(find_dotenv())
 
     cfg = _TASK_CONFIGS[task]
     sample_filter = _is_yes_no if (yes_no_only and task == Task.scenario_question) else None
+
+    # Build URL filter for context task
+    if filter_by and task == Task.context:
+        url_set = _collect_urls_from_file(filter_by)
+        typer.echo(f"Filtering context documents to {len(url_set)} unique URLs from {filter_by}")
+        base_filter = sample_filter
+        sample_filter = lambda s, _urls=url_set, _base=base_filter: (
+            s.get("url", "") in _urls and (_base is None or _base(s))
+        )
 
     # Build context predicate, constant, and rules indices if provided
     ctx_pred_index: dict[str, str] | None = None

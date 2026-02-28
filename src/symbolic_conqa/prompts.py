@@ -26,16 +26,53 @@ REQUIREMENTS
   - CORRECT: can_write_request_to(Person, cac).    % any person can write to CAC
   - WRONG:   must_be_aged_18_or_over(applicant).   % ground atom, won't match 'me'
   - WRONG:   can_write_request_to(person, cac).    % 'person' is a ground atom in Prolog
-  - Keep specific named entities as lowercase constants: queen, hmrc, uk, etc."""
+  - Keep specific named entities as lowercase constants: queen, hmrc, uk, etc.
+
+CRITICAL FOR CONTEXT DOCUMENTS (general policy / legal texts):
+Context documents describe general policies applying to anyone.
+NEVER use "me", "you", or any ground atom for the person role in rules or general facts.
+ALWAYS use uppercase Prolog variables (Person, P, Applicant, etc.) for the person slot.
+Only use ground person atoms (me, john, etc.) in scenario-specific facts about a particular individual."""
 
 SYSTEM_PROMPT = _SYSTEM_PROMPT_BASE.format(
     hypothesis_line=(
         "4) A hypothesis in both FOL and Prolog forms (placed in the `hypothesis` field"
         " inside the `fol` and `prolog` blocks respectively).\n"
     ),
-)
+) + """
 
-SYSTEM_PROMPT_NO_HYPOTHESIS = _SYSTEM_PROMPT_BASE.format(hypothesis_line="")
+EXAMPLE (scenario/question extraction with context predicates):
+Context predicates: can_apply_for_blue_badge/1, aged_3_or_over/1, has_permanent_disability/1, affects_mobility/1
+Context rules: can_apply_for_blue_badge(Person) :- aged_3_or_over(Person), has_permanent_disability(Person), affects_mobility(Person).
+Input scenario: "My grandmother is 72 years old and has arthritis that makes it hard for her to walk."
+Input question: "Can my grandmother apply for a Blue Badge?"
+Output (Prolog):
+  facts:
+    - "aged_3_or_over(grandmother)."
+    - "has_permanent_disability(grandmother)."
+    - "affects_mobility(grandmother)."
+  rules: []
+  hypothesis: "can_apply_for_blue_badge(grandmother)"
+  Note: Facts use the EXACT predicate names from context. Hypothesis is the HEAD of a matching context rule.
+  Note: "grandmother" is a specific entity from the scenario, so it is a lowercase constant.
+  Note: Facts are extracted because the scenario TEXT supports them (72 > 3, arthritis = disability, hard to walk = affects mobility).
+"""
+
+SYSTEM_PROMPT_NO_HYPOTHESIS = _SYSTEM_PROMPT_BASE.format(hypothesis_line="") + """
+
+EXAMPLE (context document extraction):
+Input: "You can apply for a Blue Badge if you are aged 3 or over and have a permanent disability that affects your mobility."
+Output (Prolog):
+  facts: []
+  rules:
+    - "can_apply_for_blue_badge(Person) :- aged_3_or_over(Person), has_permanent_disability(Person), affects_mobility(Person)."
+  Note: Person is an uppercase Prolog variable — it unifies with ANY specific entity (me, john, etc.).
+  Note: No facts here because the text states general eligibility criteria, not specific individuals.
+Output (FOL):
+  facts: []
+  rules:
+    - "∀x (Aged3OrOver(x) ∧ HasPermanentDisability(x) ∧ AffectsMobility(x) → CanApplyForBlueBadge(x))"
+"""
 
 USER_TEMPLATE = """Extract logic from the following text.
 

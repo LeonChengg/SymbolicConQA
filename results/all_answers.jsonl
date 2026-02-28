@@ -4,11 +4,11 @@
     "question": "Can I apply to change his surname to mine?",
     "scenario": "I am a guardian to a 16year old teenage boy from syria whom i cared for when he was young and homeless. I want to change his surname to to mine.",
     "question_type": "yesno",
-    "prolog_goal": "needs_court_permission(_)",
+    "prolog_goal": "can_apply_to_be_special_guardian(me)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "yes",
@@ -28,7 +28,7 @@
     "question": "Can I claim off the government for damage caused by the vaccine?",
     "scenario": "As a vulnerable adult I received the Covid-19 vaccination in January 2021. Almost immediately I started to feel very unwell, and over the next few weeks the left side of my face became paralysed, almost like I had had a stroke. I am now unable to talk properly.",
     "question_type": "yesno",
-    "prolog_goal": "receives_payment(me)",
+    "prolog_goal": "eligible_for_vaccine_damage_payment(me)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -51,7 +51,7 @@
     "question": "Will I pay capital gains tax if I sell my current home in order to move into an inherited property?",
     "scenario": "I recently inherited my childhood home in Sussex following the death of my father. For sentimental reasons, and because it is bigger than my current home, I would like to move into it with my family. This would mean either selling or renting out my current home. I know that you don't have to pay capital gains tax when you sell your own home, but I'm not clear whether my current home would be classed as my main home if I move into the other property.",
     "question_type": "yesno",
-    "prolog_goal": "must_pay_inheritance_tax(_)",
+    "prolog_goal": "pay_tax_on_inheritance(me)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -72,11 +72,11 @@
     "question": "Can my partner take leave from work due to my stillbirth even though he is not the biological parent of the child?",
     "scenario": "I work for a large company as an employee and I have recently experienced a stillbirth at 30 weeks pregnant. I would like my live in partner to have some leave to support me.",
     "question_type": "yesno",
-    "prolog_goal": "eligible_for_parental_bereavement_leave(_)",
+    "prolog_goal": "eligible_for_parental_bereavement_pay(partner)",
     "context_found": true,
-    "entails": true,
+    "entails": false,
     "predicted_values": [],
-    "predicted": "yes",
+    "predicted": "no",
     "gold_answers": [
         [
             "yes",
@@ -93,7 +93,7 @@
     "question": "Are adoptive parents entitled to bereavement leave?",
     "scenario": "My husband and I were in the process of adopting our would-be daughter, who was placed with us pending the adoption order. Tragically, we lost her in a traffic accident. We are devastated by her loss and will find it incredibly difficult to carry on working at this time.",
     "question_type": "yesno",
-    "prolog_goal": "eligible_for_parental_bereavement_leave(_)",
+    "prolog_goal": "eligible_for_parental_bereavement_pay(husband)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -114,7 +114,7 @@
     "question": "Is there a way he can be compensated for the damages  after this unfortunate episode?",
     "scenario": "My uncle has  developed a serious blood clot after getting his first dose of covid vaccine which has left him severed paralysed and disabled.",
     "question_type": "yesno",
-    "prolog_goal": "receives_payment(_)",
+    "prolog_goal": "eligible_for_vaccine_damage_payment(me)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -137,7 +137,7 @@
     "question": "Do I have to pay inheritance tax on my windfall?",
     "scenario": "I inherited forty thousand pounds from my late father. I also have savings of around the same amount. I am currently out of work.",
     "question_type": "yesno",
-    "prolog_goal": "must_pay_inheritance_tax(me)",
+    "prolog_goal": "pay_tax_on_inheritance(me)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -165,7 +165,7 @@
     "question": "Can I continue to claim Housing Benefit?",
     "scenario": "I'm 71, and am currently living in rented accommodation with my 64-year-old Civil Partner. I have an existing Housing Benefit claim.",
     "question_type": "yesno",
-    "prolog_goal": "receives_payment(_)",
+    "prolog_goal": "eligible_for_housing_benefit(me)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -186,11 +186,11 @@
     "question": "Can my sister and I over-rule our other sister and fellow EPA attorney to do what we believe is in our brother's best interests?",
     "scenario": "My two sisters and I all hold enduring power of attorney for our brother, who has disabilities which cause him to lack mental capacity to make his own decisions. The EPA was registered in 2006. As his illness has progressed, it's no longer practical for him to receive care in the home and two of us believe that it is in his best interests for him to move into a residential care home. This has financial implications for him as he would have to partly self-fund the care from the sale of his current home. The other sibling disagrees and wants him to remain at home.",
     "question_type": "yesno",
-    "prolog_goal": "can_make_decision(me)",
+    "prolog_goal": "must_make_decision_in_best_interests(s1)",
     "context_found": true,
-    "entails": true,
+    "entails": false,
     "predicted_values": [],
-    "predicted": "yes",
+    "predicted": "no",
     "gold_answers": [
         [
             "yes",
@@ -213,7 +213,7 @@
     "question": "As his special guardian, can I take my nephew with us to live in Boston for a year?",
     "scenario": "My 10 year old nephew has been living with us for the last two years, since his parents are unable to care for him due to addiction problems. We would like to look after him long-term and have been advised to apply to be a special guardian. However, I have been offered the chance to take a year's sabbatical from my career in order to join an academic program in the US, so we are considering letting our home and moving to Boston for a year.",
     "question_type": "yesno",
-    "prolog_goal": "can_apply_special_guardianship(me)",
+    "prolog_goal": "can_apply_to_be_special_guardian(guardian)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -238,11 +238,11 @@
     "question": "Will we be eligible for a paid leave  from work during foster care training?",
     "scenario": "My partner and i are foster parents to our lovely 6 years  old girl who lost her parents during iraq war. We have taken a personal intiative to acqure more skills on how to give our girl the best foster care through training .",
     "question_type": "yesno",
-    "prolog_goal": "get_foster_care_allowance(me)",
+    "prolog_goal": "must_complete_training_within_12_months(f)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "no",
@@ -259,7 +259,7 @@
     "question": "Would I be entitled to claim Housing Benefit?",
     "scenario": "I am 24, single and currently working only part time. I am unable to meet my private housing rent on the money that I am earning.",
     "question_type": "yesno",
-    "prolog_goal": "housing_benefit(_)",
+    "prolog_goal": "eligible_for_housing_benefit(me)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -280,11 +280,11 @@
     "question": "Can I apply to become my brothers legal guardian considering my age?",
     "scenario": "I am a 17 year old from Kent and my mother is no longer fit to care for my younger brother as she is mentally unstable.",
     "question_type": "yesno",
-    "prolog_goal": "can_apply_special_guardianship(me)",
+    "prolog_goal": "can_apply_to_be_special_guardian(me)",
     "context_found": true,
-    "entails": true,
+    "entails": false,
     "predicted_values": [],
-    "predicted": "yes",
+    "predicted": "no",
     "gold_answers": [
         [
             "no",
@@ -301,7 +301,7 @@
     "question": "Can I overrule her decision and become her attorney?",
     "scenario": "My 83 year old mother who I care for is unable to manage her own finances due to bad health but insists she is competent to do so.",
     "question_type": "yesno",
-    "prolog_goal": "can_make_decision(_)",
+    "prolog_goal": "must_use_power_of_attorney(a)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -322,7 +322,7 @@
     "question": "The council have now found me some temporary housing. Can I apply for Housing Benefit?",
     "scenario": "The whole of 2020 and 2021 i went through a very hard period during the covid pandemic. I contracted the covid virus and had severe symptoms which made me lose my job. I got mentally depressed because i could not pay my rent and house bills. I was kicked out from my rented house.",
     "question_type": "yesno",
-    "prolog_goal": "housing_benefit(_)",
+    "prolog_goal": "eligible_for_housing_benefit(me)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -343,7 +343,7 @@
     "question": "I am wanting to pass the responsibility of being property and affairs deputy to my brother. Is this allowed?",
     "scenario": "My grandfather was injured in a serious road traffic accident 2 years ago. Following this he has lost some of his mental capacity and therefore I am now his property and affairs deputy. He has just received a large lump sum of money via court order due to the accident.",
     "question_type": "yesno",
-    "prolog_goal": "can_manage_account(u)",
+    "prolog_goal": "must_manage_account_for_person(d)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -364,11 +364,11 @@
     "question": "Do I need to register the land with the same organisation in England as i do in Scotland?",
     "scenario": "I am a Farmer who has recently moved to the UK and I am planning on relocating to Scotland and buying farm land but I don't understand the different rules for Scotland compared to England.",
     "question_type": "yesno",
-    "prolog_goal": "must_register(l, r)",
+    "prolog_goal": "must_register_land(Land)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "no",
@@ -376,7 +376,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -385,11 +385,11 @@
     "question": "Do I need to make changes to the existing registration of the land to reflect that I have bought it?",
     "scenario": "I have recently bought a farm from another and plan to rent this out. Im in England and an older adult who has struggled with understanding all the rules so far.",
     "question_type": "yesno",
-    "prolog_goal": "must_complete_registration(l, hm)",
+    "prolog_goal": "must_register_land(Land)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "yes",
@@ -397,7 +397,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -406,7 +406,7 @@
     "question": "Can I have my British passport back? I know that Italy allows double citizenship.",
     "scenario": "My parents moved to Italy before getting married. I was born in Rome and lived there all my life. I gave up my British citizenship when I was 18; it was a bad choice. Now, because of Brexit, I'm worried that is going to be complicated to visit my grandparents in London.",
     "question_type": "yesno",
-    "prolog_goal": "can_apply_for_renunciation(_)",
+    "prolog_goal": "can_apply_to_renounce_citizenship(me)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -427,11 +427,11 @@
     "question": "Is my child able to be assessed for extra learning support in school?",
     "scenario": "My child is 5 years old and starting school this year, he is physically well however I feel as though my child is developing slower than other children are at the same age which i am concerned about.",
     "question_type": "yesno",
-    "prolog_goal": "send_support(u)",
+    "prolog_goal": "can_request_ehc_plan(Person)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "yes",
@@ -439,7 +439,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -448,7 +448,7 @@
     "question": "Am I eligible for Gift Aid?",
     "scenario": "I run a small, independent charity which attempts to help people struggling with their vet costs. I have several people who pay monthly by direct debit and also receive some one off donations.",
     "question_type": "yesno",
-    "prolog_goal": "can_claim_gift_aid(_)",
+    "prolog_goal": "can_claim_gift_aid(charity)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -483,11 +483,11 @@
     "question": "Can we still claim gift aid on unpaid donations?",
     "scenario": "My charity often receives donations of second hand clothes and other items which we pass on to people in need. These are given as gifts and we do not accept payment for them, nor do we offer payment to the donors.",
     "question_type": "yesno",
-    "prolog_goal": "can_claim_gift_aid(_)",
+    "prolog_goal": "can_claim_gift_aid(charity)",
     "context_found": true,
-    "entails": true,
+    "entails": false,
     "predicted_values": [],
-    "predicted": "yes",
+    "predicted": "no",
     "gold_answers": [
         [
             "no",
@@ -504,7 +504,7 @@
     "question": "If I give permission to the charity to claim tax back, are they eligible to claim?",
     "scenario": "I am on full time role and I am on Pay as you earn(PAYE) to pay income tax. I was approached by a charity asking permission to claim back my tax",
     "question_type": "yesno",
-    "prolog_goal": "can_claim_gift_aid(_)",
+    "prolog_goal": "can_claim_gift_aid(charity)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -530,11 +530,11 @@
     "question": "Can a charity claim gift aid on my limited company ?",
     "scenario": "I have a limited company trading as a IT software consultancy. I have paid the Corporation tax for the previous tax year of my company. I want to give permission for a charity to claim gift aid on the corporation tax I paid",
     "question_type": "yesno",
-    "prolog_goal": "can_claim_gift_aid(_)",
+    "prolog_goal": "can_claim_gift_aid(charity)",
     "context_found": true,
-    "entails": true,
+    "entails": false,
     "predicted_values": [],
-    "predicted": "yes",
+    "predicted": "no",
     "gold_answers": [
         [
             "no",
@@ -551,7 +551,7 @@
     "question": "Can a non-British national recieve an honour for their achievements outside the UK?",
     "scenario": "We are a family of Jamaican heritage, living in the UK; I was born here. My cousins still live in Jamaica. One of them has done a huge amount of work with street children in Jamaica, setting up her own charity and working all hours alongside her own job. I'd like to nominate her for an honour but as she is not British and her work was not in Britain, I don't know if I can.",
     "question_type": "yesno",
-    "prolog_goal": "suitable_for_honour(cousin)",
+    "prolog_goal": "can_nominate_for_honour(donor)",
     "context_found": true,
     "entails": false,
     "predicted_values": [],
@@ -572,7 +572,7 @@
     "question": "Am I the sort of person that the Coast Guard want to recruit?",
     "scenario": "When I was thirteen  I was rescued by the Coast Guard and ever since I have had a desire to volunteer for them. I am now 25 and have free time. I am a normal weight and have no physical disabilities.",
     "question_type": "yesno",
-    "prolog_goal": "may_have_to_rescue(_)",
+    "prolog_goal": "can_apply_to_volunteer(coastguard)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -598,7 +598,7 @@
     "question": "Are there any costs to be incurred in volunteering for the Coast Guard?",
     "scenario": "I would really like to give something back to society by volunteering for the Coast Guard but I am unemployed right now and have very little disposable income to call my own. I do have a lot of free time, however.",
     "question_type": "yesno",
-    "prolog_goal": "can_claim_expenses(_)",
+    "prolog_goal": "can_apply_to_volunteer(coastguard)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -619,11 +619,11 @@
     "question": "Is additional assessment required whether he needs more support than SEND ?",
     "scenario": "We have a son who is 14 years old and he is still having difficulty to understand things. He is currently receiving special educational needs support. We think he might need more support than what he receive from SEND",
     "question_type": "yesno",
-    "prolog_goal": "eligible_for_ehc_plan(son)",
+    "prolog_goal": "can_request_ehc_plan(son)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "yes",
@@ -640,11 +640,11 @@
     "question": "Should i change and put  my names on the rural land register?",
     "scenario": "I live in England and i have bought a big chunk of land from my neighbour in the countryside. I would like to use it for wheat farming and other developments.",
     "question_type": "yesno",
-    "prolog_goal": "must_register(f, r)",
+    "prolog_goal": "must_register_land(land)",
     "context_found": true,
-    "entails": true,
+    "entails": false,
     "predicted_values": [],
-    "predicted": "yes",
+    "predicted": "no",
     "gold_answers": [
         [
             "yes",
@@ -664,7 +664,7 @@
     "question": "Can I apply online if I am not in UK?",
     "scenario": "I am a British Citizen living abroad in Japan. I have a permanent Job, family and acquired alot of properties Japan.My life is good and comfortable and by the fact that i don't have any family or relatives in UK. I would like to renounce my British Citizenship.",
     "question_type": "yesno",
-    "prolog_goal": "can_apply_for_renunciation(_)",
+    "prolog_goal": "can_apply_to_renounce_citizenship(me)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -685,7 +685,7 @@
     "question": "Will he qualify to be a coastguard volunteer ?",
     "scenario": "My brother is 28 years and he is currently unemployed. He lives in kent and is a fully trained coastguard with a driving license.During covid lockdown he has had alot of stress and embarked on binge eating. He has since added weight and is now 145kg and his waistline is 130cm. A company near dover has accepted him to be a volunteer but first he must undergo health and fitness test.",
     "question_type": "yesno",
-    "prolog_goal": "can_claim_expenses(_)",
+    "prolog_goal": "can_apply_to_volunteer(my_brother)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -706,7 +706,7 @@
     "question": "Can i claim this as a gift Aid?",
     "scenario": "During our parents school meeting ,the headteacher requested us to make a voluntary contributions towards Year 7 educational trip .My daughter is in Year 7 and i made a payment of £5000 to sponser the trip.",
     "question_type": "yesno",
-    "prolog_goal": "can_claim_gift_aid(_)",
+    "prolog_goal": "can_claim_gift_aid(charity)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -731,11 +731,11 @@
     "question": "Can i claim online?",
     "scenario": "I have recieved alot of donations and i have kept all the records for over 5 years and i would like to claim Gift Aids.",
     "question_type": "yesno",
-    "prolog_goal": "can_claim_gift_aid(_)",
+    "prolog_goal": "can_claim_gift_aid(charity)",
     "context_found": true,
-    "entails": true,
+    "entails": false,
     "predicted_values": [],
-    "predicted": "yes",
+    "predicted": "no",
     "gold_answers": [
         [
             "no",
@@ -752,11 +752,11 @@
     "question": "Can i get my friend to nominate me?",
     "scenario": "I am 23 years old and live in England. I have been very compassionate in my entire life and i have taken a key role in helping my locality. During covid pandemic i took up a personal intiative of helping my vulnerable old neighbours by doing shopping, walking their pets, giving them hope when they were sick and scared. Made sure sure they have my contacts which they can dial for prompt support. I became a key pillar to their lives during the covid pandemic.",
     "question_type": "yesno",
-    "prolog_goal": "nominating_someone(f, _)",
+    "prolog_goal": "can_nominate_for_honour(me)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "yes",
@@ -773,11 +773,11 @@
     "question": "Can i nominate her for honorary award even if she does not live in UK?",
     "scenario": "My Grandmother lives in South Africa. She is now 105 years and during her adult life, she took  a key community figure in ensuring all girls from poor families have acessed to education.She ran several campaigns to shun early marriages and female genital mutilations.",
     "question_type": "yesno",
-    "prolog_goal": "nominating_someone(me, _)",
+    "prolog_goal": "can_nominate_for_honour(my_grandmother)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "yes",
@@ -794,11 +794,11 @@
     "question": "Can she qualify  for further education funding?",
     "scenario": "My daughter has been offered an English grammar course . She is 17 years old and lives in UK. she wishes to pursue it. Unfortunately she needs some money to cater for day to day living cost.",
     "question_type": "yesno",
-    "prolog_goal": "qualifies_for_financial_support(_)",
+    "prolog_goal": "can_apply_postgraduate_loan(daughter)",
     "context_found": true,
-    "entails": true,
+    "entails": false,
     "predicted_values": [],
-    "predicted": "yes",
+    "predicted": "no",
     "gold_answers": [
         [
             "yes",
@@ -815,11 +815,11 @@
     "question": "Do I need to take Compulsory basic training to ride my moped ?",
     "scenario": "I have passed my car driving test in February 2000 in UK. Been driving the car for almost 20 years. I own a 50cc moped but did not use it and recently been thinking whether should I start riding moped",
     "question_type": "yesno",
-    "prolog_goal": "must_complete_CBT(me)",
+    "prolog_goal": "can_ride(me, moped)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "no",
@@ -836,7 +836,7 @@
     "question": "Am I eligible for a master's loan after dropping out due to illness?",
     "scenario": "I was a post-graduate student who took out a master's loan. I had to leave my course due to having cancer and requiring treatment. I have now recovered, and I am looking to do a Master's course.",
     "question_type": "yesno",
-    "prolog_goal": "can_apply_for_postgraduate_loan(me)",
+    "prolog_goal": "can_apply_postgraduate_loan(me)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -857,11 +857,11 @@
     "question": "Will I have to pay for a basic maths and english course?",
     "scenario": "I left school last year at 16 and unemployed. I know I need to get some skills and my maths and English are very bad. I don't like going out but have a computer and an internet connection.",
     "question_type": "yesno",
-    "prolog_goal": "has_free_courses(_)",
+    "prolog_goal": "further_education(me)",
     "context_found": true,
-    "entails": true,
+    "entails": false,
     "predicted_values": [],
-    "predicted": "yes",
+    "predicted": "no",
     "gold_answers": [
         [
             "no",
@@ -878,11 +878,11 @@
     "question": "Can he be struck out of the ADI register?",
     "scenario": "My work colleague is an approved driving instructor and has been convicted of rape and physical assault . This case has destroyed his reputation.",
     "question_type": "yesno",
-    "prolog_goal": "can_suspend_registration(c)",
+    "prolog_goal": "suspends(me, cbi)",
     "context_found": true,
-    "entails": true,
+    "entails": false,
     "predicted_values": [],
-    "predicted": "yes",
+    "predicted": "no",
     "gold_answers": [
         [
             "yes",
@@ -899,11 +899,11 @@
     "question": "Can he be compensated?",
     "scenario": "My father was unfairly suspended but was still in the  ADI register and won the case through an appeal . He suffered loss of income and depression during the trial.",
     "question_type": "yesno",
-    "prolog_goal": "can_claim_compensation(_)",
+    "prolog_goal": "claims_compensation(f)",
     "context_found": true,
-    "entails": true,
+    "entails": false,
     "predicted_values": [],
-    "predicted": "yes",
+    "predicted": "no",
     "gold_answers": [
         [
             "yes",
@@ -920,11 +920,11 @@
     "question": "Is it true that a CBT is not needed with a driving licence?",
     "scenario": "I passed my driving test on the 20th June 2008. I want to drive a 125cc Motorbike, and I have been told that you do not need to do a CBT course with a driving licence.",
     "question_type": "yesno",
-    "prolog_goal": "not_needing_cbt(f)",
+    "prolog_goal": "¬must_take_cbt(me)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "no",
@@ -932,7 +932,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "timeout"
 }
 
 {
@@ -941,11 +941,11 @@
     "question": "Can I make a claim for the losses on my income?",
     "scenario": "I am a driving instructor who is ADI registered. I have recently won an appeal against removing me from the ADI register. I have experienced a loss of earnings due to this.",
     "question_type": "yesno",
-    "prolog_goal": "can_claim_compensation(_)",
+    "prolog_goal": "claims_compensation(me)",
     "context_found": true,
-    "entails": true,
+    "entails": false,
     "predicted_values": [],
-    "predicted": "yes",
+    "predicted": "no",
     "gold_answers": [
         [
             "yes",
@@ -962,7 +962,7 @@
     "question": "Do I qualify for redundancy pay ?",
     "scenario": "I am employee working under a contract of employment and have 3 years of continuous service. Recently decided for a early retirement",
     "question_type": "yesno",
-    "prolog_goal": "entitled_to_redundancy_pay(_)",
+    "prolog_goal": "makes_redundant(employer, me)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -983,11 +983,11 @@
     "question": "Can I leave before the planned leaving date ?",
     "scenario": "I am on a full time employment. Recently I was made redundant and was given 4 weeks of notice and given a planned leaving date. Now I got a better offer outside within 1 weeks of notice",
     "question_type": "yesno",
-    "prolog_goal": "leave_before_planned_date(me)",
+    "prolog_goal": "¬makes_redundant(employer, me)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "yes",
@@ -995,7 +995,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "timeout"
 }
 
 {
@@ -1004,11 +1004,11 @@
     "question": "Do we need to update our risk assessment?",
     "scenario": "Our shipping company owns a small commercial vessel over 30 meters in length. We have recently had some major work done including the installation of a new propulsion system",
     "question_type": "yesno",
-    "prolog_goal": "does_risk_assessments(operator)",
+    "prolog_goal": "performs_risk_assessment(operator)",
     "context_found": true,
-    "entails": true,
+    "entails": false,
     "predicted_values": [],
-    "predicted": "yes",
+    "predicted": "no",
     "gold_answers": [
         [
             "yes",
@@ -1025,7 +1025,7 @@
     "question": "Am I able to take time off work today to help my cousin deal with this issue under the emergency dependent's provisions in this case?",
     "scenario": "My cousin has difficulties learning things and I generally watch out for him even though he is 24 years old.  He has had problems with a neighbour, who has smashed his windows last night.",
     "question_type": "yesno",
-    "prolog_goal": "allowed_time_off(f)",
+    "prolog_goal": "allowed_time_off_for_dependant(d)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -1046,11 +1046,11 @@
     "question": "I feel I have been treated unfairly.  Has my boss acted fairly according to the carers and dependents guidance?",
     "scenario": "I work shifts in a job that covers 24 hours a day seven days a week.  It is difficult to replace someone when they are off unexpectedly. My 7 year old child has been involved in a fight at school and slightly injured.  My boss could not find someone to replace me at short notice.  I was told I would have to find someone else to go to the school.",
     "question_type": "yesno",
-    "prolog_goal": "allowed_time_off(employee)",
+    "prolog_goal": "unfair_treatment(e)",
     "context_found": true,
-    "entails": true,
+    "entails": false,
     "predicted_values": [],
-    "predicted": "yes",
+    "predicted": "no",
     "gold_answers": [
         [
             "no",
@@ -1067,11 +1067,11 @@
     "question": "I was never allowed to take leave when I wanted it, paid too little even when I work overtime, and they terminated my employment two months early in February.  Can I use the email as evidence and obtain compensation?",
     "scenario": "I took a job at a local coffee bar.  The owners sent me an email stating that I could work until April the following year, and also my working hours; pay; leave entitlement; and responsibilities.  They said that was sufficient for a contract.",
     "question_type": "yesno",
-    "prolog_goal": "is_valid_contract(employee)",
+    "prolog_goal": "must_follow_terms(me, employer)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "yes",
@@ -1088,11 +1088,11 @@
     "question": "Will I receive any form of confirmation?",
     "scenario": "I am an employer who has just paid their PAYE settlement agreement. I have paid by post and want confirmation when it has been received.",
     "question_type": "yesno",
-    "prolog_goal": "payment_receipt_request(f)",
+    "prolog_goal": "must_pay_tax(hmrc, X)",
     "context_found": true,
-    "entails": true,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "yes",
+    "predicted": null,
     "gold_answers": [
         [
             "yes",
@@ -1103,7 +1103,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -1112,7 +1112,7 @@
     "question": "Do I have no rights because the job was only verbally agreed?",
     "scenario": "My employer has told me that we have no contract after I injured myself at work. I received a job offer, which I accepted.  I never received any written contract, and they are saying they have no responsibility over my health and safety.",
     "question_type": "yesno",
-    "prolog_goal": "must_explain_changes(_)",
+    "prolog_goal": "must_follow_terms(me, employer)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -1133,7 +1133,7 @@
     "question": "Do they have to pay for my time off?",
     "scenario": "I need to take some time off to look after my daughter, who was involved in a car accident. My employer has granted me leave, but mentioned nothing about pay.",
     "question_type": "yesno",
-    "prolog_goal": "reasonable_time_off(_)",
+    "prolog_goal": "allowed_time_off_for_dependant(d)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -1154,11 +1154,11 @@
     "question": "Will our account be closed ?",
     "scenario": "I started a limited company and employed 5 employees. I registered for PAYE scheme. We were very busy and could not pay HMRC",
     "question_type": "yesno",
-    "prolog_goal": "account_closed(hmrc)",
+    "prolog_goal": "must_notify_hmrc(Employee)",
     "context_found": true,
-    "entails": true,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "yes",
+    "predicted": null,
     "gold_answers": [
         [
             "yes",
@@ -1168,7 +1168,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -1177,7 +1177,7 @@
     "question": "Does the organisation of caring arrangements count as a emergency?",
     "scenario": "I am 43, and work full-time as a product manager at a software & services company. I have just been notified that my son has been hospitalised after a road traffic accident, and is likely to need a part-time carer for a few weeks while he recuperates.",
     "question_type": "yesno",
-    "prolog_goal": "reasonable_time_off(_)",
+    "prolog_goal": "allowed_time_off_for_dependant(d)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -1198,11 +1198,11 @@
     "question": "Is it possible for me to appeal this refusal, perhaps even to an industrial tribunal?",
     "scenario": "I am 32 and work as a sales representative for an insurance company. I am married, and my partner suffers from severe epilepsy which occasionally requires me to care for him for periods of 1-2 days. Despite this my employer has refused to allow me to take time off to deal with such incidents, on the grounds that the condition is pre-existing.",
     "question_type": "yesno",
-    "prolog_goal": "reasonable_time_off(_)",
+    "prolog_goal": "unfair_treatment(e)",
     "context_found": true,
-    "entails": true,
+    "entails": false,
     "predicted_values": [],
-    "predicted": "yes",
+    "predicted": "no",
     "gold_answers": [
         [
             "yes",
@@ -1219,7 +1219,7 @@
     "question": "Does my boat also qualify as a \"passenger ship\", with all the attendant safety requirements?",
     "scenario": "I own and operate a 10-seat foot passenger ferry which crosses the mouth of a river estuary in Devon, England. I have been advised that, legally, this makes my boat a \"seagoing vessel\" under current maritime law.",
     "question_type": "yesno",
-    "prolog_goal": "is_passenger_vessel(ship)",
+    "prolog_goal": "ship_type(operator)",
     "context_found": true,
     "entails": false,
     "predicted_values": [],
@@ -1240,7 +1240,7 @@
     "question": "As the annual amount to be paid is small, can I use my personal credit card to pay it?",
     "scenario": "I am the finance director for a highly specialised insurance company based in London. We have a PAYE Settlement Agreement with HMRC, although the annual value of the Class 1B NI payments it encompasses tends to be quite small",
     "question_type": "yesno",
-    "prolog_goal": "payment_method_allowed(_, credit_card)",
+    "prolog_goal": "has_payment_method(employee)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -1261,11 +1261,11 @@
     "question": "If we are unable to pay a bonus this year, could this constitute a breach of contract?",
     "scenario": "I own and run a biscuit factory in Scotland, which has 72 employees at present. We have traditionally given Xmas bonuses to our workforce; however entitlement to this perk is not specifically stated in their standard contracts of employment.",
     "question_type": "yesno",
-    "prolog_goal": "must_explain_changes(Employee)",
+    "prolog_goal": "must_follow_terms(employee, employer)",
     "context_found": true,
-    "entails": null,
+    "entails": true,
     "predicted_values": [],
-    "predicted": null,
+    "predicted": "yes",
     "gold_answers": [
         [
             "yes",
@@ -1273,7 +1273,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": "prolog exception during query"
+    "error": null
 }
 
 {
@@ -1282,7 +1282,7 @@
     "question": "Is it ok for the company not holding a consultation?",
     "scenario": "I am an employee and shop steward (USDAW) at a carpet retailer in the Midlands. Owing to the effect of COVID-19 on the retail trade my employer has announced 25 redundancies, without bothering to run a full consultation either with our union or with the employees as a whole.",
     "question_type": "yesno",
-    "prolog_goal": "negotiating_retention_of_position(employer, me)",
+    "prolog_goal": "consult_with_employees(employer)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -1303,7 +1303,7 @@
     "question": "Do I need a permit to use this tank for the house's domestic sewage disposal?",
     "scenario": "I have acquired and am currently renovating a very old residential property in Hertfordshire, England, which appears to have a septic tank which outflows directly into the ground in the back garden. The house does not appear to be in a Groundwater Protection Zone.",
     "question_type": "yesno",
-    "prolog_goal": "must_apply_for_permit_if_non_standard(septic_tank)",
+    "prolog_goal": "needs_permit(property)",
     "context_found": true,
     "entails": false,
     "predicted_values": [],
@@ -1328,11 +1328,11 @@
     "question": "Do I need to prove my \"right to rent\" when taking up this offer?",
     "scenario": "I am a Spanish national currently in the UK on a Student Visa, and am about to start my studies at a university in the SW of England. I have been offered rented accommodation by the University in one of their halls of residence.",
     "question_type": "yesno",
-    "prolog_goal": "can_apply_to_tribunal(_)",
+    "prolog_goal": "safety_responsibility(me)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "no",
@@ -1349,11 +1349,11 @@
     "question": "Can we appeal to a housing tribunal over this rent dispute?",
     "scenario": "I rent a room in a house in multiple occupation in Sheffield, England, and have a periodic assured shorthold tenancy agreement with the landlord. Recently, however, he has announced a very large rent increase as part of a \"section 13\" procedure, to which I and several other tenants in the building strongly object.",
     "question_type": "yesno",
-    "prolog_goal": "can_apply_to_tribunal(_)",
+    "prolog_goal": "safety_responsibility(me)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "yes",
@@ -1372,11 +1372,11 @@
     "question": "Can my mother claim back the VAT paid on the mobility vehicle?",
     "scenario": "I am the carer for my mother who is disabled and has mobility issues.  I shop on her behalf due to he disability.  I pay for the items with my debit card and she pays me back.  I have recently purchased on her behalf a mobility vehicle for which she paid me back the money.  I was charged VAT for it.",
     "question_type": "yesno",
-    "prolog_goal": "exempt_from_vat(_)",
+    "prolog_goal": "is_exempt_from_vat(mobility_vehicle)",
     "context_found": true,
-    "entails": true,
+    "entails": false,
     "predicted_values": [],
-    "predicted": "yes",
+    "predicted": "no",
     "gold_answers": [
         [
             "no",
@@ -1393,7 +1393,7 @@
     "question": "Am I able to reduce my payments to my debt?",
     "scenario": "I am an employee who earns £1,500 per month. I have been having £500 taken out every month to pay my debts, but I cannot afford this.",
     "question_type": "yesno",
-    "prolog_goal": "can_take_replication_from(_, debt_repayment_order)",
+    "prolog_goal": "report_change(me)",
     "context_found": true,
     "entails": false,
     "predicted_values": [],
@@ -1417,7 +1417,7 @@
     "question": "Is it possible to pay off this debt immediately?",
     "scenario": "I owe my friend £5000 he gave me to boost my wedding ceremony. I didn't pay his money back and took a court action. I have been served with a court county judge. I am a full time employee and my employer has received attachments of earnings order.",
     "question_type": "yesno",
-    "prolog_goal": "can_take_replication_from(_, debt_repayment_order)",
+    "prolog_goal": "report_change(me)",
     "context_found": true,
     "entails": false,
     "predicted_values": [],
@@ -1438,11 +1438,11 @@
     "question": "Will I be eligible for the reduced VAT rate?",
     "scenario": "I am 65 years old. I am looking to buy grab rails, which I will have the product installed at my home.",
     "question_type": "yesno",
-    "prolog_goal": "eligible_for_vat_reduction_rate(me)",
+    "prolog_goal": "eligible_for_reduced_vat(me)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "yes",
@@ -1459,11 +1459,11 @@
     "question": "Will I be able to buy these products as tax-free?",
     "scenario": "I want to buy some electronic products from the UK without paying VAT. I will have the products delivered directly to my factory in Japan.",
     "question_type": "yesno",
-    "prolog_goal": "exempt_from_vat(_)",
+    "prolog_goal": "is_exempt_from_vat(electronic_products)",
     "context_found": true,
-    "entails": true,
+    "entails": false,
     "predicted_values": [],
-    "predicted": "yes",
+    "predicted": "no",
     "gold_answers": [
         [
             "yes",
@@ -1480,7 +1480,7 @@
     "question": "Does she need to pay gambling tax?",
     "scenario": "My friend Ann is from Canada . She is was visiting the UK temporarily and won a lottery during a gambling event. She won a lot of money. Would like to know if she should inform the HMRC .",
     "question_type": "yesno",
-    "prolog_goal": "needs_to_inform_hmrc(ann)",
+    "prolog_goal": "inform_hmrc(ann)",
     "context_found": true,
     "entails": false,
     "predicted_values": [],
@@ -1501,11 +1501,11 @@
     "question": "Can i report him?",
     "scenario": "My immigration case has been mishandled by a solicitor I had hired.At first he requested a deposit of £3000 which I felt was unreasonable but paid. Second,I gave him all my supporting documents but he misplaced them. My efforts to meet him in his office too has been futile. He never turned up for appointments.",
     "question_type": "yesno",
-    "prolog_goal": "complain_about_adviser(_)",
+    "prolog_goal": "can_help_with_immigration(adviser)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "yes",
@@ -1522,11 +1522,11 @@
     "question": "Do I qualify for Bereavement Support payment?",
     "scenario": "My husband died after an accident at work. He was only 52. I am heartbroken and now strapped for money.",
     "question_type": "yesno",
-    "prolog_goal": "eligible_for_bsp(_)",
+    "prolog_goal": "eligible_for_bsp(partner)",
     "context_found": true,
-    "entails": true,
+    "entails": false,
     "predicted_values": [],
-    "predicted": "yes",
+    "predicted": "no",
     "gold_answers": [
         [
             "yes",
@@ -1547,11 +1547,11 @@
     "question": "Can we claim the main pool rate of 18%?",
     "scenario": "We bought a new lift for our office last year. We sell horticultural machinery and made £30,000 last year. We hope to make more this time.",
     "question_type": "yesno",
-    "prolog_goal": "use_writing_down_allowances(office_lift)",
+    "prolog_goal": "can_claim_annual_investment_allowance(office)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "no",
@@ -1568,11 +1568,11 @@
     "question": "Can I still use annual investment allowance in this case?",
     "scenario": "A few months ago I bought expensive table saw for my personal use but I want to use it in my business from now. I took a loan to buy it and there are still 10 monthly payments outstanding.",
     "question_type": "yesno",
-    "prolog_goal": "deduct_annual_investment_allowance(table_saw)",
+    "prolog_goal": "can_claim_annual_investment_allowance(me)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "no",
@@ -1589,11 +1589,11 @@
     "question": "Can i get a worked example on how i can file my returns to cover full financial year?",
     "scenario": "I run a transport limited company and I started trading the same day the company was set up.I want to file my returns at the end of my tax year.",
     "question_type": "yesno",
-    "prolog_goal": "file_company_tax_return(transport_company)",
+    "prolog_goal": "must_file_company_tax_return(transport_company)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "yes",
@@ -1610,11 +1610,11 @@
     "question": "Do we have to file tax returns for the period we were dormant?",
     "scenario": "We registered our company for corporation tax and started trading 5 months after our accounting reference date.We want to prepare our tax returns",
     "question_type": "yesno",
-    "prolog_goal": "file_company_tax_return(registered_company)",
+    "prolog_goal": "must_file_company_tax_return(our_company)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "yes",
@@ -1631,11 +1631,11 @@
     "question": "Is it ok for me to file only one Company Tax Return?",
     "scenario": "I started my first company last year and its almost time for me to fil my first accounts and the Company's tax returns. I began trading on the first day that my company was established which makes it so I have to file a Company Tax Return covering a span of over 12 months.",
     "question_type": "yesno",
-    "prolog_goal": "file_company_tax_return(first_company)",
+    "prolog_goal": "must_file_company_tax_return(my_company)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "no",
@@ -1652,11 +1652,11 @@
     "question": "Do I have to file two separate tax returns for the dormant period and for the period of trading?",
     "scenario": "This is the first limited company I am operating and I have been doing so for less than a year. It is almost time for me to file for Company Tax Returns. I realized that we registered the company for Corporation Tax after our accounting reference date. When we were first established we remained dormant for about 2 months before we began trading.",
     "question_type": "yesno",
-    "prolog_goal": "file_company_tax_return(company)",
+    "prolog_goal": "files_two_tax_returns(me)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "yes",
@@ -1673,7 +1673,7 @@
     "question": "Do I need to report gains on this asset in any way?",
     "scenario": "My software development company developed a proprietary that we are now interested in selling. The official date the algorithm was developed to what it is today is the 10th of October 2004.",
     "question_type": "yesno",
-    "prolog_goal": "report_gain(asset)",
+    "prolog_goal": "must_report_gain_to_hmrc(c)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -1694,7 +1694,7 @@
     "question": "Do we have to pay Corporate Tax on the shares sold?",
     "scenario": "My business associates and I are interested in selling shares of our limited company to potential investors. Since we have been expanding rapidly this will help us maintain our level of growth.",
     "question_type": "yesno",
-    "prolog_goal": "pay_corporation_tax_on_gain(me_and_associates)",
+    "prolog_goal": "must_pay_corporation_tax(c)",
     "context_found": true,
     "entails": false,
     "predicted_values": [],
@@ -1717,7 +1717,7 @@
     "question": "Will the interest I will be payed count as personal income for me?",
     "scenario": "Since my company is in a bit of a rough spot financially at the moment I am interested in lending it money. I will charge interest on this amount as it will be a big chunk of my personal savings.",
     "question_type": "yesno",
-    "prolog_goal": "pays_tax_on_loans(_)",
+    "prolog_goal": "must_keep_directors_loan_account(company)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -1738,11 +1738,11 @@
     "question": "Do we note the payments below the official rate in a normal way?",
     "scenario": "I am a director at the company I work at. Since I have fallen into some financial trouble after my divorce and my house catching on fire I requested a loan from my company. The board agreed and lent me £25000. I have been paying interest on this loan but at a lower rate then the official one since I am still struggling to get on my feet.",
     "question_type": "yesno",
-    "prolog_goal": "keeps_records(company)",
+    "prolog_goal": "must_keep_directors_loan_account(company)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "no",
@@ -1759,11 +1759,11 @@
     "question": "Am I eligible for Bereavement Support?",
     "scenario": "My husband died during a workplace accident 2 months ago. He had payed national insurance for 15 years and I am 50 years old.",
     "question_type": "yesno",
-    "prolog_goal": "eligible_for_bsp(_)",
+    "prolog_goal": "eligible_for_bsp(w)",
     "context_found": true,
-    "entails": true,
+    "entails": false,
     "predicted_values": [],
-    "predicted": "yes",
+    "predicted": "no",
     "gold_answers": [
         [
             "yes",
@@ -1782,11 +1782,11 @@
     "question": "As my mother is an EU citizen, am I eligible to claim help with funeral expenses?",
     "scenario": "My mother died two days ago. She was a French citizen as am I and indicated that she wished to be laid to rest in her home town in France. I am an only child and am not able to manage the expense all by myself. She does not have any insurance.",
     "question_type": "yesno",
-    "prolog_goal": "receives_funeral_expenses_payment(_)",
+    "prolog_goal": "eligible_for_funeral_payment(me)",
     "context_found": true,
-    "entails": true,
+    "entails": false,
     "predicted_values": [],
-    "predicted": "yes",
+    "predicted": "no",
     "gold_answers": [
         [
             "yes",
@@ -1813,7 +1813,7 @@
     "question": "Can she be eligible for funeral expenses payments?",
     "scenario": "Ann lives in the UK and receives house benefits. Her husband has succumbed to cancer. She needs help to give her late husband a decent burial.",
     "question_type": "yesno",
-    "prolog_goal": "receives_funeral_expenses_payment(_)",
+    "prolog_goal": "can_claim_funeral_payment(ann)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -1841,11 +1841,11 @@
     "question": "Is there a service helpline he can call?",
     "scenario": "My neighbor lives in the UK and his wife has died. He is eligible for a funeral expenses payment and wants to make a claim.",
     "question_type": "yesno",
-    "prolog_goal": "provides_payment_for_funeral(funeral_expenses_payment)",
+    "prolog_goal": "can_claim_funeral_payment(n)",
     "context_found": true,
-    "entails": true,
+    "entails": false,
     "predicted_values": [],
-    "predicted": "yes",
+    "predicted": "no",
     "gold_answers": [
         [
             "yes",
@@ -1862,7 +1862,7 @@
     "question": "Are we supposed to pay corporation tax?",
     "scenario": "We are a foreign company operating a branch office in the UK. We decided to sell all our assets including intangible assets and close the company.",
     "question_type": "yesno",
-    "prolog_goal": "pay_corporation_tax_on_gain(company)",
+    "prolog_goal": "must_pay_corporation_tax(c)",
     "context_found": true,
     "entails": false,
     "predicted_values": [],
@@ -1885,11 +1885,11 @@
     "question": "Can this be classified as a director’s loan?",
     "scenario": "My family runs a chain of grocery stores and I borrowed some money to buy a new car for my wife.",
     "question_type": "yesno",
-    "prolog_goal": "pays_tax_on_loans(directors_loan)",
+    "prolog_goal": "must_keep_directors_loan_account(f)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "yes",
@@ -1908,7 +1908,7 @@
     "question": "Is the process of obtaining a license in London the same as in Manchester?",
     "scenario": "I recently move to London. Before doing so I lived in Manchester where I was operating a private taxi service. After settling in I plan on picking up the same business and operating a taxi vehicle again. I am pretty sure I will need a new license.",
     "question_type": "yesno",
-    "prolog_goal": "obtaining_license_in_london_same_as_in_manchester(london, manchester)",
+    "prolog_goal": "must_get_licensed(taxi_phv)",
     "context_found": true,
     "entails": false,
     "predicted_values": [],
@@ -1950,7 +1950,7 @@
     "question": "Will I have to stay with the open register?",
     "scenario": "Yesterday a friend of mine showed me the \"open register\" which is apparently a public document containing information on voters. I personally do not remember signing up to this register and instantly asked here if it is possible to opt out. She was pretty confident that it is but was not sure what the process is.",
     "question_type": "yesno",
-    "prolog_goal": "opt_out_of_open_register(me)",
+    "prolog_goal": "must_register_to_vote(me)",
     "context_found": true,
     "entails": false,
     "predicted_values": [],
@@ -2001,7 +2001,7 @@
     "question": "can we appeal our refused application ?",
     "scenario": "we applied to have our sports club become a community amateur sports club but our application was refused by the HMRC.",
     "question_type": "yesno",
-    "prolog_goal": "can_appeal(casc)",
+    "prolog_goal": "can_appeal_refused_application(me)",
     "context_found": true,
     "entails": false,
     "predicted_values": [],
@@ -2022,7 +2022,7 @@
     "question": "Can i register to vote?",
     "scenario": "My name is Chris Hemming. I am 15 years old and have always had an interest in the politics of my country the UK",
     "question_type": "yesno",
-    "prolog_goal": "can_register_to_vote(_, e)",
+    "prolog_goal": "must_register_to_vote(chris)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -2043,11 +2043,11 @@
     "question": "Can banks carry out checks for loan applications from this register?",
     "scenario": "I am 34 and have been registered of the full version of the electoral register. I have updated my address recently and will always want to vote in the UK elections.",
     "question_type": "yesno",
-    "prolog_goal": "can_register_to_vote(_, e)",
+    "prolog_goal": "can_register_twice(me)",
     "context_found": true,
-    "entails": true,
+    "entails": false,
     "predicted_values": [],
-    "predicted": "yes",
+    "predicted": "no",
     "gold_answers": [
         [
             "yes",
@@ -2064,7 +2064,7 @@
     "question": "Can I get funding for my rental accomodation for five years?",
     "scenario": "I am seventeen and intend to go to University to study medicine in the next two years. I have no personal income and my parents cannot afford to fund me. I will have to stay in the cheapest digs that I can find.",
     "question_type": "yesno",
-    "prolog_goal": "can_apply_for_residential_support(_)",
+    "prolog_goal": "applies_for_accommodation_help(me)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -2085,11 +2085,11 @@
     "question": "Although I have savings, can I apply for any sort of financial help towards rent?",
     "scenario": "I am 35 and wish to study as a mature student, starting from next year. I will have to move from my home in order to study, and quit my job. I have a small amount of savings but not enough for my full course.",
     "question_type": "yesno",
-    "prolog_goal": "can_apply_for_residential_bursary(_)",
+    "prolog_goal": "applies_for_accommodation_help(me)",
     "context_found": true,
-    "entails": true,
+    "entails": false,
     "predicted_values": [],
-    "predicted": "yes",
+    "predicted": "no",
     "gold_answers": [
         [
             "no",
@@ -2106,11 +2106,11 @@
     "question": "can i appeal my A levels mathematics result ?",
     "scenario": "i have always been very good at mathematics and thought that i'd do very well in the subject on my A levels. i was shocked to learn that i'd scored an A instead of the A* i was expecting.",
     "question_type": "yesno",
-    "prolog_goal": "can_challenge_exam_results(me, mathematics)",
+    "prolog_goal": "makes_appeal(me)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "yes",
@@ -2127,11 +2127,11 @@
     "question": "can i appeal the result of a review ?",
     "scenario": "our school generally does well in the A levels but in our year we had disastrous results. i and a few of my classmates appealed the results and while they succeeded in their appeals, my review was denied.",
     "question_type": "yesno",
-    "prolog_goal": "can_challenge_exam_results(me, review)",
+    "prolog_goal": "makes_appeal(me)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "yes",
@@ -2148,7 +2148,7 @@
     "question": "can my son get residential support for his studies in London ?",
     "scenario": "my son has been accepted at a college that is in London. we are too far away from London for him to commute daily and he needs housing there.",
     "question_type": "yesno",
-    "prolog_goal": "can_apply_for_residential_support(_)",
+    "prolog_goal": "applies_for_accommodation_help(son)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -2180,11 +2180,11 @@
     "question": "Can I export the car to Japan?",
     "scenario": "I am moving to Japan and have an old car that is a family heirloom. It has was my grandfather's car and I have no other family in the UK. I want to keep the car to remember my grandfather. The car also has a personalized registration.",
     "question_type": "yesno",
-    "prolog_goal": "must_complete_export_process(_)",
+    "prolog_goal": "must_notify_dvla(me)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "yes",
@@ -2201,7 +2201,7 @@
     "question": "Can I make a part 1 claim for agricultural land?",
     "scenario": "My agricultural land has become polluted due to the new road built next to it, where lots of heavy lorries drive past each day.",
     "question_type": "yesno",
-    "prolog_goal": "can_claim(p)",
+    "prolog_goal": "valid_claim(land)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -2226,7 +2226,7 @@
     "question": "Do I have a right to compensation?",
     "scenario": "A road next to my property has recently been expanded and many heavy trucks are now using the rout. I'm not happy as i have asthma and it's affecting my health.",
     "question_type": "yesno",
-    "prolog_goal": "claim_acceptable_conditions(p)",
+    "prolog_goal": "valid_claim(me)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -2254,7 +2254,7 @@
     "question": "Will I have to pay duty and VAT on goods that cost around £150?",
     "scenario": "I have a small business importing wine from France to sell in the London area.",
     "question_type": "yesno",
-    "prolog_goal": "must_pay_tax(goods)",
+    "prolog_goal": "must_pay_tax_on_goods(me)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -2275,11 +2275,11 @@
     "question": "Can I use a grant to restore my dissolved company?",
     "scenario": "During the pandemic I owned a small company based in Birmingham that dissolved due to bankruptcy. I have started up another company based in Scotland.",
     "question_type": "yesno",
-    "prolog_goal": "can_restore_company(me)",
+    "prolog_goal": "can_claim(me, crown)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "yes",
@@ -2296,11 +2296,11 @@
     "question": "Can I claim for my brothers business to be restored?",
     "scenario": "My brothers business based in London has recently dissolved and he does not want to claim any assets previously owned by the business. I have just claimed my pension.",
     "question_type": "yesno",
-    "prolog_goal": "can_restore_company(brother)",
+    "prolog_goal": "can_claim(me, crown)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "yes",
@@ -2325,7 +2325,7 @@
     "question": "Will I still have to pay Excise Duty even though the cigarettes will be a gift?",
     "scenario": "I live in England, and a friend wants to send me a ten-pack of cigarettes that we used to smoke together when we lived in Barcelona together. My friend still lives in Barcelona.",
     "question_type": "yesno",
-    "prolog_goal": "must_pay_tax(goods)",
+    "prolog_goal": "must_pay_tax_on_goods(me)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -2346,11 +2346,11 @@
     "question": "Do I need to pay Customs duty on both the price for the goods and the price of the postage and packaging?",
     "scenario": "I live in Bristol. I recently bought a handmade rug online worth £300 from Turkey. It is being sent to me directly from Turkey.",
     "question_type": "yesno",
-    "prolog_goal": "must_pay_tax(me)",
+    "prolog_goal": "must_pay_tax_on_goods(me)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "yes",
@@ -2367,7 +2367,7 @@
     "question": "Is it possible for me to buy my sister's in law's equipment once her company is formally liquidised?",
     "scenario": "My sister in law's cake decorating business has just gone into liquidation as she was no longer able to meet her overheads. She has a lot of professional baking equipment which is tied up in her business.",
     "question_type": "yesno",
-    "prolog_goal": "can_claim_asset(me, equipment)",
+    "prolog_goal": "can_claim(me, crown)",
     "context_found": true,
     "entails": false,
     "predicted_values": [],
@@ -2390,9 +2390,9 @@
     "question_type": "yesno",
     "prolog_goal": "needs_planning_permission(me)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "yes",
@@ -2409,7 +2409,7 @@
     "question": "Do I still have to pay my tax bill to HMRC?",
     "scenario": "I had a limited company and because of the recent IR35 changes I moved to a permanent role but have not liquidated the company and no profits from the company as well",
     "question_type": "yesno",
-    "prolog_goal": "pays_corporation_tax_due(me)",
+    "prolog_goal": "must_pay_corporation_tax(me, 0)",
     "context_found": true,
     "entails": false,
     "predicted_values": [],
@@ -2451,11 +2451,11 @@
     "question": "Does this make me exempt?",
     "scenario": "I am a 53 year old from Essex, I have recently liquidised a lot of my business which takes me above the VAT threshold for this tax year. I expect a VAT turnover of £50,000 per annum.",
     "question_type": "yesno",
-    "prolog_goal": "must_register_for_vat(_)",
+    "prolog_goal": "must_register_for_vat(me)",
     "context_found": true,
-    "entails": true,
+    "entails": false,
     "predicted_values": [],
-    "predicted": "yes",
+    "predicted": "no",
     "gold_answers": [
         [
             "yes",
@@ -2475,11 +2475,11 @@
     "question": "Do sales of zero-rated items count towards the threshold when calculating my turnover for a given twelve month period?",
     "scenario": "I live in Kent and run a small retail business selling bicycles and their parts and accessories to the general public. I am not currently VAT registered, but my turnover is approaching the threshold for registration. This figure, however, includes mail order sales to customers outside the UK, which I believe are currently zero-rated in VAT terms.",
     "question_type": "yesno",
-    "prolog_goal": "must_register_for_vat(_)",
+    "prolog_goal": "must_register_for_vat(me)",
     "context_found": true,
-    "entails": true,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "yes",
+    "predicted": null,
     "gold_answers": [
         [
             "no",
@@ -2487,7 +2487,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -2496,11 +2496,11 @@
     "question": "Can I claim back the intellectual property rights to my unremunerated work?",
     "scenario": "I am a software developer, and from mid-2017 until earlier this year I worked for a company which has since been dissolved. At the time of dissolution I held shares in the company and was owed three months’ worth of outstanding wages, with the company retaining the intellectual property rights to work I had done during that three month period.",
     "question_type": "yesno",
-    "prolog_goal": "can_claim_asset(me, intellectual_property_rights)",
+    "prolog_goal": "can_claim(me, crown)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "yes",
@@ -2517,7 +2517,7 @@
     "question": "Do i need to inform the local council and seek permission?",
     "scenario": "I am planning to utilise my garden area to build an extra bedroom for my growing family. I would like to follow the right rules before i start.",
     "question_type": "yesno",
-    "prolog_goal": "needs_planning_permission(_)",
+    "prolog_goal": "needs_planning_permission(me)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -2544,11 +2544,11 @@
     "question": "Can we write a statement to the HMRC to detail our case?",
     "scenario": "Our family transport limited company was greatly affected in year 2020 -2021 by covid pandemic restrictions .We are unable to timely pay the corperation tax bill due low profits",
     "question_type": "yesno",
-    "prolog_goal": "pays_corporation_tax_due(_)",
+    "prolog_goal": "pays_hmrc_by_deadline(company)",
     "context_found": true,
-    "entails": true,
+    "entails": false,
     "predicted_values": [],
-    "predicted": "yes",
+    "predicted": "no",
     "gold_answers": [
         [
             "yes",
@@ -2565,11 +2565,11 @@
     "question": "Can i apply for discretionary grant from the crown?",
     "scenario": "My limited company was dissolved by my accountant after it ceased trading some 6 months ago.There were funds remaining in my business bank account. The funds were siezed by the crown and i had to borrow money from relatives.The company has no outstanding debts.",
     "question_type": "yesno",
-    "prolog_goal": "can_claim_asset(me, crown)",
+    "prolog_goal": "can_claim(me, crown)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "yes",
@@ -2586,11 +2586,11 @@
     "question": "Will i need to pay custom duty for the gift ?",
     "scenario": "My friend Annita has a wedding Anniversary next month and lives  abroad in South Africa. I would like to send her a gift percel from UK.",
     "question_type": "yesno",
-    "prolog_goal": "must_pay_tax(_)",
+    "prolog_goal": "must_pay_tax_on_goods(me)",
     "context_found": true,
-    "entails": true,
+    "entails": false,
     "predicted_values": [],
-    "predicted": "yes",
+    "predicted": "no",
     "gold_answers": [
         [
             "no",
@@ -2637,11 +2637,11 @@
     "question": "Am I eligible to apply for my new loan online?",
     "scenario": "I took a year off of studying to travel around the world. I would now like to continue my education and will need a loan to be able to afford to do so. The last time I studied I also took out a loan with from Student Finance England.",
     "question_type": "yesno",
-    "prolog_goal": "can_apply_for_postgraduate_loan(me)",
+    "prolog_goal": "can_apply_postgraduate_loan(me)",
     "context_found": true,
-    "entails": true,
+    "entails": false,
     "predicted_values": [],
-    "predicted": "yes",
+    "predicted": "no",
     "gold_answers": [
         [
             "no",
@@ -2658,7 +2658,7 @@
     "question": "Is he allowed to charge me again?",
     "scenario": "I began my CBT training course a little over a week ago and have driven with my trainer only 2 times so far. Yesterday after our drive he informed me that he will need to stop my CBT course due to lack of knowledge of traffic signs. I understood and he pointed me at good learning materials so I can catch up. When I asked him when I will be able to continue with my CBT course he said that I will have to begin anew and pay the charge again.",
     "question_type": "yesno",
-    "prolog_goal": "can_charge_again(f)",
+    "prolog_goal": "must_take_cbt(me)",
     "context_found": true,
     "entails": false,
     "predicted_values": [],
@@ -2679,11 +2679,11 @@
     "question": "Am I going to be allowed to drive back home on my moped after receiving my certificate of completion?",
     "scenario": "I will be attending my CBT course tomorrow in hopes of finally being able to drive the moped my parent bought me for Christmas. I passed the theory test and full moped test last year. I am aware that the course will take me the whole day and my dad suggested he drops me off together with my moped and I drive back once I have my certificate. We have already equipped the vehicle with L plates.",
     "question_type": "yesno",
-    "prolog_goal": "can_drive_moped_after_certificate(f)",
+    "prolog_goal": "can_ride(me, moped)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "yes",
@@ -2702,11 +2702,11 @@
     "question": "Is it acceptable for the landlord to have done this arbitrarily?",
     "scenario": "My family and I are private tenants and have been for over five years in the same place. My landlord has just increased our rent out of the blue and we cannot afford the new rate.",
     "question_type": "yesno",
-    "prolog_goal": "can_apply_to_tribunal(_)",
+    "prolog_goal": "safety_responsibility(me)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "yes",
@@ -2734,7 +2734,7 @@
     "question": "Do i need to apply for a permit or a licence to own it?",
     "scenario": "I own a newly built house and I have set up a septic tank since the property is not connected to the main public sewer.It is mainly for domestic purposes from a toilet and kitchen.",
     "question_type": "yesno",
-    "prolog_goal": "must_apply_for_permit_if_non_standard(environment_agency)",
+    "prolog_goal": "system_type(septic_tank)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -2758,7 +2758,7 @@
     "question": "I want to make a complaint against my immigration advisor, can I?",
     "scenario": "I am appealing against a decision to deport me on the grounds that I do not have a skilled job here in the UK. I have been here for over ten years from my native Australia and am desperately looking for work but can't find any. The adviser I hired is not helping me at all.",
     "question_type": "yesno",
-    "prolog_goal": "complain_about_adviser(me)",
+    "prolog_goal": "can_help_with_immigration(adviser)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -2790,11 +2790,11 @@
     "question": "Can we continue to claim our state pensions if we are in the US?",
     "scenario": "My husband and I are in in our early seventies and are in receipt of a UK state pension. We have been offered the opportunity to live in the US for four months of the year for the next two years.",
     "question_type": "yesno",
-    "prolog_goal": "can_claim_state_pension(_)",
+    "prolog_goal": "can_claim_state_pension(uk_national)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "yes",
@@ -2811,11 +2811,11 @@
     "question": "Will that be possible to pay through my overseas bank account?",
     "scenario": "I am a UK citizen but I live abroad.I have reached my state pension age . I want my state pension to be paid to the bank account in the country I am living in.",
     "question_type": "yesno",
-    "prolog_goal": "gets_paid_frequency(_, abroad)",
+    "prolog_goal": "can_claim_state_pension(uk_national)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "yes",
@@ -2832,7 +2832,7 @@
     "question": "Can we request this agreement without directly contacting out employer?",
     "scenario": "I am interested in requesting an information and consultation agreement with my employer. I have spoken to the whole office and everyone agrees that we should request this information. The problem is we are scared from being fired unfairly if we request this from out boss directly.",
     "question_type": "yesno",
-    "prolog_goal": "request_validity(_, cac)",
+    "prolog_goal": "can_request_agreement(me)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -2853,11 +2853,11 @@
     "question": "As I am technically only a temp, am I eligible for maternity pay of any kind?",
     "scenario": "I am a 30 year old agency worker who has been in the same temp job for nine months. I have just found out that I am pregnant. My baby will be due in seven months and I had expected to still be in the same employment at that time",
     "question_type": "yesno",
-    "prolog_goal": "entitled_to_maternity_pay(me)",
+    "prolog_goal": "eligible_for_maternity_pay(me)",
     "context_found": true,
-    "entails": true,
+    "entails": false,
     "predicted_values": [],
-    "predicted": "yes",
+    "predicted": "no",
     "gold_answers": [
         [
             "yes",
@@ -2874,11 +2874,11 @@
     "question": "Can the agency refuse to pay because the hirer is unhappy with my daughter's work?",
     "scenario": "My daughter is fifteen and has recently been signed up to a modelling agency. So far she has had two jobs with them but we have yet to receive any pay. When I called to enquire I was told that pay was 'pending.' I am worried that the agency will refuse to pay because the hirer is unhappy with my daughter's work.",
     "question_type": "yesno",
-    "prolog_goal": "can_agency_refuse_payment(hirer, daughter)",
+    "prolog_goal": "can_refuse_payment(recruitment_agency, daughter)",
     "context_found": true,
-    "entails": true,
+    "entails": false,
     "predicted_values": [],
-    "predicted": "yes",
+    "predicted": "no",
     "gold_answers": [
         [
             "no",
@@ -2895,7 +2895,7 @@
     "question": "I want to make a formal grievance complaint about my supervisor. Can I?",
     "scenario": "I am a junior office worker in a large law firm and have been here for eighteen months. I feel that I am being bullied by my immediate supervisor, who encourages other workers to laugh at me too. This is causing me a great deal of distress.",
     "question_type": "yesno",
-    "prolog_goal": "can_make_grievance_complaint(_)",
+    "prolog_goal": "can_make_grievance(me)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -2918,7 +2918,7 @@
     "question": "Will I be eligible to claim asylum in the UK?",
     "scenario": "I have moved to the UK as a refugee. I want to claim asylum. I have been persecuted in my home country for my political beliefs. I have travelled through the EU countries to come to the UK.",
     "question_type": "yesno",
-    "prolog_goal": "claim_asylum(me)",
+    "prolog_goal": "eligible_for_asylum(me)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -2947,7 +2947,7 @@
     "question": "Will I be eligible to make a request?",
     "scenario": "I am an employee of a company. I am looking to request an information and consultation agreement due to concerns over the employer's finances. The company has 150 employees. The registered office is in London.",
     "question_type": "yesno",
-    "prolog_goal": "request_validity(_, 150)",
+    "prolog_goal": "can_request_agreement(me)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -2968,7 +2968,7 @@
     "question": "Can the employer choose not to negotiate?",
     "scenario": "I, and 49 other employees, have requested an information and consultation agreement. The company has 70 employees. Our employer has refused to start negotiations.",
     "question_type": "yesno",
-    "prolog_goal": "request_validity(_, 70)",
+    "prolog_goal": "must_inform_employees(employer)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -2989,7 +2989,7 @@
     "question": "Do I count as an agency worker under these circumstances?",
     "scenario": "I have been out of a job for about 6 months now. Since I have had little to no luck finding opportunities myself I contacted a local firm. They advertise the ability to find me a suitable permanent position in a few months. So far working with them has been great.",
     "question_type": "yesno",
-    "prolog_goal": "is_agency_worker(_)",
+    "prolog_goal": "is_agency_worker(me)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -3010,11 +3010,11 @@
     "question": "As I am under the age of eighteen am I legally allowed to apply for refugee status as a child?",
     "scenario": "I am sixteen and arrived here illegally a month ago. My family were left behind and I am desperate to hear from them. The country I am from is not safe for me to return to.",
     "question_type": "yesno",
-    "prolog_goal": "can_apply_for_refugee_status(me)",
+    "prolog_goal": "eligible_for_asylum(me)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "yes",
@@ -3031,7 +3031,7 @@
     "question": "Can I protest this on the grounds that it will take me a long time to get to work now?",
     "scenario": "I have been working for a law firm (as a receptionist) for just over a year. I am fortunate to have been working near to my home but my boss has just announced that we are relocating to a town ten miles away.",
     "question_type": "yesno",
-    "prolog_goal": "request_validity(_, cac)",
+    "prolog_goal": "can_request_agreement(me)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -3052,7 +3052,7 @@
     "question": "Is there a way he can be compensated for the damages  after this unfortunate episode?",
     "scenario": "My uncle has developed a serious blood clot after getting his first dose of covid vaccine which has left him severed paralysed and disabled. My uncle is considered to be severely disabled.",
     "question_type": "yesno",
-    "prolog_goal": "receives_payment(_)",
+    "prolog_goal": "eligible_for_vaccine_damage_payment(me)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -3073,11 +3073,11 @@
     "question": "Will our account be closed ?",
     "scenario": "I started a limited company and employed 5 employees. I registered for the PAYE scheme. We were very busy and I was not able to find time to pay HMRC in the past 5 months.",
     "question_type": "yesno",
-    "prolog_goal": "must_report_if_no_payment(_)",
+    "prolog_goal": "must_send_fps(hmrc, Employee)",
     "context_found": true,
-    "entails": true,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "yes",
+    "predicted": null,
     "gold_answers": [
         [
             "yes",
@@ -3085,7 +3085,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -3094,11 +3094,11 @@
     "question": "Can we appeal to a housing tribunal over this rent dispute considering we have a shorthold tenancy agreement?",
     "scenario": "I rent a room in a house in multiple occupation in Sheffield, England, and have a periodic assured shorthold tenancy agreement with the landlord. Recently, however, he has announced a very large rent increase as part of a \"section 13\" procedure, to which I and several other tenants in the building strongly object.",
     "question_type": "yesno",
-    "prolog_goal": "can_apply_to_tribunal(_)",
+    "prolog_goal": "safety_responsibility(Tenant)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "yes",
@@ -3106,7 +3106,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -3115,11 +3115,11 @@
     "question": "Is it acceptable for the landlord to have done this arbitrarily?",
     "scenario": "My family and I are private tenants and have been for over five years in the same place. My landlord has just increased our rent out of the blue and we cannot afford the new rate. The fixed-term tenancy agreement has two years remaining.",
     "question_type": "yesno",
-    "prolog_goal": "can_apply_to_tribunal(_)",
+    "prolog_goal": "safety_responsibility(Tenant)",
     "context_found": true,
-    "entails": false,
+    "entails": null,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": null,
     "gold_answers": [
         [
             "no",
@@ -3127,7 +3127,7 @@
         ]
     ],
     "not_answerable": false,
-    "error": null
+    "error": "prolog exception during query"
 }
 
 {
@@ -3136,11 +3136,11 @@
     "question": "Am I going to be allowed to drive back home on my moped after receiving my certificate of completion?",
     "scenario": "I will be attending my CBT course tomorrow in hopes of finally being able to drive the moped my parent bought me for Christmas. I passed the theory test and full moped test last year. I am aware that the course will take me the whole day and my dad suggested he drops me off together with my moped and I drive back once I have my certificate. We have already equipped the vehicle with L plates. The moped I will drive is 50cc.",
     "question_type": "yesno",
-    "prolog_goal": "allowed_to_drive_back_after_certificate(f)",
+    "prolog_goal": "can_ride(me, moped)",
     "context_found": true,
-    "entails": false,
+    "entails": true,
     "predicted_values": [],
-    "predicted": "no",
+    "predicted": "yes",
     "gold_answers": [
         [
             "yes",
@@ -3157,7 +3157,7 @@
     "question": "I want to make a complaint against my immigration advisor, can I?",
     "scenario": "I am appealing against a decision to deport me on the grounds that I do not have a skilled job here in the UK. I have been here for over ten years from my native Australia and am desperately looking for work but can't find any. The adviser I hired is not helping me at all. This deportation decision was made 18 months ago.",
     "question_type": "yesno",
-    "prolog_goal": "complain_about_adviser(me)",
+    "prolog_goal": "can_help_with_immigration(adviser)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],
@@ -3178,7 +3178,7 @@
     "question": "I want to make a formal grievance complaint about my supervisor. Can I?",
     "scenario": "I am a junior office worker in a large law firm and have been here for eighteen months. I feel that I am being bullied by my immediate supervisor, who encourages other workers to laugh at me too. This is causing me a great deal of distress. I tried to resolve the problem by talking to my manager but I am not happy with his response",
     "question_type": "yesno",
-    "prolog_goal": "can_make_grievance_complaint(me)",
+    "prolog_goal": "can_make_grievance(me)",
     "context_found": true,
     "entails": true,
     "predicted_values": [],

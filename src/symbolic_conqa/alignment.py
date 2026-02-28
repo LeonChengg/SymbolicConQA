@@ -569,10 +569,14 @@ def _variabilize_constants_in_clause(
     clause: str,
     constants_to_replace: set[str],
 ) -> str:
-    """Replace specified ground constants with _ in a ground fact's arguments.
+    """Replace specified ground constants with named variables in a ground fact's arguments.
 
     Only operates on ground facts (no :-). Rules with variables are left
     untouched since their variables already unify with anything.
+
+    Uses named variable ``_Person`` instead of anonymous ``_`` so that
+    multiple occurrences in the same clause share the same binding,
+    and the goal is not trivially provable by matching any argument.
     """
     if ":-" in clause:
         return clause
@@ -581,7 +585,7 @@ def _variabilize_constants_in_clause(
         return clause
     pred_part, args_str, tail = m.group(1), m.group(2), m.group(3)
     args = [a.strip() for a in args_str.split(",")]
-    new_args = ["_" if a in constants_to_replace else a for a in args]
+    new_args = ["_Person" if a in constants_to_replace else a for a in args]
     return f"{pred_part}({', '.join(new_args)}){tail}"
 
 
@@ -673,16 +677,12 @@ def align(
                 new_lines.append(line)
             aligned = "\n".join(new_lines)
 
-        if sq_persons:
-            # Variabilize person constants in the goal, but ONLY for
-            # predicates that also appear in the context KB.  This
-            # prevents false positives from scenario-only predicates
-            # where the person arg slot might match a non-person arg
-            # in an unrelated context fact (e.g. pred(me) matching
-            # pred(true)).
-            goal = _variabilize_constants_in_goal(
-                goal, sq_persons, restrict_to_preds=ctx_preds,
-            )
+        # Goal is left intact — do NOT variabilize person constants in the
+        # goal.  Replacing e.g. `me` with `_` makes goals trivially provable
+        # (any fact with the same predicate matches).  Instead, context
+        # ground facts are variabilized above (me → _Person), and context
+        # rules should already use Prolog variables that unify naturally
+        # with the goal's specific constants.
 
     # ------------------------------------------------------------------
     # Strategy 1 — Normalisation
